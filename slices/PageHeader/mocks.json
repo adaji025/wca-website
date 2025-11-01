@@ -1,0 +1,57 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"wca_logo": {
+				"origin": {
+					"id": "main",
+					"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a",
+					"width": 4000,
+					"height": 4000
+				},
+				"url": "https://images.unsplash.com/photo-1587653915936-5623ea0b949a?rect=0%2C217%2C4000%2C3565&w=92&h=82",
+				"width": 92,
+				"height": 82,
+				"edit": {
+					"zoom": 1,
+					"crop": {
+						"x": 0,
+						"y": 217
+					},
+					"background": "transparent"
+				},
+				"alt": "cutting",
+				"credits": null,
+				"__TYPE__": "ImageContent",
+				"thumbnails": {}
+			},
+			"text": {
+				"__TYPE__": "FieldContent",
+				"value": "tax",
+				"type": "Text"
+			},
+			"seconds_value": {
+				"__TYPE__": "FieldContent",
+				"value": "11",
+				"type": "Number"
+			},
+			"hours": {
+				"__TYPE__": "FieldContent",
+				"value": "35",
+				"type": "Number"
+			},
+			"minute": {
+				"__TYPE__": "FieldContent",
+				"value": "78",
+				"type": "Number"
+			},
+			"days": {
+				"__TYPE__": "FieldContent",
+				"value": "56",
+				"type": "Number"
+			}
+		},
+		"items": []
+	}
+]

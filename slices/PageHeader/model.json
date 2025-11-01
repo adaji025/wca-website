@@ -1,0 +1,65 @@
+{
+  "id": "page_header",
+  "type": "SharedSlice",
+  "name": "PageHeader",
+  "description": "PageHeader",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "wca_logo": {
+          "type": "Image",
+          "config": {
+            "label": "wca logo",
+            "constraint": {
+              "width": 92,
+              "height": 82
+            },
+            "thumbnails": []
+          }
+        },
+        "text": {
+          "type": "Text",
+          "config": {
+            "label": "text",
+            "placeholder": "WCA SUMMIT OCTOBER 2025 (KIGALI, RWANDA)"
+          }
+        },
+        "hours": {
+          "type": "Number",
+          "config": {
+            "label": "hours",
+            "placeholder": "22"
+          }
+        },
+        "minute": {
+          "type": "Number",
+          "config": {
+            "label": "minute",
+            "placeholder": "59"
+          }
+        },
+        "seconds_value": {
+          "type": "Number",
+          "config": {
+            "label": "seconds",
+            "placeholder": "22"
+          }
+        },
+        "days": {
+          "type": "Number",
+          "config": {
+            "label": "days",
+            "placeholder": "56"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

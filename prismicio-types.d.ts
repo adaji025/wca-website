@@ -136,6 +136,101 @@ export type HomepageDocument<Lang extends string = string> =
 
 export type AllDocumentTypes = HomepageDocument;
 
+/**
+ * Primary content in *PageHeader → Default → Primary*
+ */
+export interface PageHeaderSliceDefaultPrimary {
+  /**
+   * wca logo field in *PageHeader → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: page_header.default.primary.wca_logo
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  wca_logo: prismic.ImageField<never>;
+
+  /**
+   * text field in *PageHeader → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: WCA SUMMIT OCTOBER 2025 (KIGALI, RWANDA)
+   * - **API ID Path**: page_header.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  text: prismic.KeyTextField;
+
+  /**
+   * hours field in *PageHeader → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 22
+   * - **API ID Path**: page_header.default.primary.hours
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  hours: prismic.NumberField;
+
+  /**
+   * minute field in *PageHeader → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 59
+   * - **API ID Path**: page_header.default.primary.minute
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  minute: prismic.NumberField;
+
+  /**
+   * seconds field in *PageHeader → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 22
+   * - **API ID Path**: page_header.default.primary.seconds_value
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  seconds_value: prismic.NumberField;
+
+  /**
+   * days field in *PageHeader → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: 56
+   * - **API ID Path**: page_header.default.primary.days
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  days: prismic.NumberField;
+}
+
+/**
+ * Default variation for PageHeader Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PageHeaderSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PageHeaderSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PageHeader*
+ */
+type PageHeaderSliceVariation = PageHeaderSliceDefault;
+
+/**
+ * PageHeader Shared Slice
+ *
+ * - **API ID**: `page_header`
+ * - **Description**: PageHeader
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PageHeaderSlice = prismic.SharedSlice<
+  "page_header",
+  PageHeaderSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -161,6 +256,10 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      PageHeaderSlice,
+      PageHeaderSliceDefaultPrimary,
+      PageHeaderSliceVariation,
+      PageHeaderSliceDefault,
     };
   }
 }
