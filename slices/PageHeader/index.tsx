@@ -94,7 +94,7 @@ const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
 
         {/* Countdown Timer - Only render after mount to prevent hydration issues */}
         {mounted && (days !== null || hours !== null || minute !== null || seconds_value !== null) && (
-          <div className="flex gap-2 md:gap-4 flex-shrink-0">
+          <div className="flex gap-2 md:gap-4 shrink-0">
             {countdown.days > 0 && (
               <div className="flex flex-col items-center bg-white/10 rounded-lg px-3 py-2 min-w-[60px]">
                 <span className="text-2xl md:text-3xl font-bold">

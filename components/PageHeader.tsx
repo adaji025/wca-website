@@ -80,11 +80,11 @@ export const PageHeader: FC<PageHeaderProps> = ({
   }, [mounted]);
 
   return (
-    <header className="w-full bg-linear-to-b from-blue-900 to-blue-800 text-white py-4 px-6">
+    <header className="w-full bg-gradient-to-b from-blue-900 to-blue-800 text-white py-4 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Logo */}
         {logo && (
-          <div className="shrink-0">
+          <div className="flex-shrink-0">
             <PrismicNextImage
               field={logo}
               alt=""
@@ -100,31 +100,31 @@ export const PageHeader: FC<PageHeaderProps> = ({
           </div>
         )}
 
-        {/* Countdown Timer - Only render after mount to prevent hydration issues */}
-        {mounted && (days !== null || hours !== null || minute !== null || seconds_value !== null) && (
-          <div className="flex gap-2 md:gap-4 shrink-0">
+        {/* Countdown Timer */}
+        {(days !== null || hours !== null || minute !== null || seconds_value !== null) && (
+          <div className="flex gap-2 md:gap-4 flex-shrink-0" suppressHydrationWarning>
             {countdown.days > 0 && (
               <div className="flex flex-col items-center bg-white/10 rounded-lg px-3 py-2 min-w-[60px]">
-                <span className="text-2xl md:text-3xl font-bold">
+                <span className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
                   {countdown.days}
                 </span>
                 <span className="text-xs uppercase">Days</span>
               </div>
             )}
             <div className="flex flex-col items-center bg-white/10 rounded-lg px-3 py-2 min-w-[60px]">
-              <span className="text-2xl md:text-3xl font-bold">
+              <span className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
                 {String(countdown.hours).padStart(2, "0")}
               </span>
               <span className="text-xs uppercase">Hours</span>
             </div>
             <div className="flex flex-col items-center bg-white/10 rounded-lg px-3 py-2 min-w-[60px]">
-              <span className="text-2xl md:text-3xl font-bold">
+              <span className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
                 {String(countdown.minutes).padStart(2, "0")}
               </span>
               <span className="text-xs uppercase">Min</span>
             </div>
             <div className="flex flex-col items-center bg-white/10 rounded-lg px-3 py-2 min-w-[60px]">
-              <span className="text-2xl md:text-3xl font-bold">
+              <span className="text-2xl md:text-3xl font-bold" suppressHydrationWarning>
                 {String(countdown.seconds).padStart(2, "0")}
               </span>
               <span className="text-xs uppercase">Sec</span>

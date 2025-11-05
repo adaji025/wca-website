@@ -1,17 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Josefin_Sans, Playfair_Display } from "next/font/google";
 import { createClient } from "@/prismicio";
 import { type Content } from "@prismicio/client";
 import { PageHeader } from "@/components/PageHeader";
 import "./globals.css";
+import { Navbar } from "@/components/navbar";
+import PageHeaderComp from "@/components/page-header";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
+const josefinSans = Josefin_Sans({
+  variable: "--font-josefin-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+const playfairDisplay = Playfair_Display({
+  variable: "--font-playfair-display",
   subsets: ["latin"],
 });
 
@@ -26,10 +28,10 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const client = createClient();
-  
+
   // Fetch homepage to get the PageHeader slice data
   const homepage = await client.getSingle("homepage").catch(() => null);
-  
+
   // Find the PageHeader slice in the homepage slices
   const headerSlice = homepage?.data.slices?.find(
     (slice: any) => slice.slice_type === "page_header"
@@ -38,7 +40,7 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${josefinSans.variable} ${playfairDisplay.variable} antialiased`}
         suppressHydrationWarning
       >
         {headerSlice?.primary && (
@@ -51,6 +53,8 @@ export default async function RootLayout({
             seconds_value={headerSlice.primary.seconds_value || undefined}
           />
         )}
+        <PageHeaderComp />
+        <Navbar />
         {children}
       </body>
     </html>
