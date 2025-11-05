@@ -1,27 +1,30 @@
 "use client";
 
 import { FC, useEffect, useState } from "react";
-import { Content } from "@prismicio/client";
-import { SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
+import { type Content } from "@prismicio/client";
 
-/**
- * Props for `PageHeader`.
- */
-export type PageHeaderProps = SliceComponentProps<Content.PageHeaderSlice>;
+interface PageHeaderProps {
+  logo?: Content.PageHeaderSliceDefaultPrimary["wca_logo"];
+  text?: string;
+  days?: number;
+  hours?: number;
+  minute?: number;
+  seconds_value?: number;
+}
 
-/**
- * Component for "PageHeader" Slices.
- */
-const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
-  const { wca_logo, text, days, hours, minute, seconds_value } = slice.primary;
-
-  // Calculate target date from the countdown values
-  // Note: This assumes the numbers represent remaining time
-  // If you have a target date instead, use that
+export const PageHeader: FC<PageHeaderProps> = ({
+  logo,
+  text,
+  days,
+  hours,
+  minute,
+  seconds_value,
+}) => {
   // Track if component has mounted to prevent hydration mismatches
   const [mounted, setMounted] = useState(false);
   
+  // Initialize countdown state from props
   const [countdown, setCountdown] = useState({
     days: days || 0,
     hours: hours || 0,
@@ -35,11 +38,20 @@ const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
   }, []);
 
   useEffect(() => {
+    // Update countdown from props if they change
+    setCountdown({
+      days: days || 0,
+      hours: hours || 0,
+      minutes: minute || 0,
+      seconds: seconds_value || 0,
+    });
+  }, [days, hours, minute, seconds_value]);
+
+  useEffect(() => {
     // Only start countdown after component has mounted
     if (!mounted) return;
 
-    // If you have actual countdown values, decrement them
-    // For a real countdown, you'd typically use a target date
+    // Countdown timer logic
     const interval = setInterval(() => {
       setCountdown((prev) => {
         let { days, hours, minutes, seconds } = prev;
@@ -68,17 +80,13 @@ const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
   }, [mounted]);
 
   return (
-    <header
-      data-slice-type={slice.slice_type}
-      data-slice-variation={slice.variation}
-      className="w-full bg-linear-to-b from-blue-900 to-blue-800 text-white py-4 px-6"
-    >
+    <header className="w-full bg-linear-to-b from-blue-900 to-blue-800 text-white py-4 px-6">
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
         {/* Logo */}
-        {wca_logo && (
+        {logo && (
           <div className="shrink-0">
             <PrismicNextImage
-              field={wca_logo}
+              field={logo}
               alt=""
               className="w-[92px] h-[82px] object-contain"
             />
@@ -94,7 +102,7 @@ const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
 
         {/* Countdown Timer - Only render after mount to prevent hydration issues */}
         {mounted && (days !== null || hours !== null || minute !== null || seconds_value !== null) && (
-          <div className="flex gap-2 md:gap-4 flex-shrink-0">
+          <div className="flex gap-2 md:gap-4 shrink-0">
             {countdown.days > 0 && (
               <div className="flex flex-col items-center bg-white/10 rounded-lg px-3 py-2 min-w-[60px]">
                 <span className="text-2xl md:text-3xl font-bold">
@@ -127,5 +135,3 @@ const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
     </header>
   );
 };
-
-export default PageHeader;

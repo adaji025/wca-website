@@ -13,9 +13,15 @@ export default async function SliceSimulatorPage({
   const { state } = await searchParams;
   const slices = getSlices(state);
 
+  // Filter out slices that don't have components registered
+  const availableSliceTypes = Object.keys(components);
+  const filteredSlices = slices?.filter((slice: any) =>
+    availableSliceTypes.includes(slice.slice_type)
+  ) || [];
+
   return (
     <SliceSimulator>
-      <SliceZone slices={slices} components={components} />
+      <SliceZone slices={filteredSlices} components={components} />
     </SliceSimulator>
   );
 }

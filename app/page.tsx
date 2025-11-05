@@ -10,7 +10,14 @@ export default async function Page() {
   const client = createClient();
   const page = await client.getSingle("homepage").catch(() => notFound());
 
-  return <SliceZone slices={page.data.slices} components={components} />;
+  // Filter out slices that don't have components registered
+  const availableSliceTypes = Object.keys(components);
+  const allSlices = page.data.slices || [];
+  const filteredSlices = allSlices.filter((slice: any) =>
+    availableSliceTypes.includes(slice.slice_type)
+  );
+
+  return <SliceZone slices={filteredSlices} components={components} />;
 }
 
 export async function generateMetadata(): Promise<Metadata> {

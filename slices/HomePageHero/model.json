@@ -1,0 +1,110 @@
+{
+  "id": "home_page_hero",
+  "type": "SharedSlice",
+  "name": "HomePageHero",
+  "description": "HomePageHero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "theme": {
+          "type": "Text",
+          "config": {
+            "label": "theme",
+            "placeholder": "Theme"
+          }
+        },
+        "hero_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "hero text",
+            "placeholder": "From Representation To Protection",
+            "allowTargetBlank": true,
+            "multi": "heading2,strong"
+          }
+        },
+        "primary_button": {
+          "type": "Link",
+          "config": {
+            "label": "primary button",
+            "placeholder": "Register for Event",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "secondary_burron": {
+          "type": "Link",
+          "config": {
+            "label": "secondary burron",
+            "placeholder": "Become an Event Partner",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "tertiary_button": {
+          "type": "Link",
+          "config": {
+            "label": "tertiary button",
+            "placeholder": "Find Out More",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "hero_image": {
+          "type": "Image",
+          "config": {
+            "label": "hero image",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "sub_image_1": {
+          "type": "Image",
+          "config": {
+            "label": "sub image 1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "sub_image_2": {
+          "type": "Image",
+          "config": {
+            "label": "sub image 2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "even_and_campaign": {
+          "type": "StructuredText",
+          "config": {
+            "label": "even and campaign",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "policy_advocay": {
+          "type": "StructuredText",
+          "config": {
+            "label": "policy advocay",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -3,5 +3,6 @@
 import dynamic from "next/dynamic";
 
 export const components = {
+  home_page_hero: dynamic(() => import("./HomePageHero")),
   page_header: dynamic(() => import("./PageHeader")),
 };

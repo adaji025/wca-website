@@ -69,7 +69,7 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = never;
+type HomepageDocumentDataSlicesSlice = HomePageHeroSlice;
 
 /**
  * Content for homepage documents
@@ -135,6 +135,159 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomepageDocument;
+
+/**
+ * Primary content in *HomePageHero → Default → Primary*
+ */
+export interface HomePageHeroSliceDefaultPrimary {
+  /**
+   * theme field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: Theme
+   * - **API ID Path**: home_page_hero.default.primary.theme
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  theme: prismic.KeyTextField;
+
+  /**
+   * hero text field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: From Representation To Protection
+   * - **API ID Path**: home_page_hero.default.primary.hero_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  hero_text: prismic.RichTextField;
+
+  /**
+   * primary button field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Register for Event
+   * - **API ID Path**: home_page_hero.default.primary.primary_button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  primary_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * secondary burron field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Become an Event Partner
+   * - **API ID Path**: home_page_hero.default.primary.secondary_burron
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  secondary_burron: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * tertiary button field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: Find Out More
+   * - **API ID Path**: home_page_hero.default.primary.tertiary_button
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  tertiary_button: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * hero image field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_hero.default.primary.hero_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  hero_image: prismic.ImageField<never>;
+
+  /**
+   * sub image 1 field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_hero.default.primary.sub_image_1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  sub_image_1: prismic.ImageField<never>;
+
+  /**
+   * sub image 2 field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_hero.default.primary.sub_image_2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  sub_image_2: prismic.ImageField<never>;
+
+  /**
+   * even and campaign field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_hero.default.primary.even_and_campaign
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  even_and_campaign: prismic.RichTextField;
+
+  /**
+   * policy advocay field in *HomePageHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_hero.default.primary.policy_advocay
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  policy_advocay: prismic.RichTextField;
+}
+
+/**
+ * Default variation for HomePageHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HomePageHeroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HomePageHeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HomePageHero*
+ */
+type HomePageHeroSliceVariation = HomePageHeroSliceDefault;
+
+/**
+ * HomePageHero Shared Slice
+ *
+ * - **API ID**: `home_page_hero`
+ * - **Description**: HomePageHero
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HomePageHeroSlice = prismic.SharedSlice<
+  "home_page_hero",
+  HomePageHeroSliceVariation
+>;
 
 /**
  * Primary content in *PageHeader → Default → Primary*
@@ -256,6 +409,10 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      HomePageHeroSlice,
+      HomePageHeroSliceDefaultPrimary,
+      HomePageHeroSliceVariation,
+      HomePageHeroSliceDefault,
       PageHeaderSlice,
       PageHeaderSliceDefaultPrimary,
       PageHeaderSliceVariation,
