@@ -1,0 +1,112 @@
+{
+  "id": "how_we_work",
+  "type": "SharedSlice",
+  "name": "HowWeWork",
+  "description": "HowWeWork",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading6"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "single": "heading3"
+          }
+        },
+        "image1": {
+          "type": "Image",
+          "config": {
+            "label": "image1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image2": {
+          "type": "Image",
+          "config": {
+            "label": "image2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image3": {
+          "type": "Image",
+          "config": {
+            "label": "image3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image4": {
+          "type": "Image",
+          "config": {
+            "label": "image4",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image5": {
+          "type": "Image",
+          "config": {
+            "label": "image5",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image1_text": {
+          "type": "Text",
+          "config": {
+            "label": "image1 text",
+            "placeholder": ""
+          }
+        },
+        "image2_text": {
+          "type": "Text",
+          "config": {
+            "label": "image2 text",
+            "placeholder": ""
+          }
+        },
+        "image3_text": {
+          "type": "Text",
+          "config": {
+            "label": "image3 text",
+            "placeholder": ""
+          }
+        },
+        "image4_text": {
+          "type": "Text",
+          "config": {
+            "label": "image4 text",
+            "placeholder": ""
+          }
+        },
+        "image5_text": {
+          "type": "Text",
+          "config": {
+            "label": "image5 text",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

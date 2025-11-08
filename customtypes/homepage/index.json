@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "how_we_work": {
+              "type": "SharedSlice"
+            },
             "impact": {
               "type": "SharedSlice"
             },

@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomepageDocumentDataSlicesSlice =
+  | HowWeWorkSlice
   | ImpactSlice
   | HomePageAboutSlice
   | HomePageHeroSlice;
@@ -384,6 +385,161 @@ export type HomePageHeroSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *HowWeWork → Default → Primary*
+ */
+export interface HowWeWorkSliceDefaultPrimary {
+  /**
+   * title field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * image1 field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image1: prismic.ImageField<never>;
+
+  /**
+   * image2 field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * image3 field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image3: prismic.ImageField<never>;
+
+  /**
+   * image4 field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image4
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image4: prismic.ImageField<never>;
+
+  /**
+   * image5 field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image5
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image5: prismic.ImageField<never>;
+
+  /**
+   * image1 text field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image1_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image1_text: prismic.KeyTextField;
+
+  /**
+   * image2 text field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image2_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image2_text: prismic.KeyTextField;
+
+  /**
+   * image3 text field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image3_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image3_text: prismic.KeyTextField;
+
+  /**
+   * image4 text field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image4_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image4_text: prismic.KeyTextField;
+
+  /**
+   * image5 text field in *HowWeWork → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: how_we_work.default.primary.image5_text
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  image5_text: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for HowWeWork Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HowWeWorkSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HowWeWorkSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HowWeWork*
+ */
+type HowWeWorkSliceVariation = HowWeWorkSliceDefault;
+
+/**
+ * HowWeWork Shared Slice
+ *
+ * - **API ID**: `how_we_work`
+ * - **Description**: HowWeWork
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HowWeWorkSlice = prismic.SharedSlice<
+  "how_we_work",
+  HowWeWorkSliceVariation
+>;
+
+/**
  * Primary content in *Impact → Default → Primary*
  */
 export interface ImpactSliceDefaultPrimary {
@@ -643,6 +799,10 @@ declare module "@prismicio/client" {
       HomePageHeroSliceDefaultPrimary,
       HomePageHeroSliceVariation,
       HomePageHeroSliceDefault,
+      HowWeWorkSlice,
+      HowWeWorkSliceDefaultPrimary,
+      HowWeWorkSliceVariation,
+      HowWeWorkSliceDefault,
       ImpactSlice,
       ImpactSliceDefaultPrimary,
       ImpactSliceVariation,
