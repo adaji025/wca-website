@@ -1,0 +1,110 @@
+{
+  "id": "magnify_our_voices",
+  "type": "SharedSlice",
+  "name": "MagnifyOurVoices",
+  "description": "MagnifyOurVoices",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading3"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "button1": {
+          "type": "Link",
+          "config": {
+            "label": "button1",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "button2": {
+          "type": "Link",
+          "config": {
+            "label": "button2",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "button3": {
+          "type": "Link",
+          "config": {
+            "label": "button3",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "logo1": {
+          "type": "Image",
+          "config": {
+            "label": "logo1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "logo2": {
+          "type": "Image",
+          "config": {
+            "label": "logo2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "logo3": {
+          "type": "Image",
+          "config": {
+            "label": "logo3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "logo4": {
+          "type": "Image",
+          "config": {
+            "label": "logo4",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "logo5": {
+          "type": "Image",
+          "config": {
+            "label": "logo5",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

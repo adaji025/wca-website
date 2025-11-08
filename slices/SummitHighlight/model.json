@@ -1,0 +1,133 @@
+{
+  "id": "summit_highlight",
+  "type": "SharedSlice",
+  "name": "SummitHighlight",
+  "description": "SummitHighlight",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading6"
+          }
+        },
+        "title2": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title2",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "view_all": {
+          "type": "Link",
+          "config": {
+            "label": "view all",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        },
+        "image1": {
+          "type": "Image",
+          "config": {
+            "label": "image1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image2": {
+          "type": "Image",
+          "config": {
+            "label": "image2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image3": {
+          "type": "Image",
+          "config": {
+            "label": "image3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image4": {
+          "type": "Image",
+          "config": {
+            "label": "image4",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image5": {
+          "type": "Image",
+          "config": {
+            "label": "image5",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image6": {
+          "type": "Image",
+          "config": {
+            "label": "image6",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image7": {
+          "type": "Image",
+          "config": {
+            "label": "image7",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "post_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "post title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading5"
+          }
+        },
+        "post_description": {
+          "type": "StructuredText",
+          "config": {
+            "label": "post description",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "see_all": {
+          "type": "Link",
+          "config": {
+            "label": "see all",
+            "placeholder": "",
+            "select": null,
+            "allowTargetBlank": false,
+            "allowText": true,
+            "repeat": false
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "summit_highlight": {
+              "type": "SharedSlice"
+            },
+            "magnify_our_voices": {
+              "type": "SharedSlice"
+            },
             "how_we_work": {
               "type": "SharedSlice"
             },

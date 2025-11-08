@@ -140,9 +140,20 @@
     background-position: center;
     background-repeat: repeat;
   }
+  .magnify-bg {
+    background-color: #F38218;
+    background-image: url(../public//images//pngs/magnify-bg.png);
+    background-blend-mode: overlay;
+    background-size: cover;
+    background-position: center;
+    background-repeat: repeat;
+  }
 
   .text38 {
     @apply text-[24px] sm:text-[32px] lg:text-[38px] font-bold;
+  }
+  .text26 {
+    @apply text-[18px] sm:text-[24px] lg:text-[26px] font-bold;
   }
 
   .card-overlay {

@@ -70,6 +70,8 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type HomepageDocumentDataSlicesSlice =
+  | SummitHighlightSlice
+  | MagnifyOurVoicesSlice
   | HowWeWorkSlice
   | ImpactSlice
   | HomePageAboutSlice
@@ -672,6 +674,159 @@ type ImpactSliceVariation = ImpactSliceDefault;
 export type ImpactSlice = prismic.SharedSlice<"impact", ImpactSliceVariation>;
 
 /**
+ * Primary content in *MagnifyOurVoices → Default → Primary*
+ */
+export interface MagnifyOurVoicesSliceDefaultPrimary {
+  /**
+   * title field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * button1 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.button1
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button1: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * button2 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.button2
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button2: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * button3 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.button3
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  button3: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * logo1 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.logo1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo1: prismic.ImageField<never>;
+
+  /**
+   * logo2 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.logo2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo2: prismic.ImageField<never>;
+
+  /**
+   * logo3 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.logo3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo3: prismic.ImageField<never>;
+
+  /**
+   * logo4 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.logo4
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo4: prismic.ImageField<never>;
+
+  /**
+   * logo5 field in *MagnifyOurVoices → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: magnify_our_voices.default.primary.logo5
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo5: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for MagnifyOurVoices Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type MagnifyOurVoicesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<MagnifyOurVoicesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *MagnifyOurVoices*
+ */
+type MagnifyOurVoicesSliceVariation = MagnifyOurVoicesSliceDefault;
+
+/**
+ * MagnifyOurVoices Shared Slice
+ *
+ * - **API ID**: `magnify_our_voices`
+ * - **Description**: MagnifyOurVoices
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type MagnifyOurVoicesSlice = prismic.SharedSlice<
+  "magnify_our_voices",
+  MagnifyOurVoicesSliceVariation
+>;
+
+/**
  * Primary content in *PageHeader → Default → Primary*
  */
 export interface PageHeaderSliceDefaultPrimary {
@@ -766,6 +921,183 @@ export type PageHeaderSlice = prismic.SharedSlice<
   PageHeaderSliceVariation
 >;
 
+/**
+ * Primary content in *SummitHighlight → Default → Primary*
+ */
+export interface SummitHighlightSliceDefaultPrimary {
+  /**
+   * title field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * title2 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.title2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title2: prismic.RichTextField;
+
+  /**
+   * view all field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.view_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  view_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * image1 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image1: prismic.ImageField<never>;
+
+  /**
+   * image2 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * image3 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image3: prismic.ImageField<never>;
+
+  /**
+   * image4 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image4
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image4: prismic.ImageField<never>;
+
+  /**
+   * image5 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image5
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image5: prismic.ImageField<never>;
+
+  /**
+   * image6 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image6
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image6: prismic.ImageField<never>;
+
+  /**
+   * image7 field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.image7
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image7: prismic.ImageField<never>;
+
+  /**
+   * post title field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.post_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  post_title: prismic.RichTextField;
+
+  /**
+   * post description field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.post_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  post_description: prismic.RichTextField;
+
+  /**
+   * see all field in *SummitHighlight → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for SummitHighlight Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SummitHighlightSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<SummitHighlightSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *SummitHighlight*
+ */
+type SummitHighlightSliceVariation = SummitHighlightSliceDefault;
+
+/**
+ * SummitHighlight Shared Slice
+ *
+ * - **API ID**: `summit_highlight`
+ * - **Description**: SummitHighlight
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type SummitHighlightSlice = prismic.SharedSlice<
+  "summit_highlight",
+  SummitHighlightSliceVariation
+>;
+
 declare module "@prismicio/client" {
   interface CreateClient {
     (
@@ -807,10 +1139,18 @@ declare module "@prismicio/client" {
       ImpactSliceDefaultPrimary,
       ImpactSliceVariation,
       ImpactSliceDefault,
+      MagnifyOurVoicesSlice,
+      MagnifyOurVoicesSliceDefaultPrimary,
+      MagnifyOurVoicesSliceVariation,
+      MagnifyOurVoicesSliceDefault,
       PageHeaderSlice,
       PageHeaderSliceDefaultPrimary,
       PageHeaderSliceVariation,
       PageHeaderSliceDefault,
+      SummitHighlightSlice,
+      SummitHighlightSliceDefaultPrimary,
+      SummitHighlightSliceVariation,
+      SummitHighlightSliceDefault,
     };
   }
 }

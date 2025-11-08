@@ -7,5 +7,7 @@ export const components = {
   home_page_hero: dynamic(() => import("./HomePageHero")),
   how_we_work: dynamic(() => import("./HowWeWork")),
   impact: dynamic(() => import("./Impact")),
+  magnify_our_voices: dynamic(() => import("./MagnifyOurVoices")),
   page_header: dynamic(() => import("./PageHeader")),
+  summit_highlight: dynamic(() => import("./SummitHighlight")),
 };
