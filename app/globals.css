@@ -156,7 +156,7 @@
     left: 0;
     right: 0;
     height: 45%;
-    background: linear-gradient(to top, rgba(86, 18, 23, 1), rgba(86, 18, 23, 0.3));
+    background: linear-gradient(to top, rgba(86, 18, 23, 1),  rgba(86, 18, 23, 0.03));
     z-index: 1;
   }
   .card-overlay-content {
