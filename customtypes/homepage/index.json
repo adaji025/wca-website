@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "impact": {
+              "type": "SharedSlice"
+            },
+            "home_page_about": {
+              "type": "SharedSlice"
+            },
             "home_page_hero": {
               "type": "SharedSlice"
             }

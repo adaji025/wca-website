@@ -1,0 +1,95 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading1",
+						"content": {
+							"text": "Behavior"
+						}
+					}
+				]
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Eu in id consequat Lorem ex occaecat esse ex. Ex ut eu ea do cupidatat consectetur ex qui reprehenderit aliqua culpa."
+						}
+					}
+				]
+			},
+			"productivity_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Mollit id nulla do elit adipisicing commodo proident in enim eiusmod eu cupidatat in elit. Eu commodo elit amet cillum enim sit aute aliqua sit. Commodo quis adipisicing ad."
+						}
+					}
+				]
+			},
+			"productivity_vlaue": {
+				"__TYPE__": "FieldContent",
+				"value": "15",
+				"type": "Number"
+			},
+			"investment_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Dolore id amet amet fugiat aliqua."
+						}
+					}
+				]
+			},
+			"investement_value": {
+				"__TYPE__": "FieldContent",
+				"value": "54",
+				"type": "Number"
+			},
+			"customer_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Culpa aliqua eiusmod excepteur. Ullamco culpa et culpa eu nostrud deserunt dolor reprehenderit ullamco in esse. Velit adipisicing ipsum eiusmod do eiusmod enim nisi do non."
+						}
+					}
+				]
+			},
+			"customer_value": {
+				"__TYPE__": "FieldContent",
+				"value": "79",
+				"type": "Number"
+			},
+			"review_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Anim ad non et anim mollit eiusmod cupidatat ipsum exercitation."
+						}
+					}
+				]
+			},
+			"review_value": {
+				"__TYPE__": "FieldContent",
+				"value": "8",
+				"type": "Number"
+			}
+		},
+		"items": []
+	}
+]

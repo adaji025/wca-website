@@ -3,7 +3,7 @@ import LangDropdown from "./lang-dropdown";
 
 const PageHeaderComp = () => {
   return (
-    <div className='h-[138px] text-[#313131] bg-[url("/images/pngs/header-bg.png")] bg-cover bg-center bg-no-repeat relative'>
+    <div className='h-[138px] text-wca-secondary bg-[url("/images/pngs/header-bg.png")] bg-cover bg-center bg-no-repeat relative'>
       {/* Overlay for better text readability */}
       <div className="absolute inset-0 bg-[#FBE5B6]/70 z-10" />
       <div className="flex h-full justify-between items-center app-width z-20">

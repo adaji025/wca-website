@@ -6,6 +6,7 @@ import { PageHeader } from "@/components/PageHeader";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import PageHeaderComp from "@/components/page-header";
+import Footer from "@/components/footer";
 
 const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",
@@ -56,6 +57,7 @@ export default async function RootLayout({
         <PageHeaderComp />
         <Navbar />
         {children}
+        <Footer />
       </body>
     </html>
   );

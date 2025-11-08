@@ -1,0 +1,101 @@
+{
+  "id": "impact",
+  "type": "SharedSlice",
+  "name": "Impact",
+  "description": "Impact",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading1"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "productivity_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "productivity text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "productivity_vlaue": {
+          "type": "Number",
+          "config": {
+            "label": "productivity vlaue",
+            "placeholder": ""
+          }
+        },
+        "investment_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "investment text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "investement_value": {
+          "type": "Number",
+          "config": {
+            "label": "investement value",
+            "placeholder": ""
+          }
+        },
+        "customer_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "customer text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "customer_value": {
+          "type": "Number",
+          "config": {
+            "label": "customer value",
+            "placeholder": ""
+          }
+        },
+        "review_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "review text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "review_value": {
+          "type": "Number",
+          "config": {
+            "label": "review value",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -69,7 +69,10 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type HomepageDocumentDataSlicesSlice = HomePageHeroSlice;
+type HomepageDocumentDataSlicesSlice =
+  | ImpactSlice
+  | HomePageAboutSlice
+  | HomePageHeroSlice;
 
 /**
  * Content for homepage documents
@@ -135,6 +138,97 @@ export type HomepageDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes = HomepageDocument;
+
+/**
+ * Primary content in *HomePageAbout → Default → Primary*
+ */
+export interface HomePageAboutSliceDefaultPrimary {
+  /**
+   * image field in *HomePageAbout → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_about.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * title field in *HomePageAbout → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_about.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *HomePageAbout → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_about.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * header text field in *HomePageAbout → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_about.default.primary.header_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  header_text: prismic.RichTextField;
+
+  /**
+   * see more field in *HomePageAbout → Default → Primary*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: home_page_about.default.primary.see_more
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_more: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Default variation for HomePageAbout Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HomePageAboutSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HomePageAboutSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *HomePageAbout*
+ */
+type HomePageAboutSliceVariation = HomePageAboutSliceDefault;
+
+/**
+ * HomePageAbout Shared Slice
+ *
+ * - **API ID**: `home_page_about`
+ * - **Description**: HomePageAbout
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HomePageAboutSlice = prismic.SharedSlice<
+  "home_page_about",
+  HomePageAboutSliceVariation
+>;
 
 /**
  * Primary content in *HomePageHero → Default → Primary*
@@ -290,6 +384,138 @@ export type HomePageHeroSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *Impact → Default → Primary*
+ */
+export interface ImpactSliceDefaultPrimary {
+  /**
+   * title field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * productivity text field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.productivity_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  productivity_text: prismic.RichTextField;
+
+  /**
+   * productivity vlaue field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.productivity_vlaue
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  productivity_vlaue: prismic.NumberField;
+
+  /**
+   * investment text field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.investment_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  investment_text: prismic.RichTextField;
+
+  /**
+   * investement value field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.investement_value
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  investement_value: prismic.NumberField;
+
+  /**
+   * customer text field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.customer_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  customer_text: prismic.RichTextField;
+
+  /**
+   * customer value field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.customer_value
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  customer_value: prismic.NumberField;
+
+  /**
+   * review text field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.review_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  review_text: prismic.RichTextField;
+
+  /**
+   * review value field in *Impact → Default → Primary*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: impact.default.primary.review_value
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  review_value: prismic.NumberField;
+}
+
+/**
+ * Default variation for Impact Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImpactSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ImpactSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Impact*
+ */
+type ImpactSliceVariation = ImpactSliceDefault;
+
+/**
+ * Impact Shared Slice
+ *
+ * - **API ID**: `impact`
+ * - **Description**: Impact
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ImpactSlice = prismic.SharedSlice<"impact", ImpactSliceVariation>;
+
+/**
  * Primary content in *PageHeader → Default → Primary*
  */
 export interface PageHeaderSliceDefaultPrimary {
@@ -409,10 +635,18 @@ declare module "@prismicio/client" {
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      HomePageAboutSlice,
+      HomePageAboutSliceDefaultPrimary,
+      HomePageAboutSliceVariation,
+      HomePageAboutSliceDefault,
       HomePageHeroSlice,
       HomePageHeroSliceDefaultPrimary,
       HomePageHeroSliceVariation,
       HomePageHeroSliceDefault,
+      ImpactSlice,
+      ImpactSliceDefaultPrimary,
+      ImpactSliceVariation,
+      ImpactSliceDefault,
       PageHeaderSlice,
       PageHeaderSliceDefaultPrimary,
       PageHeaderSliceVariation,
