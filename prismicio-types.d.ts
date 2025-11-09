@@ -69,6 +69,71 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
+type AboutpageDocumentDataSlicesSlice = AboutHeroSlice;
+
+/**
+ * Content for AboutPage documents
+ */
+interface AboutpageDocumentData {
+  /**
+   * Slice Zone field in *AboutPage*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutpage.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<AboutpageDocumentDataSlicesSlice> /**
+   * Meta Title field in *AboutPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: aboutpage.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *AboutPage*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: aboutpage.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *AboutPage*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: aboutpage.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * AboutPage document from Prismic
+ *
+ * - **API ID**: `aboutpage`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type AboutpageDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<AboutpageDocumentData>,
+    "aboutpage",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | SummitHighlightSlice
   | MagnifyOurVoicesSlice
@@ -140,7 +205,172 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = HomepageDocument;
+export type AllDocumentTypes = AboutpageDocument | HomepageDocument;
+
+/**
+ * Primary content in *AboutHero → Default → Primary*
+ */
+export interface AboutHeroSliceDefaultPrimary {
+  /**
+   * page header field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.page_header
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  page_header: prismic.RichTextField;
+
+  /**
+   * sub title field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  sub_title: prismic.RichTextField;
+
+  /**
+   * title field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * mission field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.mission
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  mission: prismic.RichTextField;
+
+  /**
+   * vission field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.vission
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  vission: prismic.RichTextField;
+
+  /**
+   * mandate field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.mandate
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  mandate: prismic.RichTextField;
+
+  /**
+   * philosophy field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.philosophy
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  philosophy: prismic.RichTextField;
+
+  /**
+   * text 2 title field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.text_2_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text_2_title: prismic.RichTextField;
+
+  /**
+   * text 2 field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.text_2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text_2: prismic.RichTextField;
+
+  /**
+   * image1 field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.image1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image1: prismic.ImageField<never>;
+
+  /**
+   * image2 field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.image2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * image3 field in *AboutHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: about_hero.default.primary.image3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image3: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for AboutHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutHeroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<AboutHeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *AboutHero*
+ */
+type AboutHeroSliceVariation = AboutHeroSliceDefault;
+
+/**
+ * AboutHero Shared Slice
+ *
+ * - **API ID**: `about_hero`
+ * - **Description**: AboutHero
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type AboutHeroSlice = prismic.SharedSlice<
+  "about_hero",
+  AboutHeroSliceVariation
+>;
 
 /**
  * Primary content in *HomePageAbout → Default → Primary*
@@ -1136,10 +1366,17 @@ declare module "@prismicio/client" {
 
   namespace Content {
     export type {
+      AboutpageDocument,
+      AboutpageDocumentData,
+      AboutpageDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
       AllDocumentTypes,
+      AboutHeroSlice,
+      AboutHeroSliceDefaultPrimary,
+      AboutHeroSliceVariation,
+      AboutHeroSliceDefault,
       HomePageAboutSlice,
       HomePageAboutSliceDefaultPrimary,
       HomePageAboutSliceVariation,

@@ -1,0 +1,133 @@
+{
+  "id": "about_hero",
+  "type": "SharedSlice",
+  "name": "AboutHero",
+  "description": "AboutHero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "page_header": {
+          "type": "StructuredText",
+          "config": {
+            "label": "page header",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading1"
+          }
+        },
+        "sub_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "sub title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading5"
+          }
+        },
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading2,heading1"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "mission": {
+          "type": "StructuredText",
+          "config": {
+            "label": "mission",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "paragraph"
+          }
+        },
+        "vission": {
+          "type": "StructuredText",
+          "config": {
+            "label": "vission",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "mandate": {
+          "type": "StructuredText",
+          "config": {
+            "label": "mandate",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "philosophy": {
+          "type": "StructuredText",
+          "config": {
+            "label": "philosophy",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "text_2_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text 2 title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading4"
+          }
+        },
+        "text_2": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text 2",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "image1": {
+          "type": "Image",
+          "config": {
+            "label": "image1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image2": {
+          "type": "Image",
+          "config": {
+            "label": "image2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image3": {
+          "type": "Image",
+          "config": {
+            "label": "image3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}
