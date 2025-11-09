@@ -922,6 +922,117 @@ export type PageHeaderSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *SummitHighlight → Default → Primary → item*
+ */
+export interface SummitHighlightSliceDefaultPrimaryItemItem {
+  /**
+   * post title field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].post_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  post_title: prismic.RichTextField;
+
+  /**
+   * post description field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].post_description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  post_description: prismic.RichTextField;
+
+  /**
+   * see all field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+
+  /**
+   * image1 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image1: prismic.ImageField<never>;
+
+  /**
+   * image2 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * image3 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image3: prismic.ImageField<never>;
+
+  /**
+   * image4 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image4
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image4: prismic.ImageField<never>;
+
+  /**
+   * image5 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image5
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image5: prismic.ImageField<never>;
+
+  /**
+   * image6 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image6
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image6: prismic.ImageField<never>;
+
+  /**
+   * image7 field in *SummitHighlight → Default → Primary → item*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: summit_highlight.default.primary.item[].image7
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image7: prismic.ImageField<never>;
+}
+
+/**
  * Primary content in *SummitHighlight → Default → Primary*
  */
 export interface SummitHighlightSliceDefaultPrimary {
@@ -962,109 +1073,15 @@ export interface SummitHighlightSliceDefaultPrimary {
   >;
 
   /**
-   * image1 field in *SummitHighlight → Default → Primary*
+   * item field in *SummitHighlight → Default → Primary*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image1
-   * - **Documentation**: https://prismic.io/docs/fields/image
+   * - **API ID Path**: summit_highlight.default.primary.item[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
    */
-  image1: prismic.ImageField<never>;
-
-  /**
-   * image2 field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image2
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image2: prismic.ImageField<never>;
-
-  /**
-   * image3 field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image3
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image3: prismic.ImageField<never>;
-
-  /**
-   * image4 field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image4
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image4: prismic.ImageField<never>;
-
-  /**
-   * image5 field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image5
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image5: prismic.ImageField<never>;
-
-  /**
-   * image6 field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image6
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image6: prismic.ImageField<never>;
-
-  /**
-   * image7 field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Image
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.image7
-   * - **Documentation**: https://prismic.io/docs/fields/image
-   */
-  image7: prismic.ImageField<never>;
-
-  /**
-   * post title field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.post_title
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  post_title: prismic.RichTextField;
-
-  /**
-   * post description field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.post_description
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  post_description: prismic.RichTextField;
-
-  /**
-   * see all field in *SummitHighlight → Default → Primary*
-   *
-   * - **Field Type**: Link
-   * - **Placeholder**: *None*
-   * - **API ID Path**: summit_highlight.default.primary.see_all
-   * - **Documentation**: https://prismic.io/docs/fields/link
-   */
-  see_all: prismic.LinkField<
-    string,
-    string,
-    unknown,
-    prismic.FieldState,
-    never
+  item: prismic.GroupField<
+    Simplify<SummitHighlightSliceDefaultPrimaryItemItem>
   >;
 }
 
@@ -1148,6 +1165,7 @@ declare module "@prismicio/client" {
       PageHeaderSliceVariation,
       PageHeaderSliceDefault,
       SummitHighlightSlice,
+      SummitHighlightSliceDefaultPrimaryItemItem,
       SummitHighlightSliceDefaultPrimary,
       SummitHighlightSliceVariation,
       SummitHighlightSliceDefault,

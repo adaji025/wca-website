@@ -39,6 +39,7 @@
   --color-card: var(--card);
   --color-wca-primary: #561217;
   --color-wca-secondary: #313131;
+  --color-wca-gray:  #6D6D6D;
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
