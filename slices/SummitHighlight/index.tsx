@@ -105,7 +105,7 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
                 initial={direction === 0 ? false : { opacity: 0, x: direction > 0 ? 300 : -300 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction > 0 ? -300 : 300 }}
-                transition={{ duration: 0.5, ease: "easeInOut" }}
+                transition={{ duration: 0.1, ease: "easeInOut" }}
                 className="flex gap-10 w-full"
               >
                 {(() => {

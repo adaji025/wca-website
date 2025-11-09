@@ -3,8 +3,10 @@
 import { useState } from "react";
 import { Search, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { motion, AnimatePresence } from "framer-motion";
 import CoalitionDropdown from "./coalition-dropdown";
 import ProgramsDropdown from "./programs-dropdown";
+import Image from "next/image";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -88,55 +90,89 @@ export function Navbar() {
         </div>
       </div>
 
-      {isMenuOpen && (
-        <div className="lg:hidden border-t border-gray-200 py-4 space-y-4">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="block text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors px-2"
-            >
-              {item.label}
-            </a>
-          ))}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="lg:hidden fixed inset-x-0 top-0 bg-white border-b border-gray-200 py-4 space-y-4 max-h-screen overflow-y-auto z-50 shadow-lg"
+          >
+            {/* Close Button */}
+            <div className="flex justify-between px-4 pb-2">
+              <Image
+                src="/images/svgs/logo.svg"
+                height={60}
+                width={60}
+                alt="wca"
+                className="z-20"
+              />
+              <button
+                onClick={() => setIsMenuOpen(false)}
+                className="p-2 text-gray-700 hover:text-gray-900 hover:bg-gray-100 rounded-full transition-colors"
+                aria-label="Close menu"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
 
-          {/* Mobile Dropdowns */}
-          {dropdownItems.map((dropdown) => (
-            <div key={dropdown.label} className="space-y-2 px-2">
-              <div className="text-gray-700 font-medium text-sm">
-                {dropdown.label}
-              </div>
-              <div className="pl-4 space-y-2">
-                {dropdown.items.map((item) => (
-                  <button
-                    key={item}
-                    className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
-                  >
-                    {item}
-                  </button>
-                ))}
+            <div className="app-width">
+              {navItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors pb-2 px-2"
+                >
+                  {item.label}
+                </a>
+              ))}
+
+              {/* Mobile Dropdowns */}
+              {dropdownItems.map((dropdown) => (
+                <div key={dropdown.label} className="space-y-2 pt-2 px-2">
+                  <div className="text-gray-700 font-medium text-sm">
+                    {dropdown.label}
+                  </div>
+                  <div className="pl-4 space-y-2 mt-2">
+                    {dropdown.items.map((item) => (
+                      <button
+                        key={item}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
+                      >
+                        {item}
+                      </button>
+                    ))}
+                  </div>
+                </div>
+              ))}
+
+              {otherItems.map((item) => (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="block text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors p-2"
+                >
+                  {item.label}
+                </a>
+              ))}
+
+              {/* Mobile Get Involved Button */}
+              <div className="px-2 pt-2">
+                <Button
+                  onClick={() => setIsMenuOpen(false)}
+                  className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-sm"
+                >
+                  Get Involved
+                </Button>
               </div>
             </div>
-          ))}
-
-          {otherItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="block text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors px-2"
-            >
-              {item.label}
-            </a>
-          ))}
-
-          {/* Mobile Get Involved Button */}
-          <div className="px-2 pt-2">
-            <Button className="w-full bg-green-700 hover:bg-green-800 text-white py-2 rounded-sm">
-              Get Involved
-            </Button>
-          </div>
-        </div>
-      )}
+          </motion.div>
+        )}
+      </AnimatePresence>
     </nav>
   );
 }
