@@ -1,25 +1,34 @@
-import React from "react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import { ChevronDown } from "lucide-react";
+import Image from "next/image";
+import CustomDropdown from "./custom-dropdown";
+import { ArrowRight } from "../svg";
 
 const ProgramsDropdown = () => {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center gap-1 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors outline-none">
-        Programmes & Impact
-        <ChevronDown className="w-4 h-4" />
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="start">
-        <DropdownMenuItem>Active Programs</DropdownMenuItem>
-        <DropdownMenuItem>Impact Reports</DropdownMenuItem>
-        <DropdownMenuItem>Case Studies</DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+    <CustomDropdown trigger="Programmes & Impact">
+      <div className="grid grid-cols-2 gap-4 py-4">
+        {[...Array(4)].map((_, index) => (
+          <div key={index} className="flex gap-4 items-center">
+            <Image
+              src={"/images/pngs/placeholder-image.png"}
+              height={80}
+              width={160}
+              alt="Coalition"
+            />
+            <div>
+              <div>
+                WCA is a partnership of like minded organizations accross africa
+                looking to drive positive change in the live of women, children
+                and youth{" "}
+              </div>
+              <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
+                <div>Read more</div>
+                <ArrowRight />
+              </button>
+            </div>
+          </div>
+        ))}
+      </div>
+    </CustomDropdown>
   );
 };
 

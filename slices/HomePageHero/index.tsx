@@ -22,8 +22,8 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
     >
       {/* <Bounded> */}
       <div className="app-width">
-        <div className="flex flex-col lg:flex-row">
-          <div className="">
+        <div className="flex flex-col lg:flex-row overflow-hdden">
+          <div className="w-full">
             <div>
               <div className="w-20 h-2.5 bg-wca-primary" />
               <span className="text-[26px] font-medium font-sans">
@@ -31,7 +31,7 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
               </span>
             </div>
 
-            <div className="font-bold text-[64px] text-wca-secondary font-serif">
+            <div className="font-bold text-[58px] text-wca-secondary font-serif">
               <PrismicRichText field={slice.primary.hero_text} />
             </div>
             <div className="flex">
@@ -40,11 +40,20 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
               <PrismicNextLink field={slice.primary.tertiary_button} />
             </div>
           </div>
-          <PrismicNextImage field={slice.primary.hero_image} className="w-full" />
+          <PrismicNextImage
+            field={slice.primary.hero_image}
+            className="w-full"
+          />
         </div>
-        <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 mt-20">
-          <PrismicNextImage field={slice.primary.sub_image_1} className="w-full" />
-          <PrismicNextImage field={slice.primary.sub_image_2} className="w-full" />
+        <div className="grid xl:-translate-x-20 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-20 mb-20">
+          <PrismicNextImage
+            field={slice.primary.sub_image_1}
+            className="w-full h-full object-cover"
+          />
+          <PrismicNextImage
+            field={slice.primary.sub_image_2}
+            className="w-full h-full object-cover"
+          />
           <div className="bg-[#F7F7F7] flex">
             <div className="flex flex-col justify-between">
               <div className="text-[26px] pt-3 px-5">Latest</div>
@@ -60,13 +69,17 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
                   <div className="bg-[#FEFF03] w-fit py-2 px-3 font-bold mb-2">
                     Event & Campaign
                   </div>
-                  <PrismicRichText field={slice.primary.even_and_campaign} />
+                  <div className="text-sm">
+                    <PrismicRichText field={slice.primary.even_and_campaign} />
+                  </div>
                 </div>
                 <div className="mt-5">
                   <div className="bg-[#FEFF03] w-fit py-2 px-3 font-bold mb-2">
                     Policy & Advocacy
                   </div>
-                  <PrismicRichText field={slice.primary.policy_advocay} />
+                  <div className="text-sm">
+                    <PrismicRichText field={slice.primary.policy_advocay} />
+                  </div>
                 </div>
               </div>
               <div className="flex justify-end p-5">
