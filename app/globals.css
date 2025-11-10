@@ -123,7 +123,7 @@
     @apply bg-background text-foreground font-sans;
   }
   .app-width {
-    @apply max-w-[1280px] mx-auto px-5
+    @apply max-w-7xl mx-auto px-5
   }
   .footer-bg {
     background-color: #561217;
@@ -155,6 +155,9 @@
   }
   .text26 {
     @apply text-[18px] sm:text-[24px] lg:text-[26px] font-bold;
+  }
+  .text68 {
+    @apply text-[32px] sm:text-[44px] lg:text-[68px] font-bold;
   }
 
   .card-overlay {

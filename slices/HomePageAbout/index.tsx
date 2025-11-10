@@ -20,7 +20,6 @@ const HomePageAbout: FC<HomePageAboutProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
     >
-      {/* <div c> */}
       <Image
         src="/images/pngs/header-bg.png"
         height={138}
@@ -28,7 +27,6 @@ const HomePageAbout: FC<HomePageAboutProps> = ({ slice }) => {
         alt="wca header image"
         className="w-full"
       />
-      {/* </div> */}
       <div className="flex flex-col md:flex-row gap-20 app-width items-center">
         <div className="flex-1 mt-10 md:mt-[unset]">
           <Image

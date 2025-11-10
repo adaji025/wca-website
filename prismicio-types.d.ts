@@ -69,7 +69,10 @@ type ContentRelationshipFieldWithData<
   >;
 }[Exclude<TCustomType[number], string>["id"]];
 
-type AboutpageDocumentDataSlicesSlice = AboutHeroSlice;
+type AboutpageDocumentDataSlicesSlice =
+  | HistorySlice
+  | ImpactSlice
+  | AboutHeroSlice;
 
 /**
  * Content for AboutPage documents
@@ -370,6 +373,296 @@ type AboutHeroSliceVariation = AboutHeroSliceDefault;
 export type AboutHeroSlice = prismic.SharedSlice<
   "about_hero",
   AboutHeroSliceVariation
+>;
+
+/**
+ * Item in *History → Default → Primary → items*
+ */
+export interface HistorySliceDefaultPrimaryItemsItem {
+  /**
+   * item title field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].item_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  item_title: prismic.RichTextField;
+
+  /**
+   * item text field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].item_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  item_text: prismic.RichTextField;
+
+  /**
+   * image field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * year1 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].year1
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  year1: prismic.RichTextField;
+
+  /**
+   * month1 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].month1
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  month1: prismic.RichTextField;
+
+  /**
+   * title1 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].title1
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title1: prismic.RichTextField;
+
+  /**
+   * text1 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].text1
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text1: prismic.RichTextField;
+
+  /**
+   * year2 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].year2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  year2: prismic.RichTextField;
+
+  /**
+   * month2 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].month2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  month2: prismic.RichTextField;
+
+  /**
+   * title2 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].title2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title2: prismic.RichTextField;
+
+  /**
+   * text2 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].text2
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text2: prismic.RichTextField;
+
+  /**
+   * year3 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].year3
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  year3: prismic.RichTextField;
+
+  /**
+   * month3 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].month3
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  month3: prismic.RichTextField;
+
+  /**
+   * title3 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].title3
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title3: prismic.RichTextField;
+
+  /**
+   * text3 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].text3
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text3: prismic.RichTextField;
+
+  /**
+   * year4 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].year4
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  year4: prismic.RichTextField;
+
+  /**
+   * month4 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].month4
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  month4: prismic.RichTextField;
+
+  /**
+   * title4 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].title4
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title4: prismic.RichTextField;
+
+  /**
+   * text4 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].text4
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text4: prismic.RichTextField;
+
+  /**
+   * year5 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].year5
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  year5: prismic.RichTextField;
+
+  /**
+   * month5 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].month5
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  month5: prismic.RichTextField;
+
+  /**
+   * title5 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].title5
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title5: prismic.RichTextField;
+
+  /**
+   * text5 field in *History → Default → Primary → items*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[].text5
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text5: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *History → Default → Primary*
+ */
+export interface HistorySliceDefaultPrimary {
+  /**
+   * title field in *History → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * items field in *History → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: history.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  items: prismic.GroupField<Simplify<HistorySliceDefaultPrimaryItemsItem>>;
+}
+
+/**
+ * Default variation for History Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HistorySliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<HistorySliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *History*
+ */
+type HistorySliceVariation = HistorySliceDefault;
+
+/**
+ * History Shared Slice
+ *
+ * - **API ID**: `history`
+ * - **Description**: History
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type HistorySlice = prismic.SharedSlice<
+  "history",
+  HistorySliceVariation
 >;
 
 /**
@@ -1377,6 +1670,11 @@ declare module "@prismicio/client" {
       AboutHeroSliceDefaultPrimary,
       AboutHeroSliceVariation,
       AboutHeroSliceDefault,
+      HistorySlice,
+      HistorySliceDefaultPrimaryItemsItem,
+      HistorySliceDefaultPrimary,
+      HistorySliceVariation,
+      HistorySliceDefault,
       HomePageAboutSlice,
       HomePageAboutSliceDefaultPrimary,
       HomePageAboutSliceVariation,

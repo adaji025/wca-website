@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "history": {
+              "type": "SharedSlice"
+            },
+            "impact": {
+              "type": "SharedSlice"
+            },
             "about_hero": {
               "type": "SharedSlice"
             }

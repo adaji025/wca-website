@@ -1,0 +1,243 @@
+{
+  "id": "history",
+  "type": "SharedSlice",
+  "name": "History",
+  "description": "History",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": false,
+            "multi": "heading2"
+          }
+        },
+        "items": {
+          "type": "Group",
+          "config": {
+            "label": "items",
+            "repeat": true,
+            "fields": {
+              "item_title": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "item title",
+                  "placeholder": "",
+                  "allowTargetBlank": false,
+                  "multi": "heading2"
+                }
+              },
+              "item_text": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "item text",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              },
+              "image": {
+                "type": "Image",
+                "config": {
+                  "label": "image",
+                  "constraint": {},
+                  "thumbnails": []
+                }
+              },
+              "year1": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "year1",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph,preformatted,heading1,heading2,heading4,heading5,heading6,strong,em,hyperlink,image,embed,list-item,o-list-item,rtl"
+                }
+              },
+              "month1": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "month1",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "title1": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "title1",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "text1": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "text1",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              },
+              "year2": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "year2",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "month2": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "month2",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "title2": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "title2",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "text2": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "text2",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              },
+              "year3": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "year3",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "month3": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "month3",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "title3": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "title3",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "text3": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "text3",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              },
+              "year4": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "year4",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "month4": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "month4",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "title4": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "title4",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "text4": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "text4",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              },
+              "year5": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "year5",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "month5": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "month5",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading6"
+                }
+              },
+              "title5": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "title5",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "heading3"
+                }
+              },
+              "text5": {
+                "type": "StructuredText",
+                "config": {
+                  "label": "text5",
+                  "placeholder": "",
+                  "allowTargetBlank": true,
+                  "multi": "paragraph"
+                }
+              }
+            }
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

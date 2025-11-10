@@ -1,0 +1,364 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Twice"
+						}
+					}
+				]
+			},
+			"items": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"item_title",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading2",
+											"content": {
+												"text": "Gravity"
+											}
+										}
+									]
+								}
+							],
+							[
+								"item_text",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Proident ipsum culpa aute duis eu dolor est tempor excepteur et laboris. Eu dolor ut est excepteur magna voluptate. Proident sint qui sit dolore nisi exercitation excepteur enim culpa."
+											}
+										}
+									]
+								}
+							],
+							[
+								"image",
+								{
+									"origin": {
+										"id": "main",
+										"url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
+										"width": 3958,
+										"height": 3958
+									},
+									"url": "https://images.unsplash.com/photo-1579931794097-0ad001e51edb",
+									"width": 3958,
+									"height": 3958,
+									"edit": {
+										"zoom": 1,
+										"crop": {
+											"x": 0,
+											"y": 0
+										},
+										"background": "transparent"
+									},
+									"alt": "classroom",
+									"credits": null,
+									"__TYPE__": "ImageContent",
+									"thumbnails": {}
+								}
+							],
+							[
+								"year1",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Ex sunt mollit et ex non deserunt ad enim. Exercitation consectetur eu qui eu pariatur pariatur culpa qui sint proident nostrud consequat."
+											}
+										}
+									]
+								}
+							],
+							[
+								"month1",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Money"
+											}
+										}
+									]
+								}
+							],
+							[
+								"title1",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Several"
+											}
+										}
+									]
+								}
+							],
+							[
+								"text1",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Incididunt elit et sunt magna minim incididunt qui elit proident do consequat minim eiusmod culpa. Eu exercitation laboris enim."
+											}
+										}
+									]
+								}
+							],
+							[
+								"year2",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Subject"
+											}
+										}
+									]
+								}
+							],
+							[
+								"month2",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Oxygen"
+											}
+										}
+									]
+								}
+							],
+							[
+								"title2",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Passage"
+											}
+										}
+									]
+								}
+							],
+							[
+								"text2",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Quis esse consectetur esse officia non sunt mollit Lorem consequat aliqua laborum. Tempor adipisicing ipsum elit pariatur nulla sunt deserunt ex consectetur eiusmod. Cillum nostrud esse mollit irure in nisi in velit deserunt duis."
+											}
+										}
+									]
+								}
+							],
+							[
+								"year3",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Freedom"
+											}
+										}
+									]
+								}
+							],
+							[
+								"month3",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Silence"
+											}
+										}
+									]
+								}
+							],
+							[
+								"title3",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Feathers"
+											}
+										}
+									]
+								}
+							],
+							[
+								"text3",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Consectetur in velit ut reprehenderit ipsum elit commodo occaecat elit pariatur et."
+											}
+										}
+									]
+								}
+							],
+							[
+								"year4",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Related"
+											}
+										}
+									]
+								}
+							],
+							[
+								"month4",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Forgot"
+											}
+										}
+									]
+								}
+							],
+							[
+								"title4",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Frame"
+											}
+										}
+									]
+								}
+							],
+							[
+								"text4",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Incididunt laboris veniam sint aliqua commodo ipsum incididunt quis magna excepteur dolore id ex Lorem minim. Qui eu adipisicing non dolor dolore fugiat ullamco. Nisi anim aute non cupidatat nulla ullamco anim ut veniam duis anim ea."
+											}
+										}
+									]
+								}
+							],
+							[
+								"year5",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Forgot"
+											}
+										}
+									]
+								}
+							],
+							[
+								"month5",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading6",
+											"content": {
+												"text": "Blood"
+											}
+										}
+									]
+								}
+							],
+							[
+								"title5",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "heading3",
+											"content": {
+												"text": "Aware"
+											}
+										}
+									]
+								}
+							],
+							[
+								"text5",
+								{
+									"__TYPE__": "StructuredTextContent",
+									"value": [
+										{
+											"type": "paragraph",
+											"content": {
+												"text": "Culpa culpa voluptate esse excepteur. Ut mollit fugiat proident cillum mollit culpa consectetur consectetur."
+											}
+										}
+									]
+								}
+							]
+						]
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]
