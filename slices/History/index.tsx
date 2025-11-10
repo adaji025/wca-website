@@ -5,7 +5,7 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage } from "@prismicio/next";
 import Image from "next/image";
 import Bounded from "@/components/bounded";
-import { ChevronLeft, ChevronRight, Box } from "lucide-react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 
 /**
@@ -84,7 +84,7 @@ const History: FC<HistoryProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
-      className="mt-20 py-20"
+      className="py-20"
     >
       <Bounded>
         <AnimatePresence mode="wait" initial={false}>
@@ -98,19 +98,19 @@ const History: FC<HistoryProps> = ({ slice }) => {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: direction > 0 ? -50 : 50 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="flex gap-10 lg:gap-20"
+            className="flex flex-col lg:flex-row gap-10 lg:gap-20"
           >
             {/* Left Column */}
             <div className="flex-1 flex flex-col">
               {/* Header with divider */}
               <div className="mb-6">
-                <Image
-                  src="/images/pngs/divider.png"
-                  height={20}
-                  width={100}
-                  alt="divider"
-                />
-                <div className="text26 text-wca-gray font-serif mb-6">
+                <div className="text38 text-wca-secondary font-sans mb-3">
+                  <Image
+                    src="/images/pngs/divider.png"
+                    height={20}
+                    width={100}
+                    alt="divider"
+                  />
                   <PrismicRichText field={slice.primary.title} />
                 </div>
               </div>
@@ -140,23 +140,21 @@ const History: FC<HistoryProps> = ({ slice }) => {
                 )}
 
                 {/* Navigation Controls */}
-                <div className="flex items-center justify-between gap-4 mt-6">
-                  <div className="flex items-center gap-4">
-                    <button
-                      onClick={goToPrevious}
-                      className="flex justify-center items-center rounded-full text-wca-secondary h-10 w-10 cursor-pointer hover:bg-gray-800 transition-colors border border-gray-700"
-                      aria-label="Previous slide"
-                    >
-                      <ChevronLeft size={20} />
-                    </button>
-                    <button
-                      onClick={goToNext}
-                      className="flex justify-center items-center rounded-full text-wca-secondary h-10 w-10 cursor-pointer hover:bg-gray-800 transition-colors border border-gray-700"
-                      aria-label="Next slide"
-                    >
-                      <ChevronRight size={20} />
-                    </button>
-                  </div>
+                <div className="flex items-center gap-4 mt-6">
+                  <button
+                    onClick={goToPrevious}
+                    className="flex justify-center items-center rounded-full text-wca-secondary h-10 w-10 cursor-pointer hover:bg-gray-100 transition-colors border border-gray-300"
+                    aria-label="Previous slide"
+                  >
+                    <ChevronLeft size={20} />
+                  </button>
+                  <button
+                    onClick={goToNext}
+                    className="flex justify-center items-center rounded-full text-wca-secondary h-10 w-10 cursor-pointer hover:bg-gray-100 transition-colors border border-gray-300"
+                    aria-label="Next slide"
+                  >
+                    <ChevronRight size={20} />
+                  </button>
 
                   {/* Pagination Dots */}
                   <div className="flex gap-2 ml-4">
@@ -167,7 +165,7 @@ const History: FC<HistoryProps> = ({ slice }) => {
                         className={`h-2 rounded-full transition-all ${
                           index === currentIndex
                             ? "bg-yellow-400 w-2"
-                            : "bg-black hover:bg-gray-500 w-2"
+                            : "bg-gray-300 hover:bg-gray-400 w-2"
                         }`}
                         aria-label={`Go to slide ${index + 1}`}
                       />
@@ -179,57 +177,74 @@ const History: FC<HistoryProps> = ({ slice }) => {
 
             {/* Right Column - Timeline */}
             <div className="flex-1">
-              <div className="relative pl-8">
-                {timelineEvents.map((event, eventIndex) => (
-                  <div key={eventIndex} className="relative pb-8 last:pb-0">
-                    {/* Timeline Line */}
-                    {eventIndex < timelineEvents.length - 1 && (
-                      <div className="absolute left-0 top-8 w-0.5 h-full bg-gray-600"></div>
-                    )}
+              <div className="relative pr-4">
+                <div className="relative">
+                  {timelineEvents.map((event, eventIndex) => {
+                    const isLastItem = eventIndex === timelineEvents.length - 1;
 
-                    {/* Timeline Icon (only for first event) */}
-                    {eventIndex === 0 && (
-                      <div className="absolute -left-0.5 top-0">
-                        <Box className="w-4 h-4 text-white" fill="white" />
+                    return (
+                      <div
+                        key={eventIndex}
+                        className="relative"
+                        style={{ marginBottom: isLastItem ? "0" : "4rem" }}
+                      >
+                        {/* Timeline SVG - box with line for all except last, box only for last */}
+                        <div className="absolute left-0 top-0">
+                          {isLastItem ? (
+                            <Image
+                              src="/images/svgs/timeline-box.svg"
+                              width={48}
+                              height={48}
+                              alt="timeline box"
+                              className="w-12 h-12"
+                            />
+                          ) : (
+                            <Image
+                              src="/images/svgs/time-box-and-line.svg"
+                              width={48}
+                              height={164}
+                              alt="timeline box and line"
+                              className="w-12 h-auto"
+                            />
+                          )}
+                        </div>
+
+                        {/* Event Content */}
+                        <div className="pl-16 pt-1">
+                          {(event.year || event.month) && (
+                            <div className="text-sm text-wca-primary capitalize font-sans mb-3">
+                              {event.year && (
+                                <span className="inline-block">
+                                  <PrismicRichText field={event.year} />
+                                </span>
+                              )}
+                              {event.year && event.month && (
+                                <span className="mx-1">•</span>
+                              )}
+                              {event.month && (
+                                <span className="inline-block">
+                                  <PrismicRichText field={event.month} />
+                                </span>
+                              )}
+                            </div>
+                          )}
+
+                          {event.title && (
+                            <div className="text26 text-wca-primary font-sans mb-3">
+                              <PrismicRichText field={event.title} />
+                            </div>
+                          )}
+
+                          {event.text && (
+                            <div className="text-sm text-wca-gray font-sans leading-relaxed">
+                              <PrismicRichText field={event.text} />
+                            </div>
+                          )}
+                        </div>
                       </div>
-                    )}
-
-                    {/* Event Content */}
-                    <div
-                      className={`${eventIndex === 0 ? "opacity-100" : "opacity-60"}`}
-                    >
-                      {(event.year || event.month) && (
-                        <div className="text-sm text-orange-500 font-sans mb-2">
-                          {event.year && (
-                            <span className="inline-block">
-                              <PrismicRichText field={event.year} />
-                            </span>
-                          )}
-                          {event.year && event.month && (
-                            <span className="mx-1">•</span>
-                          )}
-                          {event.month && (
-                            <span className="inline-block">
-                              <PrismicRichText field={event.month} />
-                            </span>
-                          )}
-                        </div>
-                      )}
-
-                      {event.title && (
-                        <div className="text-lg lg:text-xl text-gray-200 font-sans mb-2">
-                          <PrismicRichText field={event.title} />
-                        </div>
-                      )}
-
-                      {event.text && (
-                        <div className="text-sm text-gray-400 font-sans leading-relaxed">
-                          <PrismicRichText field={event.text} />
-                        </div>
-                      )}
-                    </div>
-                  </div>
-                ))}
+                    );
+                  })}
+                </div>
               </div>
             </div>
           </motion.div>
