@@ -11,6 +11,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "executives": {
+              "type": "SharedSlice"
+            },
             "history": {
               "type": "SharedSlice"
             },

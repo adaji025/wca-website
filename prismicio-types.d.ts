@@ -70,6 +70,7 @@ type ContentRelationshipFieldWithData<
 }[Exclude<TCustomType[number], string>["id"]];
 
 type AboutpageDocumentDataSlicesSlice =
+  | ExecutivesSlice
   | HistorySlice
   | ImpactSlice
   | AboutHeroSlice;
@@ -373,6 +374,200 @@ type AboutHeroSliceVariation = AboutHeroSliceDefault;
 export type AboutHeroSlice = prismic.SharedSlice<
   "about_hero",
   AboutHeroSliceVariation
+>;
+
+/**
+ * Item in *Teams → Default → Primary → excutives*
+ */
+export interface ExecutivesSliceDefaultPrimaryItemsItem {
+  /**
+   * image field in *Teams → Default → Primary → excutives*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.items[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * name field in *Teams → Default → Primary → excutives*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.items[].name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * title field in *Teams → Default → Primary → excutives*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.items[].title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Item in *Teams → Default → Primary → country reps*
+ */
+export interface ExecutivesSliceDefaultPrimaryCountryRepsItem {
+  /**
+   * image field in *Teams → Default → Primary → country reps*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.country_reps[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * name field in *Teams → Default → Primary → country reps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.country_reps[].name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * title field in *Teams → Default → Primary → country reps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.country_reps[].title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Item in *Teams → Default → Primary → state reps*
+ */
+export interface ExecutivesSliceDefaultPrimaryStateRepsItem {
+  /**
+   * image field in *Teams → Default → Primary → state reps*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.state_reps[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * name field in *Teams → Default → Primary → state reps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.state_reps[].name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * title field in *Teams → Default → Primary → state reps*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.state_reps[].title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Primary content in *Teams → Default → Primary*
+ */
+export interface ExecutivesSliceDefaultPrimary {
+  /**
+   * title field in *Teams → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * sub title field in *Teams → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  sub_title: prismic.RichTextField;
+
+  /**
+   * excutives field in *Teams → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.items[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  items: prismic.GroupField<Simplify<ExecutivesSliceDefaultPrimaryItemsItem>>;
+
+  /**
+   * country reps field in *Teams → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.country_reps[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  country_reps: prismic.GroupField<
+    Simplify<ExecutivesSliceDefaultPrimaryCountryRepsItem>
+  >;
+
+  /**
+   * state reps field in *Teams → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: executives.default.primary.state_reps[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  state_reps: prismic.GroupField<
+    Simplify<ExecutivesSliceDefaultPrimaryStateRepsItem>
+  >;
+}
+
+/**
+ * Default variation for Teams Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ExecutivesSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ExecutivesSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Teams*
+ */
+type ExecutivesSliceVariation = ExecutivesSliceDefault;
+
+/**
+ * Teams Shared Slice
+ *
+ * - **API ID**: `executives`
+ * - **Description**: Executives
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ExecutivesSlice = prismic.SharedSlice<
+  "executives",
+  ExecutivesSliceVariation
 >;
 
 /**
@@ -1670,6 +1865,13 @@ declare module "@prismicio/client" {
       AboutHeroSliceDefaultPrimary,
       AboutHeroSliceVariation,
       AboutHeroSliceDefault,
+      ExecutivesSlice,
+      ExecutivesSliceDefaultPrimaryItemsItem,
+      ExecutivesSliceDefaultPrimaryCountryRepsItem,
+      ExecutivesSliceDefaultPrimaryStateRepsItem,
+      ExecutivesSliceDefaultPrimary,
+      ExecutivesSliceVariation,
+      ExecutivesSliceDefault,
       HistorySlice,
       HistorySliceDefaultPrimaryItemsItem,
       HistorySliceDefaultPrimary,
