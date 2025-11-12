@@ -1,0 +1,97 @@
+[
+	{
+		"__TYPE__": "SharedSliceContent",
+		"variation": "default",
+		"primary": {
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Soldier"
+						}
+					}
+				]
+			},
+			"text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Voluptate cupidatat occaecat proident. Velit exercitation ex consectetur laborum laborum cillum ea dolore in consectetur ex ad incididunt esse aute. Eiusmod commodo enim culpa veniam cillum laboris."
+						}
+					}
+				]
+			},
+			"total_partner_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Duis ea consectetur officia veniam velit aliquip quis elit ad voluptate mollit. Excepteur proident aute et culpa cupidatat. Nostrud excepteur mollit cillum aliqua non sint quis nulla eu ea excepteur eiusmod nulla officia."
+						}
+					}
+				]
+			},
+			"african_countries_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Est sunt eu ullamco ex est. Do cupidatat excepteur in esse pariatur ad eiusmod cupidatat Lorem ipsum. Sint officia minim pariatur excepteur non sit."
+						}
+					}
+				]
+			},
+			"raised_text": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "paragraph",
+						"content": {
+							"text": "Eu voluptate culpa commodo exercitation id exercitation irure culpa ex laboris minim nostrud excepteur consequat quis. Esse adipisicing sint eu sunt sit sunt."
+						}
+					}
+				]
+			},
+			"total_partner_value": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Weight"
+						}
+					}
+				]
+			},
+			"raised_value": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Discover"
+						}
+					}
+				]
+			},
+			"african_countries_value": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Watch"
+						}
+					}
+				]
+			}
+		},
+		"items": []
+	}
+]

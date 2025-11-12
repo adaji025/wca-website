@@ -11,6 +11,12 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "coalition_list": {
+              "type": "SharedSlice"
+            },
+            "coalition_in_numbers": {
+              "type": "SharedSlice"
+            },
             "coalision_hero": {
               "type": "SharedSlice"
             }

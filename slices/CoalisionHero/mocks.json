@@ -3,28 +3,6 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"title": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading6",
-						"content": {
-							"text": "Piano"
-						}
-					}
-				]
-			},
-			"sub_title": {
-				"__TYPE__": "StructuredTextContent",
-				"value": [
-					{
-						"type": "heading2",
-						"content": {
-							"text": "Between"
-						}
-					}
-				]
-			},
 			"text": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
@@ -106,7 +84,6 @@
 				"thumbnails": {}
 			},
 			"image4": {
-				"__TYPE__": "ImageContent",
 				"origin": {
 					"id": "main",
 					"url": "https://images.unsplash.com/photo-1587613865763-4b8b0d19e8ab",
@@ -125,7 +102,20 @@
 					"background": "transparent"
 				},
 				"alt": "state",
+				"credits": null,
+				"__TYPE__": "ImageContent",
 				"thumbnails": {}
+			},
+			"title": {
+				"__TYPE__": "StructuredTextContent",
+				"value": [
+					{
+						"type": "heading2",
+						"content": {
+							"text": "Asleep"
+						}
+					}
+				]
 			}
 		},
 		"items": []

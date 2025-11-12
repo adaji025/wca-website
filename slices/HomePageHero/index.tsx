@@ -42,7 +42,7 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
           </div>
           <PrismicNextImage
             field={slice.primary.hero_image}
-            className="w-full"
+            className="w-full mt-4 lg:mt-[unset]"
           />
         </div>
         <div className="grid xl:-translate-x-20 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-20 mb-20">

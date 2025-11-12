@@ -138,7 +138,10 @@ export type AboutpageDocument<Lang extends string = string> =
     Lang
   >;
 
-type CoalisionDocumentDataSlicesSlice = CoalisionHeroSlice;
+type CoalisionDocumentDataSlicesSlice =
+  | CoalitionListSlice
+  | CoalitionInNumbersSlice
+  | CoalisionHeroSlice;
 
 /**
  * Content for Coalision documents
@@ -459,16 +462,6 @@ export interface CoalisionHeroSliceDefaultPrimary {
   title: prismic.RichTextField;
 
   /**
-   * sub title field in *CoalisionHero → Default → Primary*
-   *
-   * - **Field Type**: Rich Text
-   * - **Placeholder**: *None*
-   * - **API ID Path**: coalision_hero.default.primary.sub_title
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
-   */
-  sub_title: prismic.RichTextField;
-
-  /**
    * text field in *CoalisionHero → Default → Primary*
    *
    * - **Field Type**: Rich Text
@@ -547,6 +540,481 @@ type CoalisionHeroSliceVariation = CoalisionHeroSliceDefault;
 export type CoalisionHeroSlice = prismic.SharedSlice<
   "coalision_hero",
   CoalisionHeroSliceVariation
+>;
+
+/**
+ * Primary content in *CoalitionInNumbers → Default → Primary*
+ */
+export interface CoalitionInNumbersSliceDefaultPrimary {
+  /**
+   * title field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * text field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * total partner text field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.total_partner_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  total_partner_text: prismic.RichTextField;
+
+  /**
+   * african countries text field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.african_countries_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  african_countries_text: prismic.RichTextField;
+
+  /**
+   * raised text field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.raised_text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  raised_text: prismic.RichTextField;
+
+  /**
+   * total partner value field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.total_partner_value
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  total_partner_value: prismic.RichTextField;
+
+  /**
+   * raised value field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.raised_value
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  raised_value: prismic.RichTextField;
+
+  /**
+   * african countries value field in *CoalitionInNumbers → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_in_numbers.default.primary.african_countries_value
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  african_countries_value: prismic.RichTextField;
+}
+
+/**
+ * Default variation for CoalitionInNumbers Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CoalitionInNumbersSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CoalitionInNumbersSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CoalitionInNumbers*
+ */
+type CoalitionInNumbersSliceVariation = CoalitionInNumbersSliceDefault;
+
+/**
+ * CoalitionInNumbers Shared Slice
+ *
+ * - **API ID**: `coalition_in_numbers`
+ * - **Description**: CoalitionInNumbers
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CoalitionInNumbersSlice = prismic.SharedSlice<
+  "coalition_in_numbers",
+  CoalitionInNumbersSliceVariation
+>;
+
+/**
+ * Item in *CoalitionList → Default → Primary → North Africa*
+ */
+export interface CoalitionListSliceDefaultPrimaryNorthAfricaItem {
+  /**
+   * image field in *CoalitionList → Default → Primary → North Africa*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.north_africa[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * country name field in *CoalitionList → Default → Primary → North Africa*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.north_africa[].country_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  country_name: prismic.RichTextField;
+
+  /**
+   * partners field in *CoalitionList → Default → Primary → North Africa*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.north_africa[].partners
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  partners: prismic.NumberField;
+
+  /**
+   * see all field in *CoalitionList → Default → Primary → North Africa*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.north_africa[].see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *CoalitionList → Default → Primary → East Africat*
+ */
+export interface CoalitionListSliceDefaultPrimaryEastAfricatItem {
+  /**
+   * image field in *CoalitionList → Default → Primary → East Africat*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.east_africat[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * country name field in *CoalitionList → Default → Primary → East Africat*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.east_africat[].country_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  country_name: prismic.RichTextField;
+
+  /**
+   * partners field in *CoalitionList → Default → Primary → East Africat*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.east_africat[].partners
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  partners: prismic.NumberField;
+
+  /**
+   * see all field in *CoalitionList → Default → Primary → East Africat*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.east_africat[].see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *CoalitionList → Default → Primary → West Africa*
+ */
+export interface CoalitionListSliceDefaultPrimaryWestAfricaItem {
+  /**
+   * image field in *CoalitionList → Default → Primary → West Africa*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.west_africa[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * country name field in *CoalitionList → Default → Primary → West Africa*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.west_africa[].country_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  country_name: prismic.RichTextField;
+
+  /**
+   * partners field in *CoalitionList → Default → Primary → West Africa*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.west_africa[].partners
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  partners: prismic.NumberField;
+
+  /**
+   * see all field in *CoalitionList → Default → Primary → West Africa*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.west_africa[].see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *CoalitionList → Default → Primary → South Africa*
+ */
+export interface CoalitionListSliceDefaultPrimarySouthAfricaItem {
+  /**
+   * image field in *CoalitionList → Default → Primary → South Africa*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.south_africa[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * country name field in *CoalitionList → Default → Primary → South Africa*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.south_africa[].country_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  country_name: prismic.RichTextField;
+
+  /**
+   * partners field in *CoalitionList → Default → Primary → South Africa*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.south_africa[].partners
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  partners: prismic.NumberField;
+
+  /**
+   * see all field in *CoalitionList → Default → Primary → South Africa*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.south_africa[].see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Item in *CoalitionList → Default → Primary → Central Africa*
+ */
+export interface CoalitionListSliceDefaultPrimaryCentralAfricaItem {
+  /**
+   * image field in *CoalitionList → Default → Primary → Central Africa*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.central_africa[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * country name field in *CoalitionList → Default → Primary → Central Africa*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.central_africa[].country_name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  country_name: prismic.RichTextField;
+
+  /**
+   * partners field in *CoalitionList → Default → Primary → Central Africa*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.central_africa[].partners
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  partners: prismic.NumberField;
+
+  /**
+   * see all field in *CoalitionList → Default → Primary → Central Africa*
+   *
+   * - **Field Type**: Link
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.central_africa[].see_all
+   * - **Documentation**: https://prismic.io/docs/fields/link
+   */
+  see_all: prismic.LinkField<
+    string,
+    string,
+    unknown,
+    prismic.FieldState,
+    never
+  >;
+}
+
+/**
+ * Primary content in *CoalitionList → Default → Primary*
+ */
+export interface CoalitionListSliceDefaultPrimary {
+  /**
+   * title field in *CoalitionList → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * North Africa field in *CoalitionList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.north_africa[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  north_africa: prismic.GroupField<
+    Simplify<CoalitionListSliceDefaultPrimaryNorthAfricaItem>
+  >;
+
+  /**
+   * East Africat field in *CoalitionList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.east_africat[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  east_africat: prismic.GroupField<
+    Simplify<CoalitionListSliceDefaultPrimaryEastAfricatItem>
+  >;
+
+  /**
+   * West Africa field in *CoalitionList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.west_africa[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  west_africa: prismic.GroupField<
+    Simplify<CoalitionListSliceDefaultPrimaryWestAfricaItem>
+  >;
+
+  /**
+   * South Africa field in *CoalitionList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.south_africa[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  south_africa: prismic.GroupField<
+    Simplify<CoalitionListSliceDefaultPrimarySouthAfricaItem>
+  >;
+
+  /**
+   * Central Africa field in *CoalitionList → Default → Primary*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_list.default.primary.central_africa[]
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  central_africa: prismic.GroupField<
+    Simplify<CoalitionListSliceDefaultPrimaryCentralAfricaItem>
+  >;
+}
+
+/**
+ * Default variation for CoalitionList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CoalitionListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CoalitionListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CoalitionList*
+ */
+type CoalitionListSliceVariation = CoalitionListSliceDefault;
+
+/**
+ * CoalitionList Shared Slice
+ *
+ * - **API ID**: `coalition_list`
+ * - **Description**: CoalitionList
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CoalitionListSlice = prismic.SharedSlice<
+  "coalition_list",
+  CoalitionListSliceVariation
 >;
 
 /**
@@ -2045,6 +2513,19 @@ declare module "@prismicio/client" {
       CoalisionHeroSliceDefaultPrimary,
       CoalisionHeroSliceVariation,
       CoalisionHeroSliceDefault,
+      CoalitionInNumbersSlice,
+      CoalitionInNumbersSliceDefaultPrimary,
+      CoalitionInNumbersSliceVariation,
+      CoalitionInNumbersSliceDefault,
+      CoalitionListSlice,
+      CoalitionListSliceDefaultPrimaryNorthAfricaItem,
+      CoalitionListSliceDefaultPrimaryEastAfricatItem,
+      CoalitionListSliceDefaultPrimaryWestAfricaItem,
+      CoalitionListSliceDefaultPrimarySouthAfricaItem,
+      CoalitionListSliceDefaultPrimaryCentralAfricaItem,
+      CoalitionListSliceDefaultPrimary,
+      CoalitionListSliceVariation,
+      CoalitionListSliceDefault,
       ExecutivesSlice,
       ExecutivesSliceDefaultPrimaryItemsItem,
       ExecutivesSliceDefaultPrimaryCountryRepsItem,

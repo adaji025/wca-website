@@ -68,6 +68,13 @@ export function Navbar() {
         </div>
 
         {/* Mobile menu button - Show on small screens */}
+        <Image
+          src="/images/svgs/logo.svg"
+          height={60}
+          width={60}
+          alt="wca"
+          className="z-20 lg:hidden"
+        />
         <button
           onClick={toggleMenu}
           className="lg:hidden p-2 text-gray-700 hover:text-gray-900"
@@ -80,13 +87,13 @@ export function Navbar() {
         </button>
 
         {/* Right Actions */}
-        <div className="flex items-center gap-4">
-          <button className="hidden h-full sm:block bg-green-700 hover:bg-green-800 text-white px-6 py-2 ">
+        <div className="hidden lg:flex items-center gap-4">
+          <button className="h-full bg-green-700 hover:bg-green-800 text-white px-6 py-2 ">
             Get Involved
           </button>
-          <button className="text-gray-700 hover:text-gray-900 transition-colors p-2">
+          {/* <button className="text-gray-700 hover:text-gray-900 transition-colors p-2">
             <Search className="w-5 h-5" />
-          </button>
+          </button> */}
         </div>
       </div>
 

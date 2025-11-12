@@ -1,0 +1,91 @@
+{
+  "id": "coalition_in_numbers",
+  "type": "SharedSlice",
+  "name": "CoalitionInNumbers",
+  "description": "CoalitionInNumbers",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "total_partner_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "total partner text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "african_countries_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "african countries text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "raised_text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "raised text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "total_partner_value": {
+          "type": "StructuredText",
+          "config": {
+            "label": "total partner value",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "raised_value": {
+          "type": "StructuredText",
+          "config": {
+            "label": "raised value",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "african_countries_value": {
+          "type": "StructuredText",
+          "config": {
+            "label": "african countries value",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

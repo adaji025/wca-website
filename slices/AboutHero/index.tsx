@@ -52,7 +52,7 @@ const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
         <div className="flex flex-col lg:flex-row lg:gap-10">
           <div className="lg:max-w-[400px] w-full">
             <Image
-              src="/images/svgs/latest-divider.svg"
+              src="/images/pngs/divider.png"
               height={20}
               width={100}
               alt="divider"

@@ -18,15 +18,6 @@
             "label": "title",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "heading6"
-          }
-        },
-        "sub_title": {
-          "type": "StructuredText",
-          "config": {
-            "label": "sub title",
-            "placeholder": "",
-            "allowTargetBlank": true,
             "multi": "heading2"
           }
         },

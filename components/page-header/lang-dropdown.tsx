@@ -16,7 +16,7 @@ const LangDropdown = () => {
           height={18}
           width={24}
         />
-        <div className="text-[#561217] mt-1 uppercase font-medium">Lang</div>
+        <div className="text-wca-primary mt-1 uppercase font-medium">Lang</div>
         <ChevronDown className="w-4 h-4" />
       </DropdownMenuTrigger>
       <DropdownMenuContent align="start">
