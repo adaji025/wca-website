@@ -206,6 +206,71 @@ export type CoalisionDocument<Lang extends string = string> =
     Lang
   >;
 
+type CoalitionDetailsDocumentDataSlicesSlice = never;
+
+/**
+ * Content for Coalition details documents
+ */
+interface CoalitionDetailsDocumentData {
+  /**
+   * Slice Zone field in *Coalition details*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_details.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<CoalitionDetailsDocumentDataSlicesSlice> /**
+   * Meta Title field in *Coalition details*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: coalition_details.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Coalition details*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: coalition_details.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Coalition details*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_details.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Coalition details document from Prismic
+ *
+ * - **API ID**: `coalition_details`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CoalitionDetailsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<CoalitionDetailsDocumentData>,
+    "coalition_details",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | SummitHighlightSlice
   | MagnifyOurVoicesSlice
@@ -280,6 +345,7 @@ export type HomepageDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | AboutpageDocument
   | CoalisionDocument
+  | CoalitionDetailsDocument
   | HomepageDocument;
 
 /**
@@ -2501,6 +2567,9 @@ declare module "@prismicio/client" {
       CoalisionDocument,
       CoalisionDocumentData,
       CoalisionDocumentDataSlicesSlice,
+      CoalitionDetailsDocument,
+      CoalitionDetailsDocumentData,
+      CoalitionDetailsDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,

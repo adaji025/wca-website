@@ -239,7 +239,7 @@ const CoalitionList: FC<CoalitionListProps> = ({ slice }) => {
                 {country.image?.url ? (
                   <PrismicNextImage
                     field={country.image}
-                    className="w-full h-full object-cover"
+                    className="w-full h-[180px] object-cover"
                   />
                 ) : (
                   <div className="w-full h-full bg-gray-300 flex items-center justify-center">
