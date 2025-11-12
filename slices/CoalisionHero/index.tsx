@@ -49,7 +49,7 @@ const CoalisionHero: FC<CoalisionHeroProps> = ({ slice }) => {
               <div className="text-wca-primary text26 mt-2">
                 <PrismicRichText field={slice.primary.title} />
               </div>
-              <div className="font-medium text-wca-gray mt-4 text-justify">
+              <div className="font-medium text-wca-gray mt-4 text-justify wrap-break-word">
                 <PrismicRichText field={slice.primary.text} />
               </div>
             </div>
