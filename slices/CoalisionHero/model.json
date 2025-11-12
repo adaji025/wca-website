@@ -1,0 +1,78 @@
+{
+  "id": "coalision_hero",
+  "type": "SharedSlice",
+  "name": "CoalisionHero",
+  "description": "CoalisionHero",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading6"
+          }
+        },
+        "sub_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "sub title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        },
+        "text": {
+          "type": "StructuredText",
+          "config": {
+            "label": "text",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "paragraph"
+          }
+        },
+        "image1": {
+          "type": "Image",
+          "config": {
+            "label": "image1",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image2": {
+          "type": "Image",
+          "config": {
+            "label": "image2",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image3": {
+          "type": "Image",
+          "config": {
+            "label": "image3",
+            "constraint": {},
+            "thumbnails": []
+          }
+        },
+        "image4": {
+          "type": "Image",
+          "config": {
+            "label": "image4",
+            "constraint": {},
+            "thumbnails": []
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

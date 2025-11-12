@@ -138,6 +138,71 @@ export type AboutpageDocument<Lang extends string = string> =
     Lang
   >;
 
+type CoalisionDocumentDataSlicesSlice = CoalisionHeroSlice;
+
+/**
+ * Content for Coalision documents
+ */
+interface CoalisionDocumentData {
+  /**
+   * Slice Zone field in *Coalision*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<CoalisionDocumentDataSlicesSlice> /**
+   * Meta Title field in *Coalision*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: coalision.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Coalision*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: coalision.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Coalision*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Coalision document from Prismic
+ *
+ * - **API ID**: `coalision`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CoalisionDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CoalisionDocumentData>,
+    "coalision",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | SummitHighlightSlice
   | MagnifyOurVoicesSlice
@@ -209,7 +274,10 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
-export type AllDocumentTypes = AboutpageDocument | HomepageDocument;
+export type AllDocumentTypes =
+  | AboutpageDocument
+  | CoalisionDocument
+  | HomepageDocument;
 
 /**
  * Primary content in *AboutHero → Default → Primary*
@@ -374,6 +442,111 @@ type AboutHeroSliceVariation = AboutHeroSliceDefault;
 export type AboutHeroSlice = prismic.SharedSlice<
   "about_hero",
   AboutHeroSliceVariation
+>;
+
+/**
+ * Primary content in *CoalisionHero → Default → Primary*
+ */
+export interface CoalisionHeroSliceDefaultPrimary {
+  /**
+   * title field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * sub title field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.sub_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  sub_title: prismic.RichTextField;
+
+  /**
+   * text field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.text
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  text: prismic.RichTextField;
+
+  /**
+   * image1 field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.image1
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image1: prismic.ImageField<never>;
+
+  /**
+   * image2 field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.image2
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image2: prismic.ImageField<never>;
+
+  /**
+   * image3 field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.image3
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image3: prismic.ImageField<never>;
+
+  /**
+   * image4 field in *CoalisionHero → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalision_hero.default.primary.image4
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image4: prismic.ImageField<never>;
+}
+
+/**
+ * Default variation for CoalisionHero Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CoalisionHeroSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<CoalisionHeroSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *CoalisionHero*
+ */
+type CoalisionHeroSliceVariation = CoalisionHeroSliceDefault;
+
+/**
+ * CoalisionHero Shared Slice
+ *
+ * - **API ID**: `coalision_hero`
+ * - **Description**: CoalisionHero
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type CoalisionHeroSlice = prismic.SharedSlice<
+  "coalision_hero",
+  CoalisionHeroSliceVariation
 >;
 
 /**
@@ -1857,6 +2030,9 @@ declare module "@prismicio/client" {
       AboutpageDocument,
       AboutpageDocumentData,
       AboutpageDocumentDataSlicesSlice,
+      CoalisionDocument,
+      CoalisionDocumentData,
+      CoalisionDocumentDataSlicesSlice,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
@@ -1865,6 +2041,10 @@ declare module "@prismicio/client" {
       AboutHeroSliceDefaultPrimary,
       AboutHeroSliceVariation,
       AboutHeroSliceDefault,
+      CoalisionHeroSlice,
+      CoalisionHeroSliceDefaultPrimary,
+      CoalisionHeroSliceVariation,
+      CoalisionHeroSliceDefault,
       ExecutivesSlice,
       ExecutivesSliceDefaultPrimaryItemsItem,
       ExecutivesSliceDefaultPrimaryCountryRepsItem,
