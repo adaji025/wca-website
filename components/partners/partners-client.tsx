@@ -48,7 +48,7 @@ const PartnersClient: React.FC<PartnersClientProps> = ({ countries }) => {
   return (
     <>
       {/* Region Filter Tabs */}
-      <div className="flex flex-wrap gap-2 mb-8 border-b border-gray-200 pb-4">
+      <div className="flex flex-wrap gap-2 mb-8 border-b border-gray-200">
         {regions.map((region) => (
           <button
             key={region.id}
@@ -57,7 +57,7 @@ const PartnersClient: React.FC<PartnersClientProps> = ({ countries }) => {
               e.preventDefault();
               handleRegionClick(region.id);
             }}
-            className={`px-4 py-2 font-medium transition-colors rounded ${
+            className={`px-4 py-2 font-medium transition-colors ${
               selectedRegion === region.id
                 ? "bg-[#FBE5B6] text-wca-secondary"
                 : "text-gray-700 hover:bg-gray-200"
@@ -73,7 +73,7 @@ const PartnersClient: React.FC<PartnersClientProps> = ({ countries }) => {
         {filteredCountries.map((country) => (
           <div
             key={country.uid}
-            className="flex flex-col bg-white rounded-lg overflow-hidden border border-gray-200 hover:shadow-md transition-shadow"
+            className="flex flex-col bg-white rounded-lg overflow-hidden border-gray-200 hover:shadow-md transition-shadow"
           >
             {/* Country Flag */}
             <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
