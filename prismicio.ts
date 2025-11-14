@@ -21,6 +21,7 @@ export const repositoryName =
 const routes: Route[] = [
   { type: "homepage", path: "/" },
   { type: "aboutpage", path: "/about" },
+  { type: "coalition_detail", path: "/coalition/:uid" },
 ];
 
 /**

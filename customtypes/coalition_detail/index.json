@@ -1,0 +1,110 @@
+{
+  "format": "custom",
+  "id": "coalition_detail",
+  "label": "Coalition detail",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "country_name": {
+        "type": "StructuredText",
+        "config": {
+          "label": "country name",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading5"
+        }
+      },
+      "partners": {
+        "type": "Number",
+        "config": {
+          "label": "partners",
+          "placeholder": ""
+        }
+      },
+      "country_flag": {
+        "type": "Image",
+        "config": {
+          "label": "country flag",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "partners_list": {
+        "type": "Group",
+        "config": {
+          "label": "partners list",
+          "repeat": true,
+          "fields": {
+            "title": {
+              "type": "StructuredText",
+              "config": {
+                "label": "title",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "heading5"
+              }
+            },
+            "description": {
+              "type": "StructuredText",
+              "config": {
+                "label": "description",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph"
+              }
+            },
+            "phone_number": {
+              "type": "StructuredText",
+              "config": {
+                "label": "phone number",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph"
+              }
+            },
+            "email_address": {
+              "type": "StructuredText",
+              "config": {
+                "label": "email address",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph"
+              }
+            },
+            "house_addres": {
+              "type": "StructuredText",
+              "config": {
+                "label": "house addres",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "paragraph"
+              }
+            }
+          }
+        }
+      },
+      "region": {
+        "type": "Select",
+        "config": {
+          "label": "region",
+          "placeholder": "",
+          "options": [
+            "central africa",
+            "west africa",
+            "south africa",
+            "east africa",
+            "north africa"
+          ],
+          "default_value": "central africa"
+        }
+      }
+    }
+  }
+}

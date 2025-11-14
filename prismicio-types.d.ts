@@ -206,68 +206,144 @@ export type CoalisionDocument<Lang extends string = string> =
     Lang
   >;
 
-type CoalitionDetailsDocumentDataSlicesSlice = never;
-
 /**
- * Content for Coalition details documents
+ * Item in *Coalition detail → partners list*
  */
-interface CoalitionDetailsDocumentData {
+export interface CoalitionDetailDocumentDataPartnersListItem {
   /**
-   * Slice Zone field in *Coalition details*
+   * title field in *Coalition detail → partners list*
    *
-   * - **Field Type**: Slice Zone
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: coalition_details.slices[]
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/slices
+   * - **API ID Path**: coalition_detail.partners_list[].title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  slices: prismic.SliceZone<CoalitionDetailsDocumentDataSlicesSlice> /**
-   * Meta Title field in *Coalition details*
-   *
-   * - **Field Type**: Text
-   * - **Placeholder**: A title of the page used for social media and search engines
-   * - **API ID Path**: coalition_details.meta_title
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
-   */;
-  meta_title: prismic.KeyTextField;
+  title: prismic.RichTextField;
 
   /**
-   * Meta Description field in *Coalition details*
+   * description field in *Coalition detail → partners list*
    *
-   * - **Field Type**: Text
-   * - **Placeholder**: A brief summary of the page
-   * - **API ID Path**: coalition_details.meta_description
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/text
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.partners_list[].description
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  meta_description: prismic.KeyTextField;
+  description: prismic.RichTextField;
 
   /**
-   * Meta Image field in *Coalition details*
+   * phone number field in *Coalition detail → partners list*
    *
-   * - **Field Type**: Image
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: coalition_details.meta_image
-   * - **Tab**: SEO & Metadata
-   * - **Documentation**: https://prismic.io/docs/fields/image
+   * - **API ID Path**: coalition_detail.partners_list[].phone_number
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  meta_image: prismic.ImageField<never>;
+  phone_number: prismic.RichTextField;
+
+  /**
+   * email address field in *Coalition detail → partners list*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.partners_list[].email_address
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  email_address: prismic.RichTextField;
+
+  /**
+   * house addres field in *Coalition detail → partners list*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.partners_list[].house_addres
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  house_addres: prismic.RichTextField;
 }
 
 /**
- * Coalition details document from Prismic
+ * Content for Coalition detail documents
+ */
+interface CoalitionDetailDocumentData {
+  /**
+   * country name field in *Coalition detail*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.country_name
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  country_name: prismic.RichTextField;
+
+  /**
+   * partners field in *Coalition detail*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.partners
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  partners: prismic.NumberField;
+
+  /**
+   * country flag field in *Coalition detail*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.country_flag
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  country_flag: prismic.ImageField<never>;
+
+  /**
+   * partners list field in *Coalition detail*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.partners_list[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  partners_list: prismic.GroupField<
+    Simplify<CoalitionDetailDocumentDataPartnersListItem>
+  >;
+
+  /**
+   * region field in *Coalition detail*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: central africa
+   * - **API ID Path**: coalition_detail.region
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  region: prismic.SelectField<
+    | "central africa"
+    | "west africa"
+    | "south africa"
+    | "east africa"
+    | "north africa",
+    "filled"
+  >;
+}
+
+/**
+ * Coalition detail document from Prismic
  *
- * - **API ID**: `coalition_details`
+ * - **API ID**: `coalition_detail`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/content-modeling
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type CoalitionDetailsDocument<Lang extends string = string> =
+export type CoalitionDetailDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<CoalitionDetailsDocumentData>,
-    "coalition_details",
+    Simplify<CoalitionDetailDocumentData>,
+    "coalition_detail",
     Lang
   >;
 
@@ -345,7 +421,7 @@ export type HomepageDocument<Lang extends string = string> =
 export type AllDocumentTypes =
   | AboutpageDocument
   | CoalisionDocument
-  | CoalitionDetailsDocument
+  | CoalitionDetailDocument
   | HomepageDocument;
 
 /**
@@ -2567,9 +2643,9 @@ declare module "@prismicio/client" {
       CoalisionDocument,
       CoalisionDocumentData,
       CoalisionDocumentDataSlicesSlice,
-      CoalitionDetailsDocument,
-      CoalitionDetailsDocumentData,
-      CoalitionDetailsDocumentDataSlicesSlice,
+      CoalitionDetailDocument,
+      CoalitionDetailDocumentData,
+      CoalitionDetailDocumentDataPartnersListItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
