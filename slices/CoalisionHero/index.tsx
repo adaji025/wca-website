@@ -5,6 +5,7 @@ import { ChevronRight } from "lucide-react";
 import Image from "next/image";
 import Bounded from "@/components/bounded";
 import { PrismicNextImage } from "@prismicio/next";
+import Link from "next/link";
 
 /**
  * Props for `CoalisionHero`.
@@ -25,7 +26,7 @@ const CoalisionHero: FC<CoalisionHeroProps> = ({ slice }) => {
         Our Coalition
       </div>
       <div className="flex justify-center items-center gap-2 font-medium">
-        <div>Home</div>
+        <Link href={"/"}>Home</Link>
         <ChevronRight className="w-4 h-4" />
         <div className="text-[#177402] underline">Coalition</div>
       </div>

@@ -7,6 +7,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import PageHeaderComp from "@/components/page-header";
 import Footer from "@/components/footer";
+import NextTopLoader from 'nextjs-toploader';
 
 const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",
@@ -54,6 +55,7 @@ export default async function RootLayout({
             seconds_value={headerSlice.primary.seconds_value || undefined}
           />
         )}
+        <NextTopLoader color="green" />
         <PageHeaderComp />
         <Navbar />
         {children}

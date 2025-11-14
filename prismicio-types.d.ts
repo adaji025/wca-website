@@ -259,6 +259,16 @@ export interface CoalitionDetailDocumentDataPartnersListItem {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   house_addres: prismic.RichTextField;
+
+  /**
+   * content image field in *Coalition detail → partners list*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: coalition_detail.partners_list[].content_image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  content_image: prismic.ImageField<never>;
 }
 
 /**

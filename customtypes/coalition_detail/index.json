@@ -86,6 +86,14 @@
                 "allowTargetBlank": true,
                 "multi": "paragraph"
               }
+            },
+            "content_image": {
+              "type": "Image",
+              "config": {
+                "label": "content image",
+                "constraint": {},
+                "thumbnails": []
+              }
             }
           }
         }

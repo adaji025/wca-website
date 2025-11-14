@@ -9,6 +9,7 @@ import type { CoalitionDetailDocument } from "@/prismicio-types";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import { ChevronRight, Phone, Mail, MapPin } from "lucide-react";
+import Link from "next/link";
 
 type Props = {
   params: Promise<{ uid: string }>;
@@ -29,13 +30,13 @@ export default async function CoalitionDetailPage({ params }: Props) {
           Our Coalition
         </div>
         <div className="flex justify-center items-center gap-2 font-medium">
-          <div>Home</div>
+          <Link href={"/"}>Home</Link>
           <ChevronRight className="w-4 h-4" />
-          <div className="">Coalition</div>
+          <Link href={"/coalition"}>Coalition</Link>
           <ChevronRight className="w-4 h-4" />
-          <div className="text-[#177402] underline">
+          <Link href={"#"} className="text-[#177402] underline">
             {asText(page.data.country_name)}
-          </div>
+          </Link>
         </div>
       </div>
 
@@ -53,9 +54,9 @@ export default async function CoalitionDetailPage({ params }: Props) {
                   className="w-full"
                 />
                 <Bounded>
-                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-0 mt-10">
+                  <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
                     {/* Left Section - Content */}
-                    <div className="p-8 lg:p-10">
+                    <div className="flex-1">
                       <Image
                         src="/images/pngs/divider.png"
                         height={20}
@@ -115,36 +116,43 @@ export default async function CoalitionDetailPage({ params }: Props) {
                       </div>
                     </div>
 
-                    {/* Right Section - Logo/Branding */}
-                    <div className="bg-[#FFB6C1] p-8 lg:p-10 flex items-center justify-center min-h-[300px]">
-                      <div className="flex flex-col items-center justify-center">
-                        {/* Logo Placeholder - Green Circle with Peace Symbol */}
-                        <div className="relative mb-6">
-                          <div className="w-24 h-24 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
-                            <svg
-                              className="w-14 h-14 text-white"
-                              fill="none"
-                              stroke="currentColor"
-                              strokeWidth="2.5"
-                              viewBox="0 0 24 24"
-                            >
-                              {/* Peace Symbol: Circle with vertical line and two downward lines */}
-                              <circle cx="12" cy="12" r="9" />
-                              <line x1="12" y1="3" x2="12" y2="12" />
-                              <line x1="7" y1="17" x2="12" y2="12" />
-                              <line x1="17" y1="17" x2="12" y2="12" />
-                            </svg>
-                          </div>
-                        </div>
-                        {/* Organization Name */}
-                        {partner.title && (
-                          <div className="text-center">
-                            <div className="text-green-600 font-bold text-lg md:text-xl uppercase tracking-wide">
-                              <PrismicRichText field={partner.title} />
+                    {/* Right Section - Content Image */}
+                    <div className="flex flex-1 w-full items-center justify-center">
+                      {partner.content_image?.url ? (
+                        <PrismicNextImage
+                          field={partner.content_image}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        <div className="flex bg-gray-300 flex-col min-h-[400px] items-center justify-center">
+                          {/* Fallback - Green Circle with Peace Symbol */}
+                          <div className="relative mb-6">
+                            <div className="w-24 h-24 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">
+                              <svg
+                                className="w-14 h-14 text-white"
+                                fill="none"
+                                stroke="currentColor"
+                                strokeWidth="2.5"
+                                viewBox="0 0 24 24"
+                              >
+                                {/* Peace Symbol: Circle with vertical line and two downward lines */}
+                                <circle cx="12" cy="12" r="9" />
+                                <line x1="12" y1="3" x2="12" y2="12" />
+                                <line x1="7" y1="17" x2="12" y2="12" />
+                                <line x1="17" y1="17" x2="12" y2="12" />
+                              </svg>
                             </div>
                           </div>
-                        )}
-                      </div>
+                          {/* Organization Name */}
+                          {partner.title && (
+                            <div className="text-center p-5">
+                              <div className="text-green-600 font-bold text-lg md:text-xl uppercase tracking-wide">
+                                <PrismicRichText field={partner.title} />
+                              </div>
+                            </div>
+                          )}
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Bounded>
