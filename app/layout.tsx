@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 import { Josefin_Sans, Playfair_Display } from "next/font/google";
-import { createClient } from "@/prismicio";
-import { type Content } from "@prismicio/client";
-import { PageHeader } from "@/components/PageHeader";
 import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import PageHeaderComp from "@/components/page-header";
@@ -29,32 +26,12 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  const client = createClient();
-
-  // Fetch homepage to get the PageHeader slice data
-  const homepage = await client.getSingle("homepage").catch(() => null);
-
-  // Find the PageHeader slice in the homepage slices
-  const headerSlice = homepage?.data.slices?.find(
-    (slice: any) => slice.slice_type === "page_header"
-  ) as Content.PageHeaderSlice | undefined;
-
   return (
     <html lang="en">
       <body
         className={`${josefinSans.variable} ${playfairDisplay.variable} antialiased`}
         suppressHydrationWarning
       >
-        {headerSlice?.primary && (
-          <PageHeader
-            logo={headerSlice.primary.wca_logo}
-            text={headerSlice.primary.text || undefined}
-            days={headerSlice.primary.days || undefined}
-            hours={headerSlice.primary.hours || undefined}
-            minute={headerSlice.primary.minute || undefined}
-            seconds_value={headerSlice.primary.seconds_value || undefined}
-          />
-        )}
         <NextTopLoader color="green" />
         <PageHeaderComp />
         <Navbar />
