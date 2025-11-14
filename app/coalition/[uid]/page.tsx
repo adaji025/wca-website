@@ -27,7 +27,7 @@ export default async function CoalitionDetailPage({ params }: Props) {
       {/* Header Background */}
       <div className="mb-10">
         <div className="text68 text-wca-secondary text-center pt-10">
-          Our Coalition
+          {asText(page.data.country_name)}
         </div>
         <div className="flex justify-center items-center gap-2 font-medium">
           <Link href={"/"}>Home</Link>
@@ -64,7 +64,7 @@ export default async function CoalitionDetailPage({ params }: Props) {
                         alt="divider"
                       />
                       {partner.title && (
-                        <div className="mb-4">
+                        <div className="mb-4 mt-2">
                           <h3 className="text-2xl md:text-3xl font-serif flex text-wca-secondary mb-2">
                             <span className="mr-2">{index + 1}.</span>
                             <PrismicRichText field={partner.title} />

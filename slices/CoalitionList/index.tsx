@@ -13,6 +13,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
+import Partners from "@/components/partners";
 
 /**
  * Props for `CoalitionList`.
@@ -180,6 +181,8 @@ const CoalitionList: FC<CoalitionListProps> = ({ slice }) => {
         alt="wca header image"
         className="w-full"
       />
+
+      {/* <Partners /> */}
       <Bounded>
         {/* Title */}
         <div className="mt-10 mb-8">
