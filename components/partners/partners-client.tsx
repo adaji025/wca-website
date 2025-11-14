@@ -205,13 +205,15 @@ const PartnersClient: React.FC<PartnersClientProps> = ({ countries }) => {
                   <span>{country.data.partners || 0} </span>
                   <span className="font-medium">Partners</span>
                 </div>
-                <Link
-                  href={`/coalition/${country.uid}`}
-                  className="text-[#177402] flex gap-2 items-center"
-                >
-                  <span>See all</span>
-                  <ArrowRight />
-                </Link>
+                {country.uid && (
+                  <Link
+                    href={`/coalition/${country.uid}`}
+                    className="text-[#177402] flex gap-2 items-center"
+                  >
+                    <span>See all</span>
+                    <ArrowRight />
+                  </Link>
+                )}
               </div>
             </div>
           </div>

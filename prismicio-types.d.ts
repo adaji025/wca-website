@@ -139,6 +139,7 @@ export type AboutpageDocument<Lang extends string = string> =
   >;
 
 type CoalisionDocumentDataSlicesSlice =
+  | MagnifyOurVoicesSlice
   | CoalitionListSlice
   | CoalitionInNumbersSlice
   | CoalisionHeroSlice;
