@@ -9,7 +9,7 @@ import Image from "next/image";
 const LangDropdown = () => {
   return (
     <DropdownMenu>
-      <DropdownMenuTrigger className="flex items-center z-20 gap-1 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors outline-none">
+      <DropdownMenuTrigger className="flex items-center z-20! gap-1 text-gray-700 hover:text-gray-900 text-sm font-medium transition-colors outline-none">
         <Image
           src="/images/svgs/uk-flag.svg"
           alt="country flag"

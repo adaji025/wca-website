@@ -429,11 +429,161 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type ProgramesAndEventDocumentDataSlicesSlice = ProgrameAndEventHeaderSlice;
+
+/**
+ * Content for programes and event documents
+ */
+interface ProgramesAndEventDocumentData {
+  /**
+   * Slice Zone field in *programes and event*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programes_and_event.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ProgramesAndEventDocumentDataSlicesSlice> /**
+   * Meta Title field in *programes and event*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: programes_and_event.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *programes and event*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: programes_and_event.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *programes and event*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programes_and_event.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * programes and event document from Prismic
+ *
+ * - **API ID**: `programes_and_event`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProgramesAndEventDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<ProgramesAndEventDocumentData>,
+    "programes_and_event",
+    Lang
+  >;
+
+/**
+ * Content for Programs and event details documents
+ */
+interface ProgramsAndEventDocumentData {
+  /**
+   * image field in *Programs and event details*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs_and_event.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * category field in *Programs and event details*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Event and Campaigns
+   * - **API ID Path**: programs_and_event.category
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  category: prismic.SelectField<
+    | "Event and Campaigns"
+    | "Youth Voices"
+    | "Women in Action"
+    | "Policy & Advocacy",
+    "filled"
+  >;
+
+  /**
+   * program title field in *Programs and event details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs_and_event.program_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  program_title: prismic.RichTextField;
+
+  /**
+   * description field in *Programs and event details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs_and_event.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * date field in *Programs and event details*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs_and_event.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date: prismic.DateField;
+}
+
+/**
+ * Programs and event details document from Prismic
+ *
+ * - **API ID**: `programs_and_event`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type ProgramsAndEventDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<ProgramsAndEventDocumentData>,
+    "programs_and_event",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | AboutpageDocument
   | CoalisionDocument
   | CoalitionDetailDocument
-  | HomepageDocument;
+  | HomepageDocument
+  | ProgramesAndEventDocument
+  | ProgramsAndEventDocument;
 
 /**
  * Primary content in *AboutHero → Default → Primary*
@@ -2104,6 +2254,51 @@ export type PageHeaderSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *ProgrameAndEventHeader → Default → Primary*
+ */
+export interface ProgrameAndEventHeaderSliceDefaultPrimary {
+  /**
+   * title field in *ProgrameAndEventHeader → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programe_and_event_header.default.primary.title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+}
+
+/**
+ * Default variation for ProgrameAndEventHeader Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProgrameAndEventHeaderSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProgrameAndEventHeaderSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProgrameAndEventHeader*
+ */
+type ProgrameAndEventHeaderSliceVariation = ProgrameAndEventHeaderSliceDefault;
+
+/**
+ * ProgrameAndEventHeader Shared Slice
+ *
+ * - **API ID**: `programe_and_event_header`
+ * - **Description**: ProgrameAndEventHeader
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type ProgrameAndEventHeaderSlice = prismic.SharedSlice<
+  "programe_and_event_header",
+  ProgrameAndEventHeaderSliceVariation
+>;
+
+/**
  * Item in *SummitHighlight → Default → Primary → item*
  */
 export interface SummitHighlightSliceDefaultPrimaryItemItem {
@@ -2330,6 +2525,11 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      ProgramesAndEventDocument,
+      ProgramesAndEventDocumentData,
+      ProgramesAndEventDocumentDataSlicesSlice,
+      ProgramsAndEventDocument,
+      ProgramsAndEventDocumentData,
       AllDocumentTypes,
       AboutHeroSlice,
       AboutHeroSliceDefaultPrimary,
@@ -2382,6 +2582,10 @@ declare module "@prismicio/client" {
       PageHeaderSliceDefaultPrimary,
       PageHeaderSliceVariation,
       PageHeaderSliceDefault,
+      ProgrameAndEventHeaderSlice,
+      ProgrameAndEventHeaderSliceDefaultPrimary,
+      ProgrameAndEventHeaderSliceVariation,
+      ProgrameAndEventHeaderSliceDefault,
       SummitHighlightSlice,
       SummitHighlightSliceDefaultPrimaryItemItem,
       SummitHighlightSliceDefaultPrimary,

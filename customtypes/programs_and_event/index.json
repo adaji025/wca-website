@@ -1,0 +1,64 @@
+{
+  "format": "custom",
+  "id": "programs_and_event",
+  "label": "Programs and event details",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "image": {
+        "type": "Image",
+        "config": {
+          "label": "image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "category": {
+        "type": "Select",
+        "config": {
+          "label": "category",
+          "placeholder": "",
+          "options": [
+            "Event and Campaigns",
+            "Youth Voices",
+            "Women in Action",
+            "Policy & Advocacy"
+          ],
+          "default_value": "Event and Campaigns"
+        }
+      },
+      "program_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "program title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading5"
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "date": {
+        "type": "Date",
+        "config": {
+          "label": "date",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

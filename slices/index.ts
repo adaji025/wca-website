@@ -15,5 +15,6 @@ export const components = {
   impact: dynamic(() => import("./Impact")),
   magnify_our_voices: dynamic(() => import("./MagnifyOurVoices")),
   page_header: dynamic(() => import("./PageHeader")),
+  programe_and_event_header: dynamic(() => import("./ProgrameAndEventHeader")),
   summit_highlight: dynamic(() => import("./SummitHighlight")),
 };

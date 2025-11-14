@@ -1,6 +1,7 @@
 import Image from "next/image";
 import CustomDropdown from "./custom-dropdown";
 import { ArrowRight } from "../svg";
+import Link from "next/link";
 
 const CoalitionDropdown = () => {
   return (
@@ -19,10 +20,12 @@ const CoalitionDropdown = () => {
               looking to drive positive change in the live of women, children
               and youth{" "}
             </div>
-            <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
-              <div>Read more</div>
-              <ArrowRight />
-            </button>
+            <Link href={"/coalition"}>
+              <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
+                <div>Read more</div>
+                <ArrowRight />
+              </button>
+            </Link>
           </div>
         </div>
         <div className="space-y-3 w-1/3">

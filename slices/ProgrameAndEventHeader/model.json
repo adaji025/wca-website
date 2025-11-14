@@ -1,0 +1,28 @@
+{
+  "id": "programe_and_event_header",
+  "type": "SharedSlice",
+  "name": "ProgrameAndEventHeader",
+  "description": "ProgrameAndEventHeader",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading1"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

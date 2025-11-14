@@ -37,7 +37,7 @@ const PageHeaderComp = () => {
             </div>
           </div>
         </div>
-        <div className="hidden lg:block">
+        <div className="hidden lg:block z-20">
           <LangDropdown />
         </div>
       </div>
