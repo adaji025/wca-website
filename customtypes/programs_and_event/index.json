@@ -58,6 +58,17 @@
           "label": "date",
           "placeholder": ""
         }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {
+            "impact": {
+              "type": "SharedSlice"
+            }
+          }
+        }
       }
     }
   }

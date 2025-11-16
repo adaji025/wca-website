@@ -76,11 +76,11 @@ export default async function ProgramDetailPage({ params }: Props) {
                 />
                 
                 {/* Category Badge */}
-                <div className="mt-4 mb-4">
+                {/* <div className="mt-4 mb-4">
                   <span className="inline-block px-4 py-2 bg-[#177402] text-white text-sm font-medium rounded">
                     {category}
                   </span>
-                </div>
+                </div> */}
 
                 {/* Program Title */}
                 {page.data.program_title && (
@@ -92,14 +92,14 @@ export default async function ProgramDetailPage({ params }: Props) {
                 )}
 
                 {/* Date */}
-                {page.data.date && (
+                {/* {page.data.date && (
                   <div className="flex items-center gap-3 mb-6 text-wca-secondary">
                     <Calendar className="w-5 h-5" />
                     <span className="text-base font-medium">
                       {formatDate(page.data.date)}
                     </span>
                   </div>
-                )}
+                )} */}
 
                 {/* Description */}
                 {page.data.description && (
@@ -114,10 +114,10 @@ export default async function ProgramDetailPage({ params }: Props) {
                 {page.data.image?.url ? (
                   <PrismicNextImage
                     field={page.data.image}
-                    className="w-full h-full object-cover rounded-lg"
+                    className="w-full h-full object-cover lg:-translate-y-16"
                   />
                 ) : (
-                  <div className="flex bg-gray-200 flex-col min-h-[400px] w-full items-center justify-center rounded-lg">
+                  <div className="flex bg-gray-200 flex-col min-h-[400px] w-full items-center justify-center rounded-lg lg:-translate-y-16">
                     {/* Fallback - Green Circle with Peace Symbol */}
                     <div className="relative mb-6">
                       <div className="w-24 h-24 bg-green-500 rounded-full border-4 border-white flex items-center justify-center">

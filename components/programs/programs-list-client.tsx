@@ -147,7 +147,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
           </button>
 
           {/* Category Filters on White Background */}
-          <div className="flex-1 bg-white px-6 py-3 flex items-center gap-8 overflow-x-auto">
+          <div className="flex-1 bg-white px-6 py-4 flex items-center gap-8 overflow-x-auto">
             {categories
               .filter((cat) => cat.id !== "all")
               .map((category) => (
@@ -212,7 +212,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 
         {/* Programs Grid */}
         {filteredAndSortedPrograms.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {filteredAndSortedPrograms.map((program) => (
               <Link
                 key={program.uid}

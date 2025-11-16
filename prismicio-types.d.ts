@@ -494,6 +494,8 @@ export type ProgramesAndEventDocument<Lang extends string = string> =
     Lang
   >;
 
+type ProgramsAndEventDocumentDataSlicesSlice = ImpactSlice;
+
 /**
  * Content for Programs and event details documents
  */
@@ -559,6 +561,17 @@ interface ProgramsAndEventDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/date
    */
   date: prismic.DateField;
+
+  /**
+   * Slice Zone field in *Programs and event details*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: programs_and_event.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<ProgramsAndEventDocumentDataSlicesSlice>;
 }
 
 /**
@@ -2530,6 +2543,7 @@ declare module "@prismicio/client" {
       ProgramesAndEventDocumentDataSlicesSlice,
       ProgramsAndEventDocument,
       ProgramsAndEventDocumentData,
+      ProgramsAndEventDocumentDataSlicesSlice,
       AllDocumentTypes,
       AboutHeroSlice,
       AboutHeroSliceDefaultPrimary,
