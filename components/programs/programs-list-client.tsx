@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from "react";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
-import { ChevronDown, Calendar, ArrowRight } from "lucide-react";
+import { ChevronDown, Calendar, ArrowRight, ChevronLeft, ChevronRight as ChevronRightIcon } from "lucide-react";
 import type { ProgramsAndEventDocument } from "@/prismicio-types";
 import {
   DropdownMenu,
@@ -38,6 +38,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("all");
   const [sortBy, setSortBy] = useState<SortOption>("default");
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   const categories: { id: Category; label: string }[] = [
     { id: "all", label: "All Categories" },
@@ -120,6 +121,41 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 
     return sorted;
   }, [programs, selectedCategory, sortBy]);
+
+  // Group items into carousel slides
+  const { displayPrograms, slides, totalSlides, maxIndex } = useMemo(() => {
+    const itemsPerView = 6; // Show 6 items at a time (3 columns x 2 rows)
+    const programs = filteredAndSortedPrograms; // Show all filtered items
+    
+    // Group items into slides
+    const slideGroups: ProgramsAndEventDocument[][] = [];
+    for (let i = 0; i < programs.length; i += itemsPerView) {
+      slideGroups.push(programs.slice(i, i + itemsPerView));
+    }
+    
+    return {
+      displayPrograms: programs,
+      slides: slideGroups,
+      totalSlides: slideGroups.length,
+      maxIndex: Math.max(0, slideGroups.length - 1),
+    };
+  }, [filteredAndSortedPrograms]);
+  
+  // Reset index when filters change
+  React.useEffect(() => {
+    setCurrentIndex(0);
+  }, [selectedCategory, sortBy]);
+
+  const nextSlide = () => {
+    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+  };
+
+  const prevSlide = () => {
+    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  };
+
+  const canGoNext = currentIndex < maxIndex;
+  const canGoPrev = currentIndex > 0;
 
   return (
     <section className="bg-white pb-10">
@@ -210,76 +246,142 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
           </div>
         </div>
 
-        {/* Programs Grid */}
+        {/* Programs Carousel */}
         {filteredAndSortedPrograms.length > 0 ? (
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {filteredAndSortedPrograms.map((program) => (
-              <Link
-                key={program.uid}
-                href={`/programs/${program.uid}`}
-                className="flex flex-col"
+          <div className="relative">
+            {/* Carousel Container */}
+            <div className="overflow-hidden">
+              <div
+                className="flex transition-transform duration-500 ease-in-out"
+                style={{
+                  transform: `translateX(-${currentIndex * 100}%)`,
+                }}
               >
-                {/* Program Image */}
-                <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
-                  {program.data.image?.url ? (
-                    <PrismicNextImage
-                      field={program.data.image}
-                      className="w-full h-[200px] object-cover"
-                    />
-                  ) : (
-                    <div className="w-full h-[200px] bg-gray-300 flex items-center justify-center">
-                      <svg
-                        className="w-12 h-12 text-gray-400"
-                        fill="currentColor"
-                        viewBox="0 0 24 24"
+                {slides.map((slide, slideIndex) => (
+                  <div
+                    key={slideIndex}
+                    className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                  >
+                    {slide.map((program) => (
+                      <Link
+                        key={program.uid}
+                        href={`/programs/${program.uid}`}
+                        className="flex flex-col"
                       >
-                        <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v8H8V8z" />
-                      </svg>
-                    </div>
-                  )}
-                </div>
+                        {/* Program Image */}
+                        <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
+                          {program.data.image?.url ? (
+                            <PrismicNextImage
+                              field={program.data.image}
+                              className="w-full h-[200px] object-cover"
+                            />
+                          ) : (
+                            <div className="w-full h-[200px] bg-gray-300 flex items-center justify-center">
+                              <svg
+                                className="w-12 h-12 text-gray-400"
+                                fill="currentColor"
+                                viewBox="0 0 24 24"
+                              >
+                                <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v8H8V8z" />
+                              </svg>
+                            </div>
+                          )}
+                        </div>
 
-                {/* Program Info */}
-                <div className="mt-4 flex flex-col gap-3 flex-1">
-                  {/* Category Badge */}
-                  {program.data.category && (
-                    <div>
-                      <span className="inline-block px-3 py-1 bg-[#FEFF03]  text-xs font-bold">
-                        {program.data.category}
-                      </span>
-                    </div>
-                  )}
+                        {/* Program Info */}
+                        <div className="mt-4 flex flex-col gap-3 flex-1">
+                          {/* Category Badge */}
+                          {program.data.category && (
+                            <div>
+                              <span className="inline-block px-3 py-1 bg-[#FEFF03]  text-xs font-bold">
+                                {program.data.category}
+                              </span>
+                            </div>
+                          )}
 
-                  {/* Program Title */}
-                  {program.data.program_title && (
-                    <h3 className="text-lg font-bold text-wca-secondary line-clamp-2">
-                      <PrismicRichText field={program.data.program_title} />
-                    </h3>
-                  )}
+                          {/* Program Title */}
+                          {program.data.program_title && (
+                            <h3 className="text-lg font-bold text-wca-secondary line-clamp-2">
+                              <PrismicRichText field={program.data.program_title} />
+                            </h3>
+                          )}
 
-                  {/* Description Preview */}
-                  {program.data.description && (
-                    <p className="text-sm text-wca-gray line-clamp-3">
-                      {getRichTextAsString(program.data.description)}
-                    </p>
-                  )}
+                          {/* Description Preview */}
+                          {program.data.description && (
+                            <p className="text-sm text-wca-gray line-clamp-3">
+                              {getRichTextAsString(program.data.description)}
+                            </p>
+                          )}
 
-                  {/* Read More Link */}
-                  <div className="mt-auto flex justify-between pt-2">
-                    {/* Date */}
-                    {program.data.date && (
-                      <div className="flex items-center gap-2 text-sm text-wca-gray">
-                        <span>{formatDate(program.data.date)}</span>
-                      </div>
-                    )}
-                    <div className="flex items-center gap-2 text-[#177402] font-medium text-sm hover:gap-3 transition-all">
-                      Read more
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
+                          {/* Read More Link */}
+                          <div className="mt-auto flex justify-between pt-2">
+                            {/* Date */}
+                            {program.data.date && (
+                              <div className="flex items-center gap-2 text-sm text-wca-gray">
+                                <span>{formatDate(program.data.date)}</span>
+                              </div>
+                            )}
+                            <div className="flex items-center gap-2 text-[#177402] font-medium text-sm hover:gap-3 transition-all">
+                              Read more
+                              <ArrowRight className="w-4 h-4" />
+                            </div>
+                          </div>
+                        </div>
+                      </Link>
+                    ))}
                   </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Navigation Controls */}
+            {totalSlides > 1 && (
+              <div className="flex justify-between items-center mt-8">
+                {/* Chevron Buttons */}
+                <div className="flex items-center gap-2">
+                  <button
+                    onClick={prevSlide}
+                    disabled={!canGoPrev}
+                    className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
+                      canGoPrev
+                        ? "hover:bg-gray-50 text-gray-700"
+                        : "text-gray-300 cursor-not-allowed"
+                    }`}
+                    aria-label="Previous items"
+                  >
+                    <ChevronLeft className="w-5 h-5" />
+                  </button>
+                  <button
+                    onClick={nextSlide}
+                    disabled={!canGoNext}
+                    className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
+                      canGoNext
+                        ? "hover:bg-gray-50 text-gray-700"
+                        : "text-gray-300 cursor-not-allowed"
+                    }`}
+                    aria-label="Next items"
+                  >
+                    <ChevronRightIcon className="w-5 h-5" />
+                  </button>
                 </div>
-              </Link>
-            ))}
+
+                {/* Dot Indicators */}
+                <div className="flex items-center gap-2">
+                  {slides.map((_, index) => (
+                    <button
+                      key={index}
+                      onClick={() => setCurrentIndex(index)}
+                      className={`w-2 h-2 rounded-full transition-colors ${
+                        currentIndex === index
+                          ? "bg-black"
+                          : "bg-[#f5f5dc]"
+                      }`}
+                      aria-label={`Go to slide ${index + 1}`}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div className="text-center py-12 text-gray-500">
