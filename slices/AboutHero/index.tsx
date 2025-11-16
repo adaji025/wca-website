@@ -12,6 +12,7 @@ import {
   PhilosophyIcon,
   TargetIcon,
 } from "@/components/svg";
+import Link from "next/link";
 // import MissionVisionCard from "@/components/mission-vission-card/mission-vision-card";
 
 /**
@@ -33,8 +34,8 @@ const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
         <div className="text68 text-wca-secondary text-center">
           <PrismicRichText field={slice.primary.page_header} />
         </div>
-        <div className="flex justify-center items-center gap-2 font-medium">
-          <div>Home</div>
+        <div className="flex justify-center items-center gap-2 font-medium text-wca-primary">
+          <Link href={"/"}>Home</Link>
           <ChevronRight className="w-4 h-4" />
           <div className="text-[#177402] underline">About Us</div>
         </div>

@@ -25,7 +25,7 @@ const CoalisionHero: FC<CoalisionHeroProps> = ({ slice }) => {
       <div className="text68 text-wca-secondary text-center pt-10">
         Our Coalition
       </div>
-      <div className="flex justify-center items-center gap-2 font-medium">
+      <div className="flex justify-center items-center gap-2 font-medium text-wca-primary">
         <Link href={"/"}>Home</Link>
         <ChevronRight className="w-4 h-4" />
         <div className="text-[#177402] underline">Coalition</div>
