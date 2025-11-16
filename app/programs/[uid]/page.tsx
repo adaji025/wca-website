@@ -1,9 +1,11 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
 import { asImageSrc, asText } from "@prismicio/client";
+import { SliceZone } from "@prismicio/react";
 import Image from "next/image";
 
 import { createClient } from "@/prismicio";
+import { components } from "@/slices";
 import Bounded from "@/components/bounded";
 import type { ProgramsAndEventDocument } from "@/prismicio-types";
 import { PrismicNextImage } from "@prismicio/next";
@@ -35,6 +37,22 @@ export default async function ProgramDetailPage({ params }: Props) {
 
   const programTitle = asText(page.data.program_title) || "Program";
   const category = page.data.category || "Event and Campaigns";
+
+  // Filter out slices that don't have components registered
+  const availableSliceTypes = Object.keys(components);
+  const allSlices = page.data.slices || [];
+  
+  // Normalize slice types to lowercase to match component keys
+  const filteredSlices = allSlices
+    .filter((slice: any) => {
+      if (!slice?.slice_type) return false;
+      const normalizedType = slice.slice_type.toLowerCase();
+      return availableSliceTypes.some(type => type.toLowerCase() === normalizedType);
+    })
+    .map((slice: any) => ({
+      ...slice,
+      slice_type: slice.slice_type.toLowerCase(),
+    }));
 
   return (
     <div className="bg-white">
@@ -151,6 +169,11 @@ export default async function ProgramDetailPage({ params }: Props) {
           </Bounded>
         </div>
       </div>
+
+      {/* Render Slices */}
+      {filteredSlices.length > 0 && (
+        <SliceZone slices={filteredSlices} components={components} />
+      )}
     </div>
   );
 }
