@@ -248,7 +248,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 
         {/* Programs Carousel */}
         {filteredAndSortedPrograms.length > 0 ? (
-          <div className="relative">
+          <div className="relative h-fit">
             {/* Carousel Container */}
             <div className="overflow-hidden">
               <div
@@ -260,13 +260,13 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
                 {slides.map((slide, slideIndex) => (
                   <div
                     key={slideIndex}
-                    className="w-full grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+                    className="shrink-0 w-full grid grid-cols-1 sm:grid-cols-2 gap-6"
                   >
                     {slide.map((program) => (
                       <Link
                         key={program.uid}
                         href={`/programs/${program.uid}`}
-                        className="flex flex-col"
+                        className="flex h-fit flex-col"
                       >
                         {/* Program Image */}
                         <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
