@@ -124,7 +124,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 
   // Group items into carousel slides
   const { displayPrograms, slides, totalSlides, maxIndex } = useMemo(() => {
-    const itemsPerView = 6; // Show 6 items at a time (3 columns x 2 rows)
+    const itemsPerView = 4; // Show 6 items at a time (3 columns x 2 rows)
     const programs = filteredAndSortedPrograms; // Show all filtered items
     
     // Group items into slides
@@ -252,7 +252,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
             {/* Carousel Container */}
             <div className="overflow-hidden">
               <div
-                className="flex transition-transform duration-500 ease-in-out"
+                className="flex transition-transform duration-500 ease-in-out items-start"
                 style={{
                   transform: `translateX(-${currentIndex * 100}%)`,
                 }}
@@ -260,7 +260,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
                 {slides.map((slide, slideIndex) => (
                   <div
                     key={slideIndex}
-                    className="shrink-0 w-full grid grid-cols-1 sm:grid-cols-2 gap-6"
+                    className="shrink-0 w-full grid grid-cols-1 sm:grid-cols-2 gap-6 items-start"
                   >
                     {slide.map((program) => (
                       <Link
