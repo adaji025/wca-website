@@ -3,7 +3,13 @@
 import React, { useState, useMemo } from "react";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
-import { ChevronDown, Calendar, ArrowRight, ChevronLeft, ChevronRight as ChevronRightIcon } from "lucide-react";
+import {
+  ChevronDown,
+  Calendar,
+  ArrowRight,
+  ChevronLeft,
+  ChevronRight as ChevronRightIcon,
+} from "lucide-react";
 import type { ProgramsAndEventDocument } from "@/prismicio-types";
 import {
   DropdownMenu,
@@ -31,10 +37,12 @@ type SortOption =
 
 interface ProgramsListClientProps {
   programs: ProgramsAndEventDocument[];
+  showFilters?: boolean;
 }
 
 const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
   programs,
+  showFilters = true,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("all");
   const [sortBy, setSortBy] = useState<SortOption>("default");
@@ -126,13 +134,13 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
   const { displayPrograms, slides, totalSlides, maxIndex } = useMemo(() => {
     const itemsPerView = 4; // Show 6 items at a time (3 columns x 2 rows)
     const programs = filteredAndSortedPrograms; // Show all filtered items
-    
+
     // Group items into slides
     const slideGroups: ProgramsAndEventDocument[][] = [];
     for (let i = 0; i < programs.length; i += itemsPerView) {
       slideGroups.push(programs.slice(i, i + itemsPerView));
     }
-    
+
     return {
       displayPrograms: programs,
       slides: slideGroups,
@@ -140,7 +148,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
       maxIndex: Math.max(0, slideGroups.length - 1),
     };
   }, [filteredAndSortedPrograms]);
-  
+
   // Reset index when filters change
   React.useEffect(() => {
     setCurrentIndex(0);
@@ -169,86 +177,93 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 
       <Bounded>
         {/* Filters and Sort Header */}
-        <div className="flex items-center border-b border-gray-300 mt-16 mb-8 overflow-x-auto">
-          {/* View All Button */}
-          <button
-            onClick={() => setSelectedCategory("all")}
-            className={`px-6 py-4 font-bold text-sm whitespace-nowrap transition-colors ${
-              selectedCategory === "all"
-                ? "bg-[#f5f5dc] text-gray-800"
-                : "bg-transparent text-gray-600 hover:text-gray-800"
-            }`}
-          >
-            View all
-          </button>
-
-          {/* Category Filters on White Background */}
-          <div className="flex-1 bg-white px-6 py-4 flex items-center gap-8 overflow-x-auto">
-            {categories
-              .filter((cat) => cat.id !== "all")
-              .map((category) => (
-                <button
-                  key={category.id}
-                  onClick={() => setSelectedCategory(category.id)}
-                  className={`px-4 py-2 font-bold text-sm whitespace-nowrap transition-colors rounded ${
-                    selectedCategory === category.id
-                      ? "bg-[#f5f5dc] text-gray-800"
-                      : "text-gray-600 hover:text-gray-800"
-                  }`}
-                >
-                  {category.label}
-                </button>
-              ))}
+        {!showFilters && (
+          <div className="text38 mt-6 mb-6 font-serif">
+            Impact Stories and Reports
           </div>
+        )}
+        {showFilters && (
+          <div className="flex items-center border-b border-gray-300 mt-16 mb-8 overflow-x-auto">
+            {/* View All Button */}
+            <button
+              onClick={() => setSelectedCategory("all")}
+              className={`px-6 py-4 font-bold text-sm whitespace-nowrap transition-colors ${
+                selectedCategory === "all"
+                  ? "bg-[#f5f5dc] text-gray-800"
+                  : "bg-transparent text-gray-600 hover:text-gray-800"
+              }`}
+            >
+              View all
+            </button>
 
-          {/* Sort By Dropdown */}
-          <div className="bg-[#f5f5f5] px-6 py-3">
-            <DropdownMenu>
-              <DropdownMenuTrigger className="flex items-center gap-2 font-bold text-sm text-gray-800 hover:text-gray-600 transition-colors">
-                <span>Sort by</span>
-                <ChevronDown className="w-4 h-4" />
-              </DropdownMenuTrigger>
-              <DropdownMenuContent className="w-[200px]">
-                <DropdownMenuItem
-                  onClick={() => setSortBy("default")}
-                  className={
-                    sortBy === "default" ? "bg-gray-100 font-medium" : ""
-                  }
-                >
-                  Date (Newest First)
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => setSortBy("date_asc")}
-                  className={
-                    sortBy === "date_asc" ? "bg-gray-100 font-medium" : ""
-                  }
-                >
-                  Date (Oldest First)
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => setSortBy("title_asc")}
-                  className={
-                    sortBy === "title_asc" ? "bg-gray-100 font-medium" : ""
-                  }
-                >
-                  Title (A-Z)
-                </DropdownMenuItem>
-                <DropdownMenuItem
-                  onClick={() => setSortBy("title_desc")}
-                  className={
-                    sortBy === "title_desc" ? "bg-gray-100 font-medium" : ""
-                  }
-                >
-                  Title (Z-A)
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+            {/* Category Filters on White Background */}
+            <div className="flex-1 bg-white px-6 py-4 flex items-center gap-8 overflow-x-auto">
+              {categories
+                .filter((cat) => cat.id !== "all")
+                .map((category) => (
+                  <button
+                    key={category.id}
+                    onClick={() => setSelectedCategory(category.id)}
+                    className={`px-4 py-2 font-bold text-sm whitespace-nowrap transition-colors rounded ${
+                      selectedCategory === category.id
+                        ? "bg-[#f5f5dc] text-gray-800"
+                        : "text-gray-600 hover:text-gray-800"
+                    }`}
+                  >
+                    {category.label}
+                  </button>
+                ))}
+            </div>
+
+            {/* Sort By Dropdown */}
+            <div className="bg-[#f5f5f5] px-6 py-3">
+              <DropdownMenu>
+                <DropdownMenuTrigger className="flex items-center gap-2 font-bold text-sm text-gray-800 hover:text-gray-600 transition-colors">
+                  <span>Sort by</span>
+                  <ChevronDown className="w-4 h-4" />
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-[200px]">
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("default")}
+                    className={
+                      sortBy === "default" ? "bg-gray-100 font-medium" : ""
+                    }
+                  >
+                    Date (Newest First)
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("date_asc")}
+                    className={
+                      sortBy === "date_asc" ? "bg-gray-100 font-medium" : ""
+                    }
+                  >
+                    Date (Oldest First)
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("title_asc")}
+                    className={
+                      sortBy === "title_asc" ? "bg-gray-100 font-medium" : ""
+                    }
+                  >
+                    Title (A-Z)
+                  </DropdownMenuItem>
+                  <DropdownMenuItem
+                    onClick={() => setSortBy("title_desc")}
+                    className={
+                      sortBy === "title_desc" ? "bg-gray-100 font-medium" : ""
+                    }
+                  >
+                    Title (Z-A)
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
           </div>
-        </div>
+        )}
 
         {/* Programs Carousel */}
         {filteredAndSortedPrograms.length > 0 ? (
-          <div className="relative h-fit">
+          <div className={`relative h-fit ${!showFilters ? "mt-8" : ""}`}>
             {/* Carousel Container */}
             <div className="overflow-hidden">
               <div
@@ -302,7 +317,9 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
                           {/* Program Title */}
                           {program.data.program_title && (
                             <h3 className="text-lg font-bold text-wca-secondary line-clamp-2">
-                              <PrismicRichText field={program.data.program_title} />
+                              <PrismicRichText
+                                field={program.data.program_title}
+                              />
                             </h3>
                           )}
 
@@ -372,9 +389,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
                       key={index}
                       onClick={() => setCurrentIndex(index)}
                       className={`w-2 h-2 rounded-full transition-colors ${
-                        currentIndex === index
-                          ? "bg-black"
-                          : "bg-[#f5f5dc]"
+                        currentIndex === index ? "bg-black" : "bg-[#f5f5dc]"
                       }`}
                       aria-label={`Go to slide ${index + 1}`}
                     />

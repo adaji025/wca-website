@@ -7,6 +7,7 @@ import Image from "next/image";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import Bounded from "@/components/bounded";
+import ProgramsListClient from "@/components/programs/programs-list-client";
 import type { ProgramsAndEventDocument } from "@/prismicio-types";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
@@ -23,6 +24,10 @@ export default async function ProgramDetailPage({ params }: Props) {
   const page = await client
     .getByUID("programs_and_event", uid)
     .catch(() => notFound());
+
+  // Get all programs for the list (excluding current program)
+  const allPrograms = await client.getAllByType("programs_and_event");
+  const otherPrograms = allPrograms.filter((p) => p.uid !== uid) as ProgramsAndEventDocument[];
 
   // Format date
   const formatDate = (dateString: string | null | undefined) => {
@@ -173,6 +178,11 @@ export default async function ProgramDetailPage({ params }: Props) {
       {/* Render Slices */}
       {filteredSlices.length > 0 && (
         <SliceZone slices={filteredSlices} components={components} />
+      )}
+
+      {/* Related Programs List */}
+      {otherPrograms.length > 0 && (
+        <ProgramsListClient programs={otherPrograms} showFilters={false} />
       )}
     </div>
   );
