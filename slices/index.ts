@@ -14,6 +14,7 @@ export const components = {
   how_we_work: dynamic(() => import("./HowWeWork")),
   impact: dynamic(() => import("./Impact")),
   magnify_our_voices: dynamic(() => import("./MagnifyOurVoices")),
+  news_and_stories_main: dynamic(() => import("./NewsAndStoriesMain")),
   page_header: dynamic(() => import("./PageHeader")),
   programe_and_event_header: dynamic(() => import("./ProgrameAndEventHeader")),
   summit_highlight: dynamic(() => import("./SummitHighlight")),

@@ -66,6 +66,7 @@ const CoalitionList: FC<CoalitionListProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="bg-white pb-10"
+      id="coalition-list"
     >
       <Image
         src="/images/pngs/header-bg.png"

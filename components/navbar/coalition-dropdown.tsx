@@ -1,50 +1,38 @@
-import Image from "next/image";
-import CustomDropdown from "./custom-dropdown";
-import { ArrowRight } from "../svg";
-import Link from "next/link";
+"use client";
+
+import { useEffect, useState } from "react";
+import { createClient } from "@/prismicio";
+import type { CoalitionDetailDocument } from "@/prismicio-types";
+import CoalitionDropdownContent from "./coalition-dropdown-content";
 
 const CoalitionDropdown = () => {
-  return (
-    <CustomDropdown trigger="Coalition">
-      <div className="flex py-4">
-        <div className="flex gap-4 items-center">
-          <Image
-            src={"/images/pngs/placeholder-image.png"}
-            height={80}
-            width={160}
-            alt="Coalition"
-          />
-          <div>
-            <div>
-              WCA is a partnership of like minded organizations accross africa
-              looking to drive positive change in the live of women, children
-              and youth{" "}
-            </div>
-            <Link href={"/coalition"}>
-              <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
-                <div>Read more</div>
-                <ArrowRight />
-              </button>
-            </Link>
-          </div>
-        </div>
-        <div className="space-y-3 w-1/3">
-          <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
-            <div>Explore Partnership by Region</div>
-            <ArrowRight />
-          </button>
-          <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
-            <div>See all Partners</div>
-            <ArrowRight />
-          </button>
-          <button className="flex items-center gap-2 mt-2 text-[#177402] font-medium">
-            <div>Become a Partner</div>
-            <ArrowRight />
-          </button>
-        </div>
-      </div>
-    </CustomDropdown>
-  );
+  const [coalition, setCoalition] = useState<CoalitionDetailDocument | null>(null);
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCoalition = async () => {
+      try {
+        const client = createClient();
+        // Get all coalition details and sort by first publication date (newest first), then take the first one
+        const allCoalitions = await client.getAllByType("coalition_detail");
+        const sortedCoalitions = [...allCoalitions].sort((a, b) => {
+          const dateA = a.first_publication_date ? new Date(a.first_publication_date).getTime() : 0;
+          const dateB = b.first_publication_date ? new Date(b.first_publication_date).getTime() : 0;
+          return dateB - dateA; // Newest first
+        });
+        const lastCoalition = sortedCoalitions[0] as CoalitionDetailDocument | null;
+        setCoalition(lastCoalition || null);
+      } catch (error) {
+        console.error("Error fetching coalition:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    fetchCoalition();
+  }, []);
+
+  return <CoalitionDropdownContent coalition={coalition} isLoading={isLoading} />;
 };
 
 export default CoalitionDropdown;

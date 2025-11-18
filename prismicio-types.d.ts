@@ -429,6 +429,154 @@ export type HomepageDocument<Lang extends string = string> =
     Lang
   >;
 
+type NewsAndStoriesDocumentDataSlicesSlice = NewsAndStoriesMainSlice;
+
+/**
+ * Content for News and Stories documents
+ */
+interface NewsAndStoriesDocumentData {
+  /**
+   * Slice Zone field in *News and Stories*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<NewsAndStoriesDocumentDataSlicesSlice> /**
+   * Meta Title field in *News and Stories*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: news_and_stories.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *News and Stories*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: news_and_stories.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *News and Stories*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * News and Stories document from Prismic
+ *
+ * - **API ID**: `news_and_stories`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NewsAndStoriesDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<NewsAndStoriesDocumentData>,
+    "news_and_stories",
+    Lang
+  >;
+
+/**
+ * Content for news and stories details documents
+ */
+interface NewsAndStoriesDetailsDocumentData {
+  /**
+   * image field in *news and stories details*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories_details.image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * categories field in *news and stories details*
+   *
+   * - **Field Type**: Select
+   * - **Placeholder**: *None*
+   * - **Default Value**: Events and Campaigns
+   * - **API ID Path**: news_and_stories_details.categories
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/select
+   */
+  categories: prismic.SelectField<
+    | "Events and Campaigns"
+    | "Youth Voices"
+    | "Women in Action"
+    | "Policy & Advocacy",
+    "filled"
+  >;
+
+  /**
+   * title field in *news and stories details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories_details.title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  title: prismic.RichTextField;
+
+  /**
+   * description field in *news and stories details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories_details.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * date field in *news and stories details*
+   *
+   * - **Field Type**: Date
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories_details.date
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/date
+   */
+  date: prismic.DateField;
+}
+
+/**
+ * news and stories details document from Prismic
+ *
+ * - **API ID**: `news_and_stories_details`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type NewsAndStoriesDetailsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<NewsAndStoriesDetailsDocumentData>,
+    "news_and_stories_details",
+    Lang
+  >;
+
 type ProgramesAndEventDocumentDataSlicesSlice = ProgrameAndEventHeaderSlice;
 
 /**
@@ -595,6 +743,8 @@ export type AllDocumentTypes =
   | CoalisionDocument
   | CoalitionDetailDocument
   | HomepageDocument
+  | NewsAndStoriesDocument
+  | NewsAndStoriesDetailsDocument
   | ProgramesAndEventDocument
   | ProgramsAndEventDocument;
 
@@ -2172,6 +2322,51 @@ export type MagnifyOurVoicesSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *NewsAndStoriesMain → Default → Primary*
+ */
+export interface NewsAndStoriesMainSliceDefaultPrimary {
+  /**
+   * page title field in *NewsAndStoriesMain → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: news_and_stories_main.default.primary.page_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  page_title: prismic.RichTextField;
+}
+
+/**
+ * Default variation for NewsAndStoriesMain Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type NewsAndStoriesMainSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<NewsAndStoriesMainSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *NewsAndStoriesMain*
+ */
+type NewsAndStoriesMainSliceVariation = NewsAndStoriesMainSliceDefault;
+
+/**
+ * NewsAndStoriesMain Shared Slice
+ *
+ * - **API ID**: `news_and_stories_main`
+ * - **Description**: NewsAndStoriesMain
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type NewsAndStoriesMainSlice = prismic.SharedSlice<
+  "news_and_stories_main",
+  NewsAndStoriesMainSliceVariation
+>;
+
+/**
  * Primary content in *PageHeader → Default → Primary*
  */
 export interface PageHeaderSliceDefaultPrimary {
@@ -2538,6 +2733,11 @@ declare module "@prismicio/client" {
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
+      NewsAndStoriesDocument,
+      NewsAndStoriesDocumentData,
+      NewsAndStoriesDocumentDataSlicesSlice,
+      NewsAndStoriesDetailsDocument,
+      NewsAndStoriesDetailsDocumentData,
       ProgramesAndEventDocument,
       ProgramesAndEventDocumentData,
       ProgramesAndEventDocumentDataSlicesSlice,
@@ -2592,6 +2792,10 @@ declare module "@prismicio/client" {
       MagnifyOurVoicesSliceDefaultPrimary,
       MagnifyOurVoicesSliceVariation,
       MagnifyOurVoicesSliceDefault,
+      NewsAndStoriesMainSlice,
+      NewsAndStoriesMainSliceDefaultPrimary,
+      NewsAndStoriesMainSliceVariation,
+      NewsAndStoriesMainSliceDefault,
       PageHeaderSlice,
       PageHeaderSliceDefaultPrimary,
       PageHeaderSliceVariation,
