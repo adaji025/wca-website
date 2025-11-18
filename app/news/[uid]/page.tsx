@@ -1,5 +1,6 @@
 import { type Metadata } from "next";
 import { notFound } from "next/navigation";
+import { headers } from "next/headers";
 import { asImageSrc, asText } from "@prismicio/client";
 import { SliceZone } from "@prismicio/react";
 import Image from "next/image";
@@ -8,6 +9,7 @@ import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import Bounded from "@/components/bounded";
 import NewsListClient from "@/components/news/news-list-client";
+import SharePost from "@/components/news/share-post";
 import type { NewsAndStoriesDetailsDocument } from "@/prismicio-types";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
@@ -27,7 +29,9 @@ export default async function NewsDetailPage({ params }: Props) {
 
   // Get all news items for the list (excluding current news)
   const allNewsItems = await client.getAllByType("news_and_stories_details");
-  const otherNewsItems = allNewsItems.filter((n) => n.uid !== uid) as NewsAndStoriesDetailsDocument[];
+  const otherNewsItems = allNewsItems.filter(
+    (n) => n.uid !== uid
+  ) as NewsAndStoriesDetailsDocument[];
 
   // Format date
   const formatDate = (dateString: string | null | undefined) => {
@@ -42,6 +46,13 @@ export default async function NewsDetailPage({ params }: Props) {
 
   const newsTitle = asText(page.data.title) || "News";
   const category = page.data.categories || "Events and Campaigns";
+  const newsDescription = asText(page.data.description) || "";
+  
+  // Construct the full URL for sharing
+  const headersList = await headers();
+  const host = headersList.get("host") || "";
+  const protocol = process.env.NODE_ENV === "production" ? "https" : "http";
+  const shareUrl = `${protocol}://${host}/news/${uid}`;
 
   return (
     <div className="bg-white">
@@ -74,39 +85,40 @@ export default async function NewsDetailPage({ params }: Props) {
           <Bounded>
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
               {/* Left Section - Content */}
-              <div className="flex-1">
-                <Image
-                  src="/images/pngs/divider.png"
-                  height={20}
-                  width={100}
-                  alt="divider"
+              <div className="flex-1 flex flex-col justify-between">
+                <div>
+                  {page.data.categories && (
+                    <div className="mb-4">
+                      <span className="inline-block px-3 py-1 bg-[#FEFF03] text-xs font-bold">
+                        {page.data.categories}
+                      </span>
+                    </div>
+                  )}
+
+                  {/* News Title */}
+                  {page.data.title && (
+                    <div className="mb-6 mt-4 capitalize">
+                      <h1 className="text38 md:text-4xl font-serif text-wca-secondary">
+                        <PrismicRichText field={page.data.title} />
+                      </h1>
+                    </div>
+                  )}
+
+                  {/* Date */}
+                  {page.data.date && (
+                    <div className="flex items-center gap-3 mb-6 text-wca-secondary">
+                      <Calendar className="w-5 h-5" />
+                      <span className="text-base font-medium">
+                        {formatDate(page.data.date)}
+                      </span>
+                    </div>
+                  )}
+                </div>
+                <SharePost 
+                  url={shareUrl}
+                  title={newsTitle}
+                  description={newsDescription}
                 />
-                
-                {/* News Title */}
-                {page.data.title && (
-                  <div className="mb-6 mt-4">
-                    <h1 className="text-3xl md:text-4xl font-serif text-wca-secondary">
-                      <PrismicRichText field={page.data.title} />
-                    </h1>
-                  </div>
-                )}
-
-                {/* Date */}
-                {page.data.date && (
-                  <div className="flex items-center gap-3 mb-6 text-wca-secondary">
-                    <Calendar className="w-5 h-5" />
-                    <span className="text-base font-medium">
-                      {formatDate(page.data.date)}
-                    </span>
-                  </div>
-                )}
-
-                {/* Description */}
-                {page.data.description && (
-                  <div className="text-wca-gray text-base leading-relaxed">
-                    <PrismicRichText field={page.data.description} />
-                  </div>
-                )}
               </div>
 
               {/* Right Section - Image */}
@@ -148,6 +160,13 @@ export default async function NewsDetailPage({ params }: Props) {
                 )}
               </div>
             </div>
+
+            {/* Description */}
+            {page.data.description && (
+              <div className="text-wca-gray text-base leading-relaxed mt-10">
+                <PrismicRichText field={page.data.description} />
+              </div>
+            )}
           </Bounded>
         </div>
       </div>
@@ -191,4 +210,3 @@ export async function generateStaticParams() {
     return { uid: page.uid };
   });
 }
-

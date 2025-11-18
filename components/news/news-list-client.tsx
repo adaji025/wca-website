@@ -179,7 +179,7 @@ const NewsListClient: React.FC<NewsListClientProps> = ({
         {/* Filters and Sort Header */}
         {!showFilters && (
           <div className="text38 mt-6 mb-6 font-serif">
-            Related News & Stories
+            Related News
           </div>
         )}
         {showFilters && (
@@ -204,7 +204,7 @@ const NewsListClient: React.FC<NewsListClientProps> = ({
                   <button
                     key={category.id}
                     onClick={() => setSelectedCategory(category.id)}
-                    className={`px-4 py-2 font-bold text-sm whitespace-nowrap transition-colors rounded ${
+                    className={`px-4 py-4 font-bold text-sm whitespace-nowrap transition-colors rounded ${
                       selectedCategory === category.id
                         ? "bg-[#f5f5dc] text-gray-800"
                         : "text-gray-600 hover:text-gray-800"
