@@ -1,0 +1,56 @@
+{
+  "format": "custom",
+  "id": "website_page_header",
+  "label": "Website Page Header",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "logo": {
+        "type": "Image",
+        "config": {
+          "label": "logo",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "header_text": {
+        "type": "StructuredText",
+        "config": {
+          "label": "header text",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading2"
+        }
+      },
+      "days": {
+        "type": "Number",
+        "config": {
+          "label": "days",
+          "placeholder": ""
+        }
+      },
+      "hour": {
+        "type": "Number",
+        "config": {
+          "label": "hour",
+          "placeholder": ""
+        }
+      },
+      "minute": {
+        "type": "Number",
+        "config": {
+          "label": "minute",
+          "placeholder": ""
+        }
+      },
+      "seconds": {
+        "type": "Number",
+        "config": {
+          "label": "seconds",
+          "placeholder": ""
+        }
+      }
+    }
+  }
+}

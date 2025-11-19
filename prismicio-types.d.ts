@@ -1089,6 +1089,93 @@ export type ProgramsAndEventDocument<Lang extends string = string> =
     Lang
   >;
 
+/**
+ * Content for Website Page Header documents
+ */
+interface WebsitePageHeaderDocumentData {
+  /**
+   * logo field in *Website Page Header*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: website_page_header.logo
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  logo: prismic.ImageField<never>;
+
+  /**
+   * header text field in *Website Page Header*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: website_page_header.header_text
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  header_text: prismic.RichTextField;
+
+  /**
+   * days field in *Website Page Header*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: website_page_header.days
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  days: prismic.NumberField;
+
+  /**
+   * hour field in *Website Page Header*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: website_page_header.hour
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  hour: prismic.NumberField;
+
+  /**
+   * minute field in *Website Page Header*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: website_page_header.minute
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  minute: prismic.NumberField;
+
+  /**
+   * seconds field in *Website Page Header*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: website_page_header.seconds
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  seconds: prismic.NumberField;
+}
+
+/**
+ * Website Page Header document from Prismic
+ *
+ * - **API ID**: `website_page_header`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type WebsitePageHeaderDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<WebsitePageHeaderDocumentData>,
+    "website_page_header",
+    Lang
+  >;
+
 export type AllDocumentTypes =
   | AboutpageDocument
   | CantactDocument
@@ -1100,7 +1187,8 @@ export type AllDocumentTypes =
   | NewsAndStoriesDocument
   | NewsAndStoriesDetailsDocument
   | ProgramesAndEventDocument
-  | ProgramsAndEventDocument;
+  | ProgramsAndEventDocument
+  | WebsitePageHeaderDocument;
 
 /**
  * Primary content in *AboutHero → Default → Primary*
@@ -3152,6 +3240,8 @@ declare module "@prismicio/client" {
       ProgramsAndEventDocument,
       ProgramsAndEventDocumentData,
       ProgramsAndEventDocumentDataSlicesSlice,
+      WebsitePageHeaderDocument,
+      WebsitePageHeaderDocumentData,
       AllDocumentTypes,
       AboutHeroSlice,
       AboutHeroSliceDefaultPrimary,
