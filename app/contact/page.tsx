@@ -7,6 +7,7 @@ import { Phone, Mail, MapPin, ChevronRight } from "lucide-react";
 import { createClient } from "@/prismicio";
 import { components } from "@/slices";
 import ContactForm from "@/components/contact/contact-form";
+import GoogleMap from "@/components/contact/google-map";
 import Image from "next/image";
 import Bounded from "@/components/bounded";
 import Link from "next/link";
@@ -35,6 +36,16 @@ export default async function ContactPage() {
   const pageTitle = page.data.page_title
     ? asText(page.data.page_title)
     : "Plot 45B Daganga Crescent, Mabushi";
+  const longitude = page.data.longitude
+    ? typeof page.data.longitude === "number"
+      ? page.data.longitude
+      : parseFloat(String(page.data.longitude)) || 7.3986
+    : 7.3986;
+  const latitude = page.data.latitude
+    ? typeof page.data.latitude === "number"
+      ? page.data.latitude
+      : parseFloat(String(page.data.latitude)) || 9.0765
+    : 9.0765;
 
   return (
     <>
@@ -60,9 +71,12 @@ export default async function ContactPage() {
       <Bounded>
         <div className="py-12">
           <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
-            {/* Left Section - Map Placeholder */}
-            <div className="bg-gray-100 h-[600px] flex items-center justify-center relative">
-              <MapPin className="w-16 h-16 text-gray-500" />
+            {/* Left Section - Google Map */}
+            <div className="h-[600px] w-full rounded-lg overflow-hidden shadow-md">
+              <GoogleMap
+                address={address}
+                defaultCenter={{ lat: latitude, lng: longitude }}
+              />
             </div>
 
             {/* Right Section - Contact Information and Form */}
