@@ -138,6 +138,159 @@ export type AboutpageDocument<Lang extends string = string> =
     Lang
   >;
 
+type CantactDocumentDataSlicesSlice = never;
+
+/**
+ * Content for cantact documents
+ */
+interface CantactDocumentData {
+  /**
+   * page title field in *cantact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.page_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  page_title: prismic.RichTextField;
+
+  /**
+   * sub title field in *cantact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.sub_title
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  sub_title: prismic.RichTextField;
+
+  /**
+   * phone number field in *cantact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.phone_number
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  phone_number: prismic.RichTextField;
+
+  /**
+   * email address field in *cantact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.email_address
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  email_address: prismic.RichTextField;
+
+  /**
+   * house  field in *cantact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.house
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  house: prismic.RichTextField;
+
+  /**
+   * description field in *cantact*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * longitude field in *cantact*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.longitude
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  longitude: prismic.NumberField;
+
+  /**
+   * latitude field in *cantact*
+   *
+   * - **Field Type**: Number
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.latitude
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/number
+   */
+  latitude: prismic.NumberField;
+
+  /**
+   * Slice Zone field in *cantact*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<CantactDocumentDataSlicesSlice> /**
+   * Meta Title field in *cantact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: cantact.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *cantact*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: cantact.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *cantact*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: cantact.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * cantact document from Prismic
+ *
+ * - **API ID**: `cantact`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type CantactDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<CantactDocumentData>,
+    "cantact",
+    Lang
+  >;
+
 type CoalisionDocumentDataSlicesSlice =
   | MagnifyOurVoicesSlice
   | CoalitionListSlice
@@ -938,6 +1091,7 @@ export type ProgramsAndEventDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | AboutpageDocument
+  | CantactDocument
   | CoalisionDocument
   | CoalitionDetailDocument
   | EventsDocument
@@ -2969,6 +3123,9 @@ declare module "@prismicio/client" {
       AboutpageDocument,
       AboutpageDocumentData,
       AboutpageDocumentDataSlicesSlice,
+      CantactDocument,
+      CantactDocumentData,
+      CantactDocumentDataSlicesSlice,
       CoalisionDocument,
       CoalisionDocumentData,
       CoalisionDocumentDataSlicesSlice,

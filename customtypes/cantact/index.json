@@ -1,0 +1,113 @@
+{
+  "format": "page",
+  "id": "cantact",
+  "label": "cantact",
+  "repeatable": false,
+  "status": true,
+  "json": {
+    "Main": {
+      "page_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "page title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading1"
+        }
+      },
+      "sub_title": {
+        "type": "StructuredText",
+        "config": {
+          "label": "sub title",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading2"
+        }
+      },
+      "phone_number": {
+        "type": "StructuredText",
+        "config": {
+          "label": "phone number",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "email_address": {
+        "type": "StructuredText",
+        "config": {
+          "label": "email address",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "house": {
+        "type": "StructuredText",
+        "config": {
+          "label": "house ",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "description": {
+        "type": "StructuredText",
+        "config": {
+          "label": "description",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "longitude": {
+        "type": "Number",
+        "config": {
+          "label": "longitude",
+          "placeholder": ""
+        }
+      },
+      "latitude": {
+        "type": "Number",
+        "config": {
+          "label": "latitude",
+          "placeholder": ""
+        }
+      },
+      "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
+        "config": {
+          "choices": {}
+        }
+      }
+    },
+    "SEO & Metadata": {
+      "meta_title": {
+        "config": {
+          "label": "Meta Title",
+          "placeholder": "A title of the page used for social media and search engines"
+        },
+        "type": "Text"
+      },
+      "meta_description": {
+        "config": {
+          "label": "Meta Description",
+          "placeholder": "A brief summary of the page"
+        },
+        "type": "Text"
+      },
+      "meta_image": {
+        "config": {
+          "constraint": {
+            "height": 1260,
+            "width": 2400
+          },
+          "label": "Meta Image",
+          "thumbnails": []
+        },
+        "type": "Image"
+      }
+    }
+  }
+}
