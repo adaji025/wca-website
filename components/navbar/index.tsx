@@ -8,12 +8,14 @@ import CoalitionDropdown from "./coalition-dropdown";
 import ProgramsDropdown from "./programs-dropdown";
 import Image from "next/image";
 import { useProgramsAndEvents } from "./programs-mobile-dropdown";
+import { useCoalition } from "./coalition-mobile-dropdown";
 import Link from "next/link";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { items: programsAndEventsItems, isLoading: isLoadingPrograms } =
     useProgramsAndEvents();
+  const { item: coalitionItem, isLoading: isLoadingCoalition } = useCoalition();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -25,7 +27,11 @@ export function Navbar() {
   const dropdownItems = [
     {
       label: "Coalition",
-      items: ["Coalition Members"],
+      items: isLoadingCoalition
+        ? ["Loading..."]
+        : coalitionItem
+          ? [coalitionItem.title]
+          : ["Coalition Members"],
       href: "/coalition",
     },
     {
@@ -151,33 +157,47 @@ export function Navbar() {
                 <div key={dropdown.label} className="space-y-2 pt-2 px-2">
                   <Link
                     href={dropdown.href}
+                    onClick={() => setIsMenuOpen(false)}
                     className="text-gray-700 font-medium text-sm"
                   >
                     {dropdown.label}
                   </Link>
                   <div className="pl-4 space-y-2 mt-2">
-                    {dropdown.label === "Programmes & Impact" &&
-                    !isLoadingPrograms &&
-                    programsAndEventsItems.length > 0
-                      ? programsAndEventsItems.map((item) => (
-                          <Link
-                            key={item.id}
-                            href={item.href}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
-                          >
-                            {item.title}
-                          </Link>
-                        ))
-                      : dropdown.items.map((item) => (
-                          <button
-                            key={item}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
-                          >
-                            {item}
-                          </button>
-                        ))}
+                    {dropdown.label === "Coalition" &&
+                    !isLoadingCoalition &&
+                    coalitionItem ? (
+                      <Link
+                        key={coalitionItem.id}
+                        href={coalitionItem.href}
+                        onClick={() => setIsMenuOpen(false)}
+                        className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
+                      >
+                        {coalitionItem.title}
+                      </Link>
+                    ) : dropdown.label === "Programmes & Impact" &&
+                      !isLoadingPrograms &&
+                      programsAndEventsItems.length > 0 ? (
+                      programsAndEventsItems.map((item) => (
+                        <Link
+                          key={item.id}
+                          href={item.href}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
+                        >
+                          {item.title}
+                        </Link>
+                      ))
+                    ) : (
+                      dropdown.items.map((item) => (
+                        <button
+                          key={item}
+                          onClick={() => setIsMenuOpen(false)}
+                          className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
+                        >
+                          {item}
+                        </button>
+                      ))
+                    )}
                   </div>
                 </div>
               ))}
