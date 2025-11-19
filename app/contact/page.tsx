@@ -61,7 +61,7 @@ export default async function ContactPage() {
         <div className="py-12">
           <div className="grid lg:grid-cols-2 gap-8 max-w-7xl mx-auto">
             {/* Left Section - Map Placeholder */}
-            <div className="bg-gray-100 rounded-lg h-[600px] flex items-center justify-center relative">
+            <div className="bg-gray-100 h-[600px] flex items-center justify-center relative">
               <MapPin className="w-16 h-16 text-gray-500" />
             </div>
 
