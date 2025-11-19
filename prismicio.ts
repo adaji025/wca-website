@@ -22,6 +22,8 @@ const routes: Route[] = [
   { type: "homepage", path: "/" },
   { type: "aboutpage", path: "/about" },
   { type: "coalition_detail", path: "/coalition/:uid" },
+  { type: "events", path: "/events" },
+  { type: "events_details", path: "/events/:uid" },
 ];
 
 /**

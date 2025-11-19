@@ -1,0 +1,101 @@
+{
+  "format": "custom",
+  "id": "events_details",
+  "label": "events details",
+  "repeatable": true,
+  "status": true,
+  "json": {
+    "Main": {
+      "uid": {
+        "type": "UID",
+        "config": {
+          "label": "UID"
+        }
+      },
+      "start_time": {
+        "type": "Timestamp",
+        "config": {
+          "label": "start time",
+          "placeholder": ""
+        }
+      },
+      "end_time": {
+        "type": "Timestamp",
+        "config": {
+          "label": "end time",
+          "placeholder": ""
+        }
+      },
+      "tiltle": {
+        "type": "StructuredText",
+        "config": {
+          "label": "tiltle",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "heading6,heading5"
+        }
+      },
+      "details": {
+        "type": "StructuredText",
+        "config": {
+          "label": "details",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "location": {
+        "type": "StructuredText",
+        "config": {
+          "label": "location",
+          "placeholder": "",
+          "allowTargetBlank": true,
+          "multi": "paragraph"
+        }
+      },
+      "feature_image": {
+        "type": "Image",
+        "config": {
+          "label": "Feature image",
+          "constraint": {},
+          "thumbnails": []
+        }
+      },
+      "speakers": {
+        "type": "Group",
+        "config": {
+          "label": "speakers",
+          "repeat": true,
+          "fields": {
+            "image": {
+              "type": "Image",
+              "config": {
+                "label": "image",
+                "constraint": {},
+                "thumbnails": []
+              }
+            },
+            "name": {
+              "type": "StructuredText",
+              "config": {
+                "label": "name",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "heading3"
+              }
+            },
+            "speaker_title": {
+              "type": "StructuredText",
+              "config": {
+                "label": "speaker title",
+                "placeholder": "",
+                "allowTargetBlank": true,
+                "multi": "heading5"
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -7,6 +7,7 @@ export const components = {
   coalision_hero: dynamic(() => import("./CoalisionHero")),
   coalition_in_numbers: dynamic(() => import("./CoalitionInNumbers")),
   coalition_list: dynamic(() => import("./CoalitionList")),
+  events_main: dynamic(() => import("./EventsMain")),
   executives: dynamic(() => import("./Teams")),
   history: dynamic(() => import("./History")),
   home_page_about: dynamic(() => import("./HomePageAbout")),

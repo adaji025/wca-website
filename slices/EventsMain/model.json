@@ -1,0 +1,28 @@
+{
+  "id": "events_main",
+  "type": "SharedSlice",
+  "name": "EventsMain",
+  "description": "EventsMain",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "page_title": {
+          "type": "StructuredText",
+          "config": {
+            "label": "page title",
+            "placeholder": "",
+            "allowTargetBlank": true,
+            "multi": "heading2"
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

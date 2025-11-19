@@ -358,6 +358,204 @@ export type CoalitionDetailDocument<Lang extends string = string> =
     Lang
   >;
 
+type EventsDocumentDataSlicesSlice = EventsMainSlice;
+
+/**
+ * Content for events documents
+ */
+interface EventsDocumentData {
+  /**
+   * Slice Zone field in *events*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/slices
+   */
+  slices: prismic.SliceZone<EventsDocumentDataSlicesSlice> /**
+   * Meta Title field in *events*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: events.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *events*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: events.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *events*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * events document from Prismic
+ *
+ * - **API ID**: `events`
+ * - **Repeatable**: `false`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EventsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithoutUID<
+    Simplify<EventsDocumentData>,
+    "events",
+    Lang
+  >;
+
+/**
+ * Item in *events details → speakers*
+ */
+export interface EventsDetailsDocumentDataSpeakersItem {
+  /**
+   * image field in *events details → speakers*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.speakers[].image
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * name field in *events details → speakers*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.speakers[].name
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  name: prismic.RichTextField;
+
+  /**
+   * speaker title field in *events details → speakers*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.speakers[].speaker_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  speaker_title: prismic.RichTextField;
+}
+
+/**
+ * Content for events details documents
+ */
+interface EventsDetailsDocumentData {
+  /**
+   * start time field in *events details*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.start_time
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/timestamp
+   */
+  start_time: prismic.TimestampField;
+
+  /**
+   * end time field in *events details*
+   *
+   * - **Field Type**: Timestamp
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.end_time
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/timestamp
+   */
+  end_time: prismic.TimestampField;
+
+  /**
+   * tiltle field in *events details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.tiltle
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  tiltle: prismic.RichTextField;
+
+  /**
+   * details field in *events details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.details
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  details: prismic.RichTextField;
+
+  /**
+   * location field in *events details*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.location
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  location: prismic.RichTextField;
+
+  /**
+   * Feature image field in *events details*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.feature_image
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/image
+   */
+  feature_image: prismic.ImageField<never>;
+
+  /**
+   * speakers field in *events details*
+   *
+   * - **Field Type**: Group
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_details.speakers[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/repeatable-group
+   */
+  speakers: prismic.GroupField<Simplify<EventsDetailsDocumentDataSpeakersItem>>;
+}
+
+/**
+ * events details document from Prismic
+ *
+ * - **API ID**: `events_details`
+ * - **Repeatable**: `true`
+ * - **Documentation**: https://prismic.io/docs/content-modeling
+ *
+ * @typeParam Lang - Language API ID of the document.
+ */
+export type EventsDetailsDocument<Lang extends string = string> =
+  prismic.PrismicDocumentWithUID<
+    Simplify<EventsDetailsDocumentData>,
+    "events_details",
+    Lang
+  >;
+
 type HomepageDocumentDataSlicesSlice =
   | SummitHighlightSlice
   | MagnifyOurVoicesSlice
@@ -742,6 +940,8 @@ export type AllDocumentTypes =
   | AboutpageDocument
   | CoalisionDocument
   | CoalitionDetailDocument
+  | EventsDocument
+  | EventsDetailsDocument
   | HomepageDocument
   | NewsAndStoriesDocument
   | NewsAndStoriesDetailsDocument
@@ -1151,6 +1351,51 @@ type CoalitionListSliceVariation = CoalitionListSliceDefault;
 export type CoalitionListSlice = prismic.SharedSlice<
   "coalition_list",
   CoalitionListSliceVariation
+>;
+
+/**
+ * Primary content in *EventsMain → Default → Primary*
+ */
+export interface EventsMainSliceDefaultPrimary {
+  /**
+   * page title field in *EventsMain → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: events_main.default.primary.page_title
+   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   */
+  page_title: prismic.RichTextField;
+}
+
+/**
+ * Default variation for EventsMain Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventsMainSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<EventsMainSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *EventsMain*
+ */
+type EventsMainSliceVariation = EventsMainSliceDefault;
+
+/**
+ * EventsMain Shared Slice
+ *
+ * - **API ID**: `events_main`
+ * - **Description**: EventsMain
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type EventsMainSlice = prismic.SharedSlice<
+  "events_main",
+  EventsMainSliceVariation
 >;
 
 /**
@@ -2730,6 +2975,12 @@ declare module "@prismicio/client" {
       CoalitionDetailDocument,
       CoalitionDetailDocumentData,
       CoalitionDetailDocumentDataPartnersListItem,
+      EventsDocument,
+      EventsDocumentData,
+      EventsDocumentDataSlicesSlice,
+      EventsDetailsDocument,
+      EventsDetailsDocumentData,
+      EventsDetailsDocumentDataSpeakersItem,
       HomepageDocument,
       HomepageDocumentData,
       HomepageDocumentDataSlicesSlice,
@@ -2760,6 +3011,10 @@ declare module "@prismicio/client" {
       CoalitionListSlice,
       CoalitionListSliceVariation,
       CoalitionListSliceDefault,
+      EventsMainSlice,
+      EventsMainSliceDefaultPrimary,
+      EventsMainSliceVariation,
+      EventsMainSliceDefault,
       ExecutivesSlice,
       ExecutivesSliceDefaultPrimaryItemsItem,
       ExecutivesSliceDefaultPrimaryCountryRepsItem,
