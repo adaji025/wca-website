@@ -70,17 +70,21 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
   const formatDateRange = (event: EventsDetailsDocument) => {
     const startTime = event.data.start_time;
     const endTime = event.data.end_time;
-    
+
     if (!startTime && !endTime) return "";
-    
+
     // Extract date portion from timestamps
-    const startDate = startTime ? new Date(startTime).toISOString().split('T')[0] : null;
-    const endDate = endTime ? new Date(endTime).toISOString().split('T')[0] : null;
-    
+    const startDate = startTime
+      ? new Date(startTime).toISOString().split("T")[0]
+      : null;
+    const endDate = endTime
+      ? new Date(endTime).toISOString().split("T")[0]
+      : null;
+
     if (!endTime || startDate === endDate) {
       return formatDate(startTime);
     }
-    
+
     const start = formatDate(startTime);
     const end = formatDate(endTime);
     return `${start} - ${end}`;
@@ -90,9 +94,9 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
   const formatTimeRange = (event: EventsDetailsDocument) => {
     const startTime = event.data.start_time;
     const endTime = event.data.end_time;
-    
+
     if (!startTime && !endTime) return "";
-    
+
     const formatTime = (timestamp: string | null | undefined) => {
       if (!timestamp) return "";
       const date = new Date(timestamp);
@@ -154,32 +158,44 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
         break;
       case "date_asc":
         sorted.sort((a, b) => {
-          const dateA = a.data.start_time ? new Date(a.data.start_time).getTime() : 0;
-          const dateB = b.data.start_time ? new Date(b.data.start_time).getTime() : 0;
+          const dateA = a.data.start_time
+            ? new Date(a.data.start_time).getTime()
+            : 0;
+          const dateB = b.data.start_time
+            ? new Date(b.data.start_time).getTime()
+            : 0;
           return dateA - dateB;
         });
         break;
       case "date_desc":
         sorted.sort((a, b) => {
-          const dateA = a.data.start_time ? new Date(a.data.start_time).getTime() : 0;
-          const dateB = b.data.start_time ? new Date(b.data.start_time).getTime() : 0;
+          const dateA = a.data.start_time
+            ? new Date(a.data.start_time).getTime()
+            : 0;
+          const dateB = b.data.start_time
+            ? new Date(b.data.start_time).getTime()
+            : 0;
           return dateB - dateA;
         });
         break;
       default:
         // Default: sort by start time (upcoming first, then past)
         sorted.sort((a, b) => {
-          const dateA = a.data.start_time ? new Date(a.data.start_time).getTime() : 0;
-          const dateB = b.data.start_time ? new Date(b.data.start_time).getTime() : 0;
+          const dateA = a.data.start_time
+            ? new Date(a.data.start_time).getTime()
+            : 0;
+          const dateB = b.data.start_time
+            ? new Date(b.data.start_time).getTime()
+            : 0;
           const now = Date.now();
-          
+
           // Upcoming events first
           const aIsUpcoming = dateA > now;
           const bIsUpcoming = dateB > now;
-          
+
           if (aIsUpcoming && !bIsUpcoming) return -1;
           if (!aIsUpcoming && bIsUpcoming) return 1;
-          
+
           // Both upcoming or both past - sort by date
           if (aIsUpcoming && bIsUpcoming) {
             return dateA - dateB; // Soonest first
@@ -229,9 +245,7 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
       <Bounded>
         {/* Filters and Sort Header */}
         {!showFilters && (
-          <div className="text38 mt-6 mb-6 font-serif">
-            Related Events
-          </div>
+          <div className="text38 mt-6 mb-6 font-serif">Related Events</div>
         )}
         {showFilters && (
           <div className="flex items-center border-b border-gray-300 mt-16 mb-8 overflow-x-auto">
@@ -330,22 +344,22 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
           <div className={`space-y-8 ${!showFilters ? "mt-8" : ""}`}>
             {paginatedEvents.map((event) => {
               const upcoming = isUpcoming(event);
-              
+
               return (
                 <div
                   key={event.uid}
-                  className="grid border-2 grid-cols-1 lg:grid-cols-2 gap-6 bg-white  overflow-hidden"
+                  className="grid border border-wca-gray grid-cols-1 lg:grid-cols-2 gap-6 bg-white  overflow-hidden"
                 >
                   {/* Left Section - Content */}
                   <div className="flex flex-col p-6 lg:p-8 relative">
                     {/* Status Badge */}
                     <div className="absolute top-6 left-6">
                       {upcoming ? (
-                        <span className="inline-block px-4 py-2 bg-[#FEFF03] text-gray-800 text-sm font-bold rounded">
+                        <span className="inline-block px-4 py-2 bg-[#FEFF03] text-gray-800 text-sm font-bold">
                           Upcoming
                         </span>
                       ) : (
-                        <span className="inline-block px-4 py-2 bg-[#8B0000] text-white text-sm font-bold rounded">
+                        <span className="inline-block px-4 py-2 bg-wca-primary text-white text-sm font-bold">
                           Past
                         </span>
                       )}
@@ -397,16 +411,16 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
                     )}
 
                     {/* Action Buttons */}
-                    <div className="flex flex-wrap gap-4 mt-auto">
+                    <div className="flex flex-wrap justify-end gap-4 mt-auto">
                       {upcoming && (
-                        <button className="flex items-center gap-2 px-6 py-3 bg-[#177402] text-white font-medium rounded hover:bg-[#177402]/90 transition-colors">
+                        <button className="flex items-center gap-2 px-6 py-3 text-[#177402] font-medium rounded hover:scale-105 transition-all">
                           Register
                           <ExternalLink className="w-4 h-4" />
                         </button>
                       )}
                       <Link
                         href={`/events/${event.uid}`}
-                        className="flex items-center gap-2 px-6 py-3 border border-[#177402] text-[#177402] font-medium rounded hover:bg-[#177402] hover:text-white transition-colors"
+                        className="flex items-center gap-2 px-6 py-3  text-[#177402] font-medium rounded hover:scale-105 transition-all"
                       >
                         Find Out More
                         <ArrowRight className="w-4 h-4" />
@@ -462,19 +476,35 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
         {/* Pagination Controls */}
         {totalPages > 1 && (
           <div className="flex justify-between items-center mt-8">
-            {/* Previous Button */}
-            <button
-              onClick={prevPage}
-              disabled={!canGoPrev}
-              className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
-                canGoPrev
-                  ? "hover:bg-gray-50 text-gray-700"
-                  : "text-gray-300 cursor-not-allowed"
-              }`}
-              aria-label="Previous page"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
+            <div className="flex gap-4 items-center">
+              {/* Previous Button */}
+              <button
+                onClick={prevPage}
+                disabled={!canGoPrev}
+                className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
+                  canGoPrev
+                    ? "hover:bg-gray-50 text-gray-700"
+                    : "text-gray-300 cursor-not-allowed"
+                }`}
+                aria-label="Previous page"
+              >
+                <ChevronLeft className="w-5 h-5" />
+              </button>
+
+              {/* Next Button */}
+              <button
+                onClick={nextPage}
+                disabled={!canGoNext}
+                className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
+                  canGoNext
+                    ? "hover:bg-gray-50 text-gray-700"
+                    : "text-gray-300 cursor-not-allowed"
+                }`}
+                aria-label="Next page"
+              >
+                <ChevronRightIcon className="w-5 h-5" />
+              </button>
+            </div>
 
             {/* Dot Indicators */}
             <div className="flex items-center gap-2">
@@ -489,20 +519,6 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
                 />
               ))}
             </div>
-
-            {/* Next Button */}
-            <button
-              onClick={nextPage}
-              disabled={!canGoNext}
-              className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
-                canGoNext
-                  ? "hover:bg-gray-50 text-gray-700"
-                  : "text-gray-300 cursor-not-allowed"
-              }`}
-              aria-label="Next page"
-            >
-              <ChevronRightIcon className="w-5 h-5" />
-            </button>
           </div>
         )}
       </Bounded>

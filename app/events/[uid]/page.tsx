@@ -85,7 +85,7 @@ export default async function EventDetailPage({ params }: Props) {
   const shareUrl = `${protocol}://${host}/events/${uid}`;
 
   return (
-    <div className="bg-white">
+    <div className="bg-white mb-20">
       {/* Header Background */}
       <div className="mb-10">
         <div className="text68 text-wca-secondary text-center pt-10">
@@ -113,7 +113,7 @@ export default async function EventDetailPage({ params }: Props) {
             className="w-full"
           />
           <Bounded>
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10">
+            <div className="grid md:grid-cols-2 gap-10 mt-10">
               {/* Left Section - Content */}
               <div className="flex-1 flex flex-col justify-between">
                 <div>
@@ -218,33 +218,33 @@ export default async function EventDetailPage({ params }: Props) {
             {/* Speakers Section */}
             {page.data.speakers && page.data.speakers.length > 0 && (
               <div className="mt-12">
-                <h2 className="text-2xl md:text-3xl font-serif text-wca-secondary mb-8">
-                  Speakers
+                <h2 className="text38 text-center font-serif text-wca-secondary mb-8">
+                  Meet Our Speakers
                 </h2>
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div className="grid sm:grid-cols-2 gap-6">
                   {page.data.speakers.map((speaker, index) => (
                     <div
                       key={index}
-                      className="flex flex-col items-center text-center p-6 bg-gray-50 rounded-lg"
+                      className="flex flex-col items-center text-center rounded-lg"
                     >
                       {speaker.image?.url ? (
                         <PrismicNextImage
                           field={speaker.image}
-                          className="w-24 h-24 rounded-full object-cover mb-4"
+                          className="w-full h-[200px] object-cover mb-4"
                         />
                       ) : (
                         <div className="w-24 h-24 rounded-full bg-green-500 flex items-center justify-center mb-4">
                           <User className="w-12 h-12 text-white" />
                         </div>
                       )}
-                      {speaker.name && (
-                        <div className="font-bold text-wca-secondary mb-2">
-                          <PrismicRichText field={speaker.name} />
+                      {speaker.speaker_name && (
+                        <div className="font-bold text-wca-secondary capitalize mb-2">
+                          <PrismicRichText field={speaker.speaker_name} />
                         </div>
                       )}
-                      {speaker.title && (
-                        <div className="text-sm text-wca-gray">
-                          <PrismicRichText field={speaker.title} />
+                      {speaker.speaker_title && (
+                        <div className="text-sm text-wca-gray capitalize">
+                          <PrismicRichText field={speaker.speaker_title} />
                         </div>
                       )}
                     </div>
@@ -257,9 +257,9 @@ export default async function EventDetailPage({ params }: Props) {
       </div>
 
       {/* Related Events List */}
-      {otherEvents.length > 0 && (
+      {/* {otherEvents.length > 0 && (
         <EventsListClient events={otherEvents} showFilters={false} />
-      )}
+      )} */}
     </div>
   );
 }
