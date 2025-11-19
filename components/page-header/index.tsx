@@ -1,5 +1,6 @@
 import Image from "next/image";
 import LangDropdown from "./lang-dropdown";
+import CountdownTimer from "./countdown";
 import { createClient } from "@/prismicio";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
@@ -47,24 +48,12 @@ const PageHeaderComp = async () => {
               WCA SUMMIT OCTOBER 2025 (KIGALI, RWANDA)
             </div>
           )}
-          <div className="flex gap-4 justify-center">
-            <div className="text-center">
-              <div className="font-bold text26">Days</div>
-              <div>{days}</div>
-            </div>
-            <div className="text-center">
-              <div className="font-bold text26">Hours</div>
-              <div>{hours}</div>
-            </div>
-            <div className="text-center">
-              <div className="font-bold text26">Minutes</div>
-              <div>{minutes}</div>
-            </div>
-            <div className="text-center">
-              <div className="font-bold text26">Seconds</div>
-              <div>{seconds}</div>
-            </div>
-          </div>
+          <CountdownTimer
+            days={days}
+            hours={hours}
+            minutes={minutes}
+            seconds={seconds}
+          />
         </div>
         <div className="hidden lg:block z-20">
           <LangDropdown />
