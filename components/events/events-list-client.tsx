@@ -6,9 +6,12 @@ import { PrismicRichText } from "@prismicio/react";
 import {
   ChevronDown,
   Calendar,
+  Clock,
+  MapPin,
   ArrowRight,
   ChevronLeft,
   ChevronRight as ChevronRightIcon,
+  ExternalLink,
 } from "lucide-react";
 import type { EventsDetailsDocument } from "@/prismicio-types";
 import {
@@ -20,6 +23,8 @@ import {
 import Link from "next/link";
 import Image from "next/image";
 import Bounded from "@/components/bounded";
+
+type FilterOption = "all" | "upcoming" | "past";
 
 type SortOption =
   | "default"
@@ -37,8 +42,9 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
   events,
   showFilters = true,
 }) => {
+  const [filterBy, setFilterBy] = useState<FilterOption>("all");
   const [sortBy, setSortBy] = useState<SortOption>("default");
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(0);
 
   // Helper function to extract text from Prismic RichText field
   const getRichTextAsString = (field: any): string => {
@@ -55,29 +61,82 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
     const date = new Date(dateString);
     return date.toLocaleDateString("en-US", {
       year: "numeric",
-      month: "short",
+      month: "long",
       day: "numeric",
     });
   };
 
   // Format date range for display
   const formatDateRange = (event: EventsDetailsDocument) => {
-    const startDate = event.data.start_date;
-    const endDate = event.data.end_date;
+    const startTime = event.data.start_time;
+    const endTime = event.data.end_time;
     
-    if (!startDate && !endDate) return "";
-    if (!endDate || startDate === endDate) {
-      return formatDate(startDate);
+    if (!startTime && !endTime) return "";
+    
+    // Extract date portion from timestamps
+    const startDate = startTime ? new Date(startTime).toISOString().split('T')[0] : null;
+    const endDate = endTime ? new Date(endTime).toISOString().split('T')[0] : null;
+    
+    if (!endTime || startDate === endDate) {
+      return formatDate(startTime);
     }
     
-    const start = formatDate(startDate);
-    const end = formatDate(endDate);
+    const start = formatDate(startTime);
+    const end = formatDate(endTime);
     return `${start} - ${end}`;
   };
 
-  // Sort events
-  const sortedEvents = useMemo(() => {
-    const sorted = [...events];
+  // Format time range
+  const formatTimeRange = (event: EventsDetailsDocument) => {
+    const startTime = event.data.start_time;
+    const endTime = event.data.end_time;
+    
+    if (!startTime && !endTime) return "";
+    
+    const formatTime = (timestamp: string | null | undefined) => {
+      if (!timestamp) return "";
+      const date = new Date(timestamp);
+      return date.toLocaleTimeString("en-US", {
+        hour: "numeric",
+        minute: "2-digit",
+        hour12: true,
+      });
+    };
+
+    if (!endTime) {
+      return formatTime(startTime);
+    }
+
+    const start = formatTime(startTime);
+    const end = formatTime(endTime);
+    return `${start} - ${end}`;
+  };
+
+  // Check if event is upcoming
+  const isUpcoming = (event: EventsDetailsDocument): boolean => {
+    if (!event.data.start_time) return false;
+    const eventTime = new Date(event.data.start_time).getTime();
+    return eventTime > Date.now();
+  };
+
+  // Filter and sort events
+  const filteredAndSortedEvents = useMemo(() => {
+    // First, filter by past/upcoming
+    let filtered = events;
+    if (filterBy !== "all") {
+      filtered = events.filter((event) => {
+        const upcoming = isUpcoming(event);
+        if (filterBy === "upcoming") {
+          return upcoming;
+        } else if (filterBy === "past") {
+          return !upcoming;
+        }
+        return true;
+      });
+    }
+
+    // Then, sort
+    const sorted = [...filtered];
     switch (sortBy) {
       case "title_asc":
         sorted.sort((a, b) => {
@@ -95,23 +154,23 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
         break;
       case "date_asc":
         sorted.sort((a, b) => {
-          const dateA = a.data.start_date ? new Date(a.data.start_date).getTime() : 0;
-          const dateB = b.data.start_date ? new Date(b.data.start_date).getTime() : 0;
+          const dateA = a.data.start_time ? new Date(a.data.start_time).getTime() : 0;
+          const dateB = b.data.start_time ? new Date(b.data.start_time).getTime() : 0;
           return dateA - dateB;
         });
         break;
       case "date_desc":
         sorted.sort((a, b) => {
-          const dateA = a.data.start_date ? new Date(a.data.start_date).getTime() : 0;
-          const dateB = b.data.start_date ? new Date(b.data.start_date).getTime() : 0;
+          const dateA = a.data.start_time ? new Date(a.data.start_time).getTime() : 0;
+          const dateB = b.data.start_time ? new Date(b.data.start_time).getTime() : 0;
           return dateB - dateA;
         });
         break;
       default:
-        // Default: sort by start date (upcoming first, then past)
+        // Default: sort by start time (upcoming first, then past)
         sorted.sort((a, b) => {
-          const dateA = a.data.start_date ? new Date(a.data.start_date).getTime() : 0;
-          const dateB = b.data.start_date ? new Date(b.data.start_date).getTime() : 0;
+          const dateA = a.data.start_time ? new Date(a.data.start_time).getTime() : 0;
+          const dateB = b.data.start_time ? new Date(b.data.start_time).getTime() : 0;
           const now = Date.now();
           
           // Upcoming events first
@@ -131,41 +190,31 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
     }
 
     return sorted;
-  }, [events, sortBy]);
+  }, [events, filterBy, sortBy]);
 
-  // Group items into carousel slides
-  const { slides, totalSlides, maxIndex } = useMemo(() => {
-    const itemsPerView = 4; // Show 4 items at a time
-    const eventList = sortedEvents;
+  // Pagination
+  const itemsPerPage = 3;
+  const totalPages = Math.ceil(filteredAndSortedEvents.length / itemsPerPage);
+  const paginatedEvents = useMemo(() => {
+    const start = currentPage * itemsPerPage;
+    return filteredAndSortedEvents.slice(start, start + itemsPerPage);
+  }, [filteredAndSortedEvents, currentPage]);
 
-    // Group items into slides
-    const slideGroups: EventsDetailsDocument[][] = [];
-    for (let i = 0; i < eventList.length; i += itemsPerView) {
-      slideGroups.push(eventList.slice(i, i + itemsPerView));
-    }
-
-    return {
-      slides: slideGroups,
-      totalSlides: slideGroups.length,
-      maxIndex: Math.max(0, slideGroups.length - 1),
-    };
-  }, [sortedEvents]);
-
-  // Reset index when filters change
+  // Reset page when filters change
   React.useEffect(() => {
-    setCurrentIndex(0);
-  }, [sortBy]);
+    setCurrentPage(0);
+  }, [filterBy, sortBy]);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => Math.min(prev + 1, maxIndex));
+  const nextPage = () => {
+    setCurrentPage((prev) => Math.min(prev + 1, totalPages - 1));
   };
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => Math.max(prev - 1, 0));
+  const prevPage = () => {
+    setCurrentPage((prev) => Math.max(prev - 1, 0));
   };
 
-  const canGoNext = currentIndex < maxIndex;
-  const canGoPrev = currentIndex > 0;
+  const canGoNext = currentPage < totalPages - 1;
+  const canGoPrev = currentPage > 0;
 
   return (
     <section className="bg-white pb-10">
@@ -186,8 +235,44 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
         )}
         {showFilters && (
           <div className="flex items-center border-b border-gray-300 mt-16 mb-8 overflow-x-auto">
+            {/* View All Button */}
+            <button
+              onClick={() => setFilterBy("all")}
+              className={`px-6 py-4 font-bold text-sm whitespace-nowrap transition-colors ${
+                filterBy === "all"
+                  ? "bg-[#f5f5dc] text-gray-800"
+                  : "bg-transparent text-gray-600 hover:text-gray-800"
+              }`}
+            >
+              View all
+            </button>
+
+            {/* Filter Buttons */}
+            <div className="flex-1 bg-white px-6 py-4 flex items-center gap-8 overflow-x-auto">
+              <button
+                onClick={() => setFilterBy("upcoming")}
+                className={`px-4 py-2 font-bold text-sm whitespace-nowrap transition-colors rounded ${
+                  filterBy === "upcoming"
+                    ? "bg-[#f5f5dc] text-gray-800"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+              >
+                Upcoming
+              </button>
+              <button
+                onClick={() => setFilterBy("past")}
+                className={`px-4 py-2 font-bold text-sm whitespace-nowrap transition-colors rounded ${
+                  filterBy === "past"
+                    ? "bg-[#f5f5dc] text-gray-800"
+                    : "text-gray-600 hover:text-gray-800"
+                }`}
+              >
+                Past
+              </button>
+            </div>
+
             {/* Sort By Dropdown */}
-            <div className="ml-auto bg-[#f5f5f5] px-6 py-3">
+            <div className="bg-[#f5f5f5] px-6 py-3">
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex items-center gap-2 font-bold text-sm text-gray-800 hover:text-gray-600 transition-colors">
                   <span>Sort by</span>
@@ -240,137 +325,184 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
           </div>
         )}
 
-        {/* Events Carousel */}
-        {sortedEvents.length > 0 ? (
-          <div className={`relative h-fit ${!showFilters ? "mt-8" : ""}`}>
-            {/* Carousel Container */}
-            <div className="overflow-hidden w-full">
-              <div
-                className="flex transition-transform duration-500 ease-in-out items-start"
-                style={{
-                  transform: `translateX(-${currentIndex * 100}%)`,
-                }}
-              >
-                {slides.map((slide, slideIndex) => (
-                  <div
-                    key={slideIndex}
-                    className="shrink-0 w-full grid grid-cols-1 sm:grid-cols-2 gap-6 items-start"
-                  >
-                    {slide.map((event) => (
-                      <Link
-                        key={event.uid}
-                        href={`/events/${event.uid}`}
-                        className="flex h-fit flex-col"
-                      >
-                        {/* Event Image */}
-                        <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">
-                          {event.data.feature_image?.url ? (
-                            <PrismicNextImage
-                              field={event.data.feature_image}
-                              className="w-full h-[200px] object-cover"
-                            />
-                          ) : (
-                            <div className="w-full h-[200px] bg-gray-300 flex items-center justify-center">
-                              <svg
-                                className="w-12 h-12 text-gray-400"
-                                fill="currentColor"
-                                viewBox="0 0 24 24"
-                              >
-                                <path d="M4 4h16v16H4V4zm2 2v12h12V6H6zm2 2h8v8H8V8z" />
-                              </svg>
-                            </div>
-                          )}
+        {/* Events List */}
+        {paginatedEvents.length > 0 ? (
+          <div className={`space-y-8 ${!showFilters ? "mt-8" : ""}`}>
+            {paginatedEvents.map((event) => {
+              const upcoming = isUpcoming(event);
+              
+              return (
+                <div
+                  key={event.uid}
+                  className="grid border-2 grid-cols-1 lg:grid-cols-2 gap-6 bg-white  overflow-hidden"
+                >
+                  {/* Left Section - Content */}
+                  <div className="flex flex-col p-6 lg:p-8 relative">
+                    {/* Status Badge */}
+                    <div className="absolute top-6 left-6">
+                      {upcoming ? (
+                        <span className="inline-block px-4 py-2 bg-[#FEFF03] text-gray-800 text-sm font-bold rounded">
+                          Upcoming
+                        </span>
+                      ) : (
+                        <span className="inline-block px-4 py-2 bg-[#8B0000] text-white text-sm font-bold rounded">
+                          Past
+                        </span>
+                      )}
+                    </div>
+
+                    {/* Date and Time */}
+                    <div className="mt-12 space-y-3 mb-4">
+                      {(event.data.start_time || event.data.end_time) && (
+                        <div className="flex items-center gap-2 text-wca-secondary">
+                          <Calendar className="w-5 h-5" />
+                          <span className="text-base font-medium">
+                            {formatDateRange(event)}
+                          </span>
                         </div>
+                      )}
 
-                        {/* Event Info */}
-                        <div className="mt-4 flex flex-col gap-3 flex-1">
-                          {/* Event Title */}
-                          {event.data.tiltle && (
-                            <h3 className="text-lg font-bold text-wca-secondary line-clamp-2">
-                              <PrismicRichText field={event.data.tiltle} />
-                            </h3>
-                          )}
+                      {(event.data.start_time || event.data.end_time) && (
+                        <div className="flex items-center gap-2 text-wca-secondary">
+                          <Clock className="w-5 h-5" />
+                          <span className="text-base font-medium">
+                            {formatTimeRange(event)}
+                          </span>
+                        </div>
+                      )}
+                    </div>
 
-                          {/* Date Range */}
-                          {(event.data.start_date || event.data.end_date) && (
-                            <div className="flex items-center gap-2 text-sm text-wca-gray">
-                              <Calendar className="w-4 h-4" />
-                              <span>{formatDateRange(event)}</span>
-                            </div>
-                          )}
+                    {/* Event Title */}
+                    {event.data.tiltle && (
+                      <h3 className="text-2xl md:text-3xl font-bold text-wca-secondary mb-4">
+                        <PrismicRichText field={event.data.tiltle} />
+                      </h3>
+                    )}
 
-                          {/* Description Preview */}
-                          {event.data.details && (
-                            <p className="text-sm text-wca-gray line-clamp-3">
-                              {getRichTextAsString(event.data.details)}
-                            </p>
-                          )}
+                    {/* Event Details */}
+                    {event.data.details && (
+                      <p className="text-base text-wca-gray mb-4 line-clamp-3">
+                        {getRichTextAsString(event.data.details)}
+                      </p>
+                    )}
 
-                          {/* Read More Link */}
-                          <div className="mt-auto flex justify-end pt-2">
-                            <div className="flex items-center gap-2 text-[#177402] font-medium text-sm hover:gap-3 transition-all">
-                              Read more
-                              <ArrowRight className="w-4 h-4" />
-                            </div>
+                    {/* Location */}
+                    {event.data.location && (
+                      <div className="flex items-start gap-2 text-wca-secondary mb-6">
+                        <MapPin className="w-5 h-5 mt-0.5" />
+                        <div className="text-base font-medium">
+                          <PrismicRichText field={event.data.location} />
+                        </div>
+                      </div>
+                    )}
+
+                    {/* Action Buttons */}
+                    <div className="flex flex-wrap gap-4 mt-auto">
+                      {upcoming && (
+                        <button className="flex items-center gap-2 px-6 py-3 bg-[#177402] text-white font-medium rounded hover:bg-[#177402]/90 transition-colors">
+                          Register
+                          <ExternalLink className="w-4 h-4" />
+                        </button>
+                      )}
+                      <Link
+                        href={`/events/${event.uid}`}
+                        className="flex items-center gap-2 px-6 py-3 border border-[#177402] text-[#177402] font-medium rounded hover:bg-[#177402] hover:text-white transition-colors"
+                      >
+                        Find Out More
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
+                    </div>
+                  </div>
+
+                  {/* Right Section - Image */}
+                  <div className="relative h-full min-h-[300px] lg:min-h-[400px]">
+                    {event.data.feature_image?.url ? (
+                      <div className="relative w-full h-full">
+                        <PrismicNextImage
+                          field={event.data.feature_image}
+                          className="w-full h-full object-cover"
+                          width={600}
+                          height={400}
+                        />
+                        {/* Map Pin Overlay */}
+                        <div className="absolute top-4 right-4">
+                          <div className="bg-white/90 backdrop-blur-sm p-2 rounded-full">
+                            <MapPin className="w-5 h-5 text-[#177402]" />
                           </div>
                         </div>
-                      </Link>
-                    ))}
+                      </div>
+                    ) : (
+                      <div className="w-full h-full bg-gray-200 flex items-center justify-center relative">
+                        <svg
+                          className="w-16 h-16 text-gray-400"
+                          fill="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" />
+                        </svg>
+                        {/* Map Pin Overlay */}
+                        <div className="absolute top-4 right-4">
+                          <div className="bg-white/90 backdrop-blur-sm p-2 rounded-full">
+                            <MapPin className="w-5 h-5 text-[#177402]" />
+                          </div>
+                        </div>
+                      </div>
+                    )}
                   </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Navigation Controls */}
-            {totalSlides > 1 && (
-              <div className="flex justify-between items-center mt-8">
-                {/* Chevron Buttons */}
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={prevSlide}
-                    disabled={!canGoPrev}
-                    className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
-                      canGoPrev
-                        ? "hover:bg-gray-50 text-gray-700"
-                        : "text-gray-300 cursor-not-allowed"
-                    }`}
-                    aria-label="Previous items"
-                  >
-                    <ChevronLeft className="w-5 h-5" />
-                  </button>
-                  <button
-                    onClick={nextSlide}
-                    disabled={!canGoNext}
-                    className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
-                      canGoNext
-                        ? "hover:bg-gray-50 text-gray-700"
-                        : "text-gray-300 cursor-not-allowed"
-                    }`}
-                    aria-label="Next items"
-                  >
-                    <ChevronRightIcon className="w-5 h-5" />
-                  </button>
                 </div>
-
-                {/* Dot Indicators */}
-                <div className="flex items-center gap-2">
-                  {slides.map((_, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setCurrentIndex(index)}
-                      className={`w-2 h-2 rounded-full transition-colors ${
-                        currentIndex === index ? "bg-black" : "bg-[#f5f5dc]"
-                      }`}
-                      aria-label={`Go to slide ${index + 1}`}
-                    />
-                  ))}
-                </div>
-              </div>
-            )}
+              );
+            })}
           </div>
         ) : (
           <div className="text-center py-12 text-gray-500">
             <p className="text-lg">No events found.</p>
+          </div>
+        )}
+
+        {/* Pagination Controls */}
+        {totalPages > 1 && (
+          <div className="flex justify-between items-center mt-8">
+            {/* Previous Button */}
+            <button
+              onClick={prevPage}
+              disabled={!canGoPrev}
+              className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
+                canGoPrev
+                  ? "hover:bg-gray-50 text-gray-700"
+                  : "text-gray-300 cursor-not-allowed"
+              }`}
+              aria-label="Previous page"
+            >
+              <ChevronLeft className="w-5 h-5" />
+            </button>
+
+            {/* Dot Indicators */}
+            <div className="flex items-center gap-2">
+              {Array.from({ length: totalPages }).map((_, index) => (
+                <button
+                  key={index}
+                  onClick={() => setCurrentPage(index)}
+                  className={`w-2 h-2 rounded-full transition-colors ${
+                    currentPage === index ? "bg-black" : "bg-[#f5f5dc]"
+                  }`}
+                  aria-label={`Go to page ${index + 1}`}
+                />
+              ))}
+            </div>
+
+            {/* Next Button */}
+            <button
+              onClick={nextPage}
+              disabled={!canGoNext}
+              className={`w-10 h-10 rounded-full border border-gray-300 flex items-center justify-center transition-colors ${
+                canGoNext
+                  ? "hover:bg-gray-50 text-gray-700"
+                  : "text-gray-300 cursor-not-allowed"
+              }`}
+              aria-label="Next page"
+            >
+              <ChevronRightIcon className="w-5 h-5" />
+            </button>
           </div>
         )}
       </Bounded>
@@ -379,4 +511,3 @@ const EventsListClient: React.FC<EventsListClientProps> = ({
 };
 
 export default EventsListClient;
-

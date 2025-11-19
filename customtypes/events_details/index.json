@@ -75,10 +75,10 @@
                 "thumbnails": []
               }
             },
-            "name": {
+            "speaker_name": {
               "type": "StructuredText",
               "config": {
-                "label": "name",
+                "label": "speaker name",
                 "placeholder": "",
                 "allowTargetBlank": true,
                 "multi": "heading3"

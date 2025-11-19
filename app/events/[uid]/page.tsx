@@ -57,16 +57,21 @@ export default async function EventDetailPage({ params }: Props) {
 
   // Format date range
   const formatDateRange = () => {
-    const startDate = page.data.start_date;
-    const endDate = page.data.end_date;
+    const startTime = page.data.start_time;
+    const endTime = page.data.end_time;
     
-    if (!startDate && !endDate) return "";
-    if (!endDate || startDate === endDate) {
-      return formatDate(startDate);
+    if (!startTime && !endTime) return "";
+    
+    // Extract date portion from timestamps
+    const startDate = startTime ? new Date(startTime).toISOString().split('T')[0] : null;
+    const endDate = endTime ? new Date(endTime).toISOString().split('T')[0] : null;
+    
+    if (!endTime || startDate === endDate) {
+      return formatDate(startTime);
     }
     
-    const start = formatDate(startDate);
-    const end = formatDate(endDate);
+    const start = formatDate(startTime);
+    const end = formatDate(endTime);
     return `${start} - ${end}`;
   };
 
@@ -124,7 +129,7 @@ export default async function EventDetailPage({ params }: Props) {
                   {/* Event Details */}
                   <div className="space-y-4 mb-6">
                     {/* Date Range */}
-                    {(page.data.start_date || page.data.end_date) && (
+                    {(page.data.start_time || page.data.end_time) && (
                       <div className="flex items-center gap-3 text-wca-secondary">
                         <Calendar className="w-5 h-5" />
                         <span className="text-base font-medium">

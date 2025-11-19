@@ -438,14 +438,14 @@ export interface EventsDetailsDocumentDataSpeakersItem {
   image: prismic.ImageField<never>;
 
   /**
-   * name field in *events details → speakers*
+   * speaker name field in *events details → speakers*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: events_details.speakers[].name
+   * - **API ID Path**: events_details.speakers[].speaker_name
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
-  name: prismic.RichTextField;
+  speaker_name: prismic.RichTextField;
 
   /**
    * speaker title field in *events details → speakers*
