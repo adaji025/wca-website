@@ -7,9 +7,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import CoalitionDropdown from "./coalition-dropdown";
 import ProgramsDropdown from "./programs-dropdown";
 import Image from "next/image";
+import { useProgramsAndEvents } from "./programs-mobile-dropdown";
+import Link from "next/link";
 
 export function Navbar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { items: programsAndEventsItems, isLoading: isLoadingPrograms } =
+    useProgramsAndEvents();
 
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
@@ -21,11 +25,17 @@ export function Navbar() {
   const dropdownItems = [
     {
       label: "Coalition",
-      items: ["Coalition Members", "Our Mission", "Partners"],
+      items: ["Coalition Members"],
+      href: "/coalition",
     },
     {
       label: "Programmes & Impact",
-      items: ["Active Programs", "Impact Reports", "Case Studies"],
+      items: isLoadingPrograms
+        ? ["Loading..."]
+        : programsAndEventsItems.length > 0
+          ? programsAndEventsItems.map((item) => item.title)
+          : ["Active Programs", "Impact Reports", "Case Studies"],
+      href: "/programs",
     },
   ];
 
@@ -139,19 +149,35 @@ export function Navbar() {
               {/* Mobile Dropdowns */}
               {dropdownItems.map((dropdown) => (
                 <div key={dropdown.label} className="space-y-2 pt-2 px-2">
-                  <div className="text-gray-700 font-medium text-sm">
+                  <Link
+                    href={dropdown.href}
+                    className="text-gray-700 font-medium text-sm"
+                  >
                     {dropdown.label}
-                  </div>
+                  </Link>
                   <div className="pl-4 space-y-2 mt-2">
-                    {dropdown.items.map((item) => (
-                      <button
-                        key={item}
-                        onClick={() => setIsMenuOpen(false)}
-                        className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
-                      >
-                        {item}
-                      </button>
-                    ))}
+                    {dropdown.label === "Programmes & Impact" &&
+                    !isLoadingPrograms &&
+                    programsAndEventsItems.length > 0
+                      ? programsAndEventsItems.map((item) => (
+                          <Link
+                            key={item.id}
+                            href={item.href}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
+                          >
+                            {item.title}
+                          </Link>
+                        ))
+                      : dropdown.items.map((item) => (
+                          <button
+                            key={item}
+                            onClick={() => setIsMenuOpen(false)}
+                            className="block w-full text-left text-gray-600 hover:text-gray-900 text-sm transition-colors"
+                          >
+                            {item}
+                          </button>
+                        ))}
                   </div>
                 </div>
               ))}

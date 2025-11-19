@@ -6,29 +6,43 @@ import { ArrowRight } from "../svg";
 import { PrismicNextImage } from "@prismicio/next";
 import { PrismicRichText } from "@prismicio/react";
 import Link from "next/link";
-import type { ProgramsAndEventDocument } from "@/prismicio-types";
+import type { ProgramsAndEventDocument, EventsDetailsDocument } from "@/prismicio-types";
+
+type CombinedItem = {
+  type: "program" | "event";
+  program?: ProgramsAndEventDocument;
+  event?: EventsDetailsDocument;
+  href: string;
+};
 
 interface ProgramsDropdownContentProps {
-  programs: ProgramsAndEventDocument[];
+  items: CombinedItem[];
 }
 
 const ProgramsDropdownContent = ({
-  programs,
+  items,
 }: ProgramsDropdownContentProps) => {
   return (
     <CustomDropdown trigger="Programmes & Impact">
       <div className="grid grid-cols-2 gap-4 py-4">
-        {programs.length > 0
-          ? programs.map((program) => (
+        {items.length > 0
+          ? items.map((item, index) => (
               <Link
-                key={program.uid}
-                href={`/programs/${program.uid}`}
+                key={item.type === "program" ? item.program?.uid : item.event?.uid || index}
+                href={item.href}
                 className="flex gap-4 items-center hover:opacity-80 transition-opacity"
               >
                 <div className="shrink-0">
-                  {program.data.image?.url ? (
+                  {item.type === "program" && item.program?.data.image?.url ? (
                     <PrismicNextImage
-                      field={program.data.image}
+                      field={item.program.data.image}
+                      height={80}
+                      width={160}
+                      className="object-cover"
+                    />
+                  ) : item.type === "event" && item.event?.data.feature_image?.url ? (
+                    <PrismicNextImage
+                      field={item.event.data.feature_image}
                       height={80}
                       width={160}
                       className="object-cover"
@@ -38,14 +52,16 @@ const ProgramsDropdownContent = ({
                       src={"/images/pngs/placeholder-image.png"}
                       height={80}
                       width={160}
-                      alt="Program"
+                      alt={item.type === "program" ? "Program" : "Event"}
                     />
                   )}
                 </div>
                 <div>
                   <div className="text-sm text-gray-700 line-clamp-3">
-                    {program.data.description ? (
-                      <PrismicRichText field={program.data.description} />
+                    {item.type === "program" && item.program?.data.description ? (
+                      <PrismicRichText field={item.program.data.description} />
+                    ) : item.type === "event" && item.event?.data.details ? (
+                      <PrismicRichText field={item.event.data.details} />
                     ) : (
                       "No description available"
                     )}
@@ -57,7 +73,7 @@ const ProgramsDropdownContent = ({
                 </div>
               </Link>
             ))
-          : // Fallback if no programs are available
+          : // Fallback if no items are available
             [...Array(4)].map((_, index) => (
               <div key={index} className="flex gap-4 items-center">
                 <Image

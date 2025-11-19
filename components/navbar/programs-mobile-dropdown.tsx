@@ -3,17 +3,25 @@
 import { useEffect, useState } from "react";
 import { createClient } from "@/prismicio";
 import type { ProgramsAndEventDocument, EventsDetailsDocument } from "@/prismicio-types";
-import ProgramsDropdownContent from "./programs-dropdown-content";
 
-type CombinedItem = {
-  type: "program" | "event";
-  program?: ProgramsAndEventDocument;
-  event?: EventsDetailsDocument;
-  href: string;
+// Helper function to extract text from Prismic RichText field
+const getRichTextAsString = (field: any): string => {
+  if (!field || !Array.isArray(field)) return "";
+  return field
+    .map((item: any) => item?.text || "")
+    .join(" ")
+    .trim();
 };
 
-const ProgramsDropdown = () => {
-  const [items, setItems] = useState<CombinedItem[]>([]);
+interface ProgramOrEvent {
+  id: string;
+  title: string;
+  href: string;
+  type: "program" | "event";
+}
+
+export const useProgramsAndEvents = () => {
+  const [items, setItems] = useState<ProgramOrEvent[]>([]);
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
@@ -29,21 +37,21 @@ const ProgramsDropdown = () => {
 
         // Combine and normalize data
         const combined: Array<{
-          type: "program" | "event";
-          program?: ProgramsAndEventDocument;
-          event?: EventsDetailsDocument;
+          title: string;
           href: string;
           date: number;
+          type: "program" | "event";
         }> = [];
 
         // Add programs
         allPrograms.forEach((program) => {
           const date = program.data.date ? new Date(program.data.date).getTime() : 0;
+          const title = getRichTextAsString(program.data.program_title) || "Program";
           combined.push({
-            type: "program",
-            program: program as ProgramsAndEventDocument,
+            title,
             href: `/programs/${program.uid}`,
             date,
+            type: "program",
           });
         });
 
@@ -52,11 +60,12 @@ const ProgramsDropdown = () => {
           const date = event.data.start_time
             ? new Date(event.data.start_time).getTime()
             : 0;
+          const title = getRichTextAsString(event.data.tiltle) || "Event";
           combined.push({
-            type: "event",
-            event: event as EventsDetailsDocument,
+            title,
             href: `/events/${event.uid}`,
             date,
+            type: "event",
           });
         });
 
@@ -64,7 +73,15 @@ const ProgramsDropdown = () => {
         const sorted = combined.sort((a, b) => b.date - a.date);
         const last4 = sorted.slice(0, 4);
 
-        setItems(last4);
+        // Format for dropdown items
+        const formattedItems: ProgramOrEvent[] = last4.map((item, index) => ({
+          id: `${item.type}-${index}`,
+          title: item.title,
+          href: item.href,
+          type: item.type,
+        }));
+
+        setItems(formattedItems);
       } catch (error) {
         console.error("Error fetching programs and events:", error);
       } finally {
@@ -75,12 +92,6 @@ const ProgramsDropdown = () => {
     fetchData();
   }, []);
 
-  if (isLoading) {
-    // Show a loading state or the fallback content
-    return <ProgramsDropdownContent items={[]} />;
-  }
-
-  return <ProgramsDropdownContent items={items} />;
+  return { items, isLoading };
 };
 
-export default ProgramsDropdown;
