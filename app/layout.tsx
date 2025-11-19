@@ -4,7 +4,7 @@ import "./globals.css";
 import { Navbar } from "@/components/navbar";
 import PageHeaderComp from "@/components/page-header";
 import Footer from "@/components/footer";
-import NextTopLoader from 'nextjs-toploader';
+import NextTopLoader from "nextjs-toploader";
 
 const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",
@@ -33,8 +33,13 @@ export default async function RootLayout({
         suppressHydrationWarning
       >
         <NextTopLoader color="green" />
+        <div className="lg:hidden my-1">
+          <Navbar />
+        </div>
         <PageHeaderComp />
-        <Navbar />
+        <div className="hidden lg:block">
+          <Navbar />
+        </div>
         {children}
         <Footer />
       </body>

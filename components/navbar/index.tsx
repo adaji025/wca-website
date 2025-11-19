@@ -36,7 +36,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="bg-white border-t mt-5 border-gray-200 app-width">
+    <nav className="bg-white lg:border-t lg:mt-5 border-gray-200 app-width">
       <div className="flex items-center justify-between h-16">
         {/* Left Navigation Links - Hidden on mobile */}
         <div className="hidden lg:flex items-center gap-8">
