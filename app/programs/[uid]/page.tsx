@@ -182,7 +182,7 @@ export default async function ProgramDetailPage({ params }: Props) {
 
       {/* Related Programs List */}
       {otherPrograms.length > 0 && (
-        <ProgramsListClient programs={otherPrograms} showFilters={false} />
+        <ProgramsListClient programs={otherPrograms} showFilters={false} itemsPerView={2} />
       )}
     </div>
   );

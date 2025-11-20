@@ -38,11 +38,13 @@ type SortOption =
 interface ProgramsListClientProps {
   programs: ProgramsAndEventDocument[];
   showFilters?: boolean;
+  itemsPerView?: number;
 }
 
 const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
   programs,
   showFilters = true,
+  itemsPerView = 4,
 }) => {
   const [selectedCategory, setSelectedCategory] = useState<Category>("all");
   const [sortBy, setSortBy] = useState<SortOption>("default");
@@ -132,7 +134,6 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
 
   // Group items into carousel slides
   const { displayPrograms, slides, totalSlides, maxIndex } = useMemo(() => {
-    const itemsPerView = 4; // Show 6 items at a time (3 columns x 2 rows)
     const programs = filteredAndSortedPrograms; // Show all filtered items
 
     // Group items into slides
@@ -147,7 +148,7 @@ const ProgramsListClient: React.FC<ProgramsListClientProps> = ({
       totalSlides: slideGroups.length,
       maxIndex: Math.max(0, slideGroups.length - 1),
     };
-  }, [filteredAndSortedPrograms]);
+  }, [filteredAndSortedPrograms, itemsPerView]);
 
   // Reset index when filters change
   React.useEffect(() => {
