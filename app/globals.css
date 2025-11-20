@@ -151,7 +151,7 @@
   }
 
   .text38 {
-    @apply text-[24px] sm:text-[32px] lg:text-[38px] font-bold;
+    @apply text-[32px] lg:text-[38px] font-bold;
   }
   .text26 {
     @apply text-[18px] sm:text-[24px] lg:text-[26px] font-bold;

@@ -66,7 +66,7 @@ export default async function ProgramDetailPage({ params }: Props) {
         <div className="text68 text-wca-secondary text-center pt-10">
           {programTitle}
         </div>
-        <div className="flex justify-center items-center gap-2 font-medium">
+        <div className="flex flex-wrap justify-center items-center gap-2 font-medium">
           <Link href={"/"}>Home</Link>
           <ChevronRight className="w-4 h-4" />
           <Link href={"/programs"}>Programs & Events</Link>

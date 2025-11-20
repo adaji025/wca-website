@@ -88,7 +88,7 @@ const PageHeader: FC<PageHeaderProps> = ({ slice }) => {
         {/* Text */}
         {text && (
           <div className="flex-1 text-center md:text-left">
-            <h1 className="text-xl md:text-2xl font-bold">{text}</h1>
+            <h1 className="text-xl md:text-2xl font-bold font-serif">{text}</h1>
           </div>
         )}
 

@@ -29,27 +29,27 @@ const Impact: FC<ImpactProps> = ({ slice }) => {
         </div>
         <div className="flex flex-col sm:flex-row justify-between gap-10 mt-10">
           <div className="flex-1">
-            <span className="text38">
+            <span className="text38 font-black">
               {slice.primary.productivity_vlaue}
               <span className="text-xl">X</span>
             </span>
             <PrismicRichText field={slice.primary.productivity_text} />
           </div>
           <div className="flex-1">
-            <span className="text38">
+            <span className="text38 font-black">
               {slice.primary.investement_value}
               <span className="test-sm">%</span>
             </span>
             <PrismicRichText field={slice.primary.investment_text} />
           </div>
           <div className="flex-1">
-            <span className="text38">
+            <span className="text38 font-black">
               {slice.primary.customer_value}K<span className="text-s">+</span>
             </span>
             <PrismicRichText field={slice.primary.customer_text} />
           </div>
           <div className="flex-1">
-            <span className="text38">
+            <span className="text38 font-black">
               {slice.primary.review_value}
               <span className="text-s">+</span>
             </span>
