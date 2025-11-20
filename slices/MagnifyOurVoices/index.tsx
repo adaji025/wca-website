@@ -1,10 +1,12 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import Image from "next/image";
 import Bounded from "@/components/bounded";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import { SquareArrowOutUpRight } from "lucide-react";
+import Aos from "aos";
 
 /**
  * Props for `MagnifyOurVoices`.
@@ -16,6 +18,13 @@ export type MagnifyOurVoicesProps =
  * Component for "MagnifyOurVoices" Slices.
  */
 const MagnifyOurVoices: FC<MagnifyOurVoicesProps> = ({ slice }) => {
+  useEffect(() => {
+    Aos.init({
+      // Optional: Configure global settings here
+      duration: 800, // Example: animation duration
+      once: true, // Example: animate only once
+    });
+  }, []);
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -37,32 +46,39 @@ const MagnifyOurVoices: FC<MagnifyOurVoicesProps> = ({ slice }) => {
           <div className="max-w-[760px] mx-auto text26 text-black">
             <PrismicRichText field={slice.primary.text} />
           </div>
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
-            {slice.primary.button1?.link_type && slice.primary.button1?.text && (
-              <div className="bg-[#177402] w-full sm:w-fit justify-center text-white px-6 py-3 flex  items-center gap-2">
-                <PrismicNextLink field={slice.primary.button1} />
-                <SquareArrowOutUpRight className="w-3 h-3" />
-              </div>
-            )}
-            {slice.primary.button2?.link_type && slice.primary.button2?.text && (
-              <div className="bg-[#FBE5B6] w-full sm:w-fit justify-center text-wca-secondary px-6 py-3 flex items-center gap-2">
-                <PrismicNextLink field={slice.primary.button2} />
-                <SquareArrowOutUpRight className="w-3 h-3" />
-              </div>
-            )}
-            {slice.primary.button3?.link_type && slice.primary.button3?.text && (
-              <div className="bg-wca-primary w-full sm:w-fit justify-center text-white px-6 py-3 flex items-center gap-2">
-                <PrismicNextLink field={slice.primary.button3} />
-                <SquareArrowOutUpRight className="w-3 h-3" />
-              </div>
-            )}
+          <div
+            data-aos="zoom-in"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8"
+          >
+            {slice.primary.button1?.link_type &&
+              slice.primary.button1?.text && (
+                <div className="bg-[#177402] w-full sm:w-fit justify-center text-white px-6 py-3 flex  items-center gap-2">
+                  <PrismicNextLink field={slice.primary.button1} />
+                  <SquareArrowOutUpRight className="w-3 h-3" />
+                </div>
+              )}
+            {slice.primary.button2?.link_type &&
+              slice.primary.button2?.text && (
+                <div className="bg-[#FBE5B6] w-full sm:w-fit justify-center text-wca-secondary px-6 py-3 flex items-center gap-2">
+                  <PrismicNextLink field={slice.primary.button2} />
+                  <SquareArrowOutUpRight className="w-3 h-3" />
+                </div>
+              )}
+            {slice.primary.button3?.link_type &&
+              slice.primary.button3?.text && (
+                <div className="bg-wca-primary w-full sm:w-fit justify-center text-white px-6 py-3 flex items-center gap-2">
+                  <PrismicNextLink field={slice.primary.button3} />
+                  <SquareArrowOutUpRight className="w-3 h-3" />
+                </div>
+              )}
           </div>
 
           <div className="mt-10 w-full flex-1 flex flex-wrap justify-center lg:justify-between items-center gap-10">
             <PrismicNextImage field={slice.primary.logo1} />
             <PrismicNextImage field={slice.primary.logo2} />
             <PrismicNextImage field={slice.primary.logo3} />
-            <PrismicNextImage field={slice.primary.logo4} /><PrismicNextImage field={slice.primary.logo5} />
+            <PrismicNextImage field={slice.primary.logo4} />
+            <PrismicNextImage field={slice.primary.logo5} />
           </div>
         </div>
       </Bounded>

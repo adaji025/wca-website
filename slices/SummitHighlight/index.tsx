@@ -1,5 +1,5 @@
-"use client"
-import { FC, useState, useRef } from "react";
+"use client";
+import { FC, useState, useRef, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
@@ -8,6 +8,7 @@ import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { ArrowRight } from "@/components/svg";
 import { motion, AnimatePresence } from "framer-motion";
+import Aos from "aos";
 
 /**
  * Props for `SummitHighlight`.
@@ -23,9 +24,17 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
   const [direction, setDirection] = useState(0);
   const carouselRef = useRef<HTMLDivElement>(null);
 
+  useEffect(() => {
+    Aos.init({
+      // Optional: Configure global settings here
+      duration: 800, // Example: animation duration
+      once: true, // Example: animate only once
+    });
+  }, []);
+
   // Get items from the repeatable group field
   const items = slice.primary.item || [];
-  
+
   // Create carousel items from the group items
   const carouselItems = items.map((item) => {
     const gridImages = [
@@ -68,6 +77,7 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
       className="py-20"
+      data-aos="fade-up"
     >
       <Bounded>
         <div className="flex justify-between items-end gap-10">
@@ -91,7 +101,10 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
           </div>
         </div>
         {/* Carousel */}
-        <div className="mt-10 relative overflow-hidden min-h-[400px]" ref={carouselRef}>
+        <div
+          className="mt-10 relative overflow-hidden min-h-[400px]"
+          ref={carouselRef}
+        >
           {carouselItems.length === 0 ? (
             <div className="text-wca-gray p-4">
               <p>No carousel items available.</p>
@@ -102,7 +115,11 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
             <AnimatePresence mode="wait" initial={false}>
               <motion.div
                 key={`carousel-${currentIndex}`}
-                initial={direction === 0 ? false : { opacity: 0, x: direction > 0 ? 300 : -300 }}
+                initial={
+                  direction === 0
+                    ? false
+                    : { opacity: 0, x: direction > 0 ? 300 : -300 }
+                }
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction > 0 ? -300 : 300 }}
                 transition={{ duration: 0.1, ease: "easeInOut" }}
@@ -115,7 +132,10 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
                       <div className="flex-1 flex flex-col justify-between gap-3">
                         <div className="flex-1">
                           {currentItem.image && (
-                            <PrismicNextImage field={currentItem.image} className="w-full h-96 object-cover" />
+                            <PrismicNextImage
+                              field={currentItem.image}
+                              className="w-full h-96 object-cover"
+                            />
                           )}
                           {currentItem.title && (
                             <div className="text26 mt-3">
@@ -124,7 +144,9 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
                           )}
                           {currentItem.description && (
                             <div className="text-wca-gray mt-2">
-                              <PrismicRichText field={currentItem.description} />
+                              <PrismicRichText
+                                field={currentItem.description}
+                              />
                             </div>
                           )}
                           {currentItem.link && (
@@ -137,7 +159,11 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
                       </div>
                       <div className="flex-1 grid grid-cols-2 gap-5">
                         {currentItem.gridImages.map((img, imgIndex) => (
-                          <PrismicNextImage className="w-full h-[162px] object-cover" key={imgIndex} field={img} />
+                          <PrismicNextImage
+                            className="w-full h-[162px] object-cover"
+                            key={imgIndex}
+                            field={img}
+                          />
                         ))}
                       </div>
                     </>
