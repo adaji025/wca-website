@@ -86,7 +86,7 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
               <PrismicRichText field={slice.primary.title2} />
             </div>
           </div>
-          <div className="bg-[#FBE5B6] px-6 py-3">
+          <div className="bg-[#FBE5B6] px-6 py-3  hidden sm:block">
             <PrismicNextLink field={slice.primary.view_all} />
           </div>
         </div>
@@ -106,7 +106,7 @@ const SummitHighlight: FC<SummitHighlightProps> = ({ slice }) => {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: direction > 0 ? -300 : 300 }}
                 transition={{ duration: 0.1, ease: "easeInOut" }}
-                className="flex gap-10 w-full"
+                className="flex flex-col md:flex-row gap-10 w-full"
               >
                 {(() => {
                   const currentItem = carouselItems[currentIndex];
