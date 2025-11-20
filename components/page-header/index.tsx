@@ -12,10 +12,7 @@ const PageHeaderComp = async () => {
   // Extract data with fallbacks
   const logo = headerData?.data?.logo;
   const headerText = headerData?.data?.header_text;
-  const days = headerData?.data?.days ?? 0;
-  const hours = headerData?.data?.hour ?? 0;
-  const minutes = headerData?.data?.minute ?? 0;
-  const seconds = headerData?.data?.seconds ?? 0;
+  const eventDate = headerData?.data?.event_date;
 
   return (
     <div className='h-[138px] text-wca-secondary bg-[url("/images/pngs/header-bg.png")] bg-cover bg-center bg-no-repeat relative'>
@@ -48,12 +45,7 @@ const PageHeaderComp = async () => {
               WCA SUMMIT OCTOBER 2025 (KIGALI, RWANDA)
             </div>
           )}
-          <CountdownTimer
-            days={days}
-            hours={hours}
-            minutes={minutes}
-            seconds={seconds}
-          />
+          {eventDate && <CountdownTimer eventDate={eventDate} />}
         </div>
         <div className="hidden lg:block z-20">
           <LangDropdown />

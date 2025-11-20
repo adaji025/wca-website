@@ -23,31 +23,10 @@
           "multi": "heading2"
         }
       },
-      "days": {
-        "type": "Number",
+      "event_date": {
+        "type": "Timestamp",
         "config": {
-          "label": "days",
-          "placeholder": ""
-        }
-      },
-      "hour": {
-        "type": "Number",
-        "config": {
-          "label": "hour",
-          "placeholder": ""
-        }
-      },
-      "minute": {
-        "type": "Number",
-        "config": {
-          "label": "minute",
-          "placeholder": ""
-        }
-      },
-      "seconds": {
-        "type": "Number",
-        "config": {
-          "label": "seconds",
+          "label": "Event date",
           "placeholder": ""
         }
       }

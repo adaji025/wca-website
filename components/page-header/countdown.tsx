@@ -1,31 +1,14 @@
 "use client";
 
-import { useMemo } from "react";
 import Countdown from "react-countdown";
 
 interface CountdownTimerProps {
-  days?: number;
-  hours?: number;
-  minutes?: number;
-  seconds?: number;
+  eventDate: string;
 }
 
-export default function CountdownTimer({
-  days = 0,
-  hours = 0,
-  minutes = 0,
-  seconds = 0,
-}: CountdownTimerProps) {
-  // Calculate target date from initial countdown values
-  const targetDate = useMemo(() => {
-    const now = Date.now();
-    const totalMilliseconds =
-      (days || 0) * 24 * 60 * 60 * 1000 +
-      (hours || 0) * 60 * 60 * 1000 +
-      (minutes || 0) * 60 * 1000 +
-      (seconds || 0) * 1000;
-    return now + totalMilliseconds;
-  }, [days, hours, minutes, seconds]);
+export default function CountdownTimer({ eventDate }: CountdownTimerProps) {
+  // Convert the event date string to a timestamp
+  const targetDate = new Date(eventDate).getTime();
 
   // Countdown renderer function
   const countdownRenderer = ({
@@ -92,7 +75,7 @@ export default function CountdownTimer({
     <Countdown
       date={targetDate}
       renderer={countdownRenderer}
-      key={`${days}-${hours}-${minutes}-${seconds}`}
+      key={eventDate}
     />
   );
 }

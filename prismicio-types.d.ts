@@ -1116,48 +1116,15 @@ interface WebsitePageHeaderDocumentData {
   header_text: prismic.RichTextField;
 
   /**
-   * days field in *Website Page Header*
+   * Event date field in *Website Page Header*
    *
-   * - **Field Type**: Number
+   * - **Field Type**: Timestamp
    * - **Placeholder**: *None*
-   * - **API ID Path**: website_page_header.days
+   * - **API ID Path**: website_page_header.event_date
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/number
+   * - **Documentation**: https://prismic.io/docs/fields/timestamp
    */
-  days: prismic.NumberField;
-
-  /**
-   * hour field in *Website Page Header*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: website_page_header.hour
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  hour: prismic.NumberField;
-
-  /**
-   * minute field in *Website Page Header*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: website_page_header.minute
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  minute: prismic.NumberField;
-
-  /**
-   * seconds field in *Website Page Header*
-   *
-   * - **Field Type**: Number
-   * - **Placeholder**: *None*
-   * - **API ID Path**: website_page_header.seconds
-   * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/number
-   */
-  seconds: prismic.NumberField;
+  event_date: prismic.TimestampField;
 }
 
 /**

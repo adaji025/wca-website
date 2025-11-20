@@ -4,6 +4,7 @@ import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import { ShareIcon } from "@/components/svg";
 
 /**
  * Props for `HomePageHero`.
@@ -31,30 +32,52 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
               </span>
             </div>
 
-            <div className="font-bold text-[58px] text-wca-secondary font-serif">
+            <div className="font-bold text68 text-wca-secondary font-serif">
               <PrismicRichText field={slice.primary.hero_text} />
             </div>
-            <div className="flex">
-              <PrismicNextLink field={slice.primary.primary_button} />
-              <PrismicNextLink field={slice.primary.secondary_burron} />
-              <PrismicNextLink field={slice.primary.tertiary_button} />
+            <div className="hidden sm:flex flex-col sm:flex-row sm:flex-wrap items-center gap-4 mt-5">
+              <div className="w-full justify-center sm:w-fit bg-[#177402] text-white px-3 py-2 flex items-center gap-2">
+                <PrismicNextLink field={slice.primary.primary_button} />
+                <ShareIcon />
+              </div>
+              <div className="w-full sm:w-fit bg-[#FBE5B6] text-wca-primary px-3 py-2 flex justify-center items-center gap-2">
+                <PrismicNextLink field={slice.primary.secondary_burron} />
+              </div>
+              <div className="flex gap-2 underline text-[#177402] justify-center items-center">
+                <PrismicNextLink field={slice.primary.tertiary_button} />
+                <ArrowRight />
+              </div>
             </div>
           </div>
           <PrismicNextImage
             field={slice.primary.hero_image}
             className="w-full mt-4 lg:mt-[unset]"
           />
+
+          <div className="sm:hidden flex-col sm:flex-row sm:flex-wrap items-center gap-4 mt-5">
+            <div className="w-full justify-center my-4 sm:w-fit bg-[#177402] text-white px-3 py-2 flex items-center gap-2">
+              <PrismicNextLink field={slice.primary.primary_button} />
+              <ShareIcon />
+            </div>
+            <div className="w-full my-5 sm:w-fit bg-[#FBE5B6] text-wca-primary px-3 py-2 flex justify-center items-center gap-2">
+              <PrismicNextLink field={slice.primary.secondary_burron} />
+            </div>
+            <div className="flex gap-2 underline text-[#177402] justify-center items-center">
+              <PrismicNextLink field={slice.primary.tertiary_button} />
+              <ArrowRight />
+            </div>
+          </div>
         </div>
         <div className="grid xl:-translate-x-20 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-20 mb-20">
           <PrismicNextImage
             field={slice.primary.sub_image_1}
-            className="w-full h-full object-cover"
+            className="w-full h-full object-cover order-2 sm:order-1"
           />
           <PrismicNextImage
             field={slice.primary.sub_image_2}
-            className="w-full h-full object-cover"
+            className="hidden lg:inline w-full h-full object-cover"
           />
-          <div className="bg-[#F7F7F7] flex">
+          <div className="bg-[#F7F7F7] flex order-1 sm:order-2">
             <div className="flex flex-col justify-between">
               <div className="text-[26px] pt-3 px-5">Latest</div>
               <Image
