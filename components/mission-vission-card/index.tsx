@@ -8,6 +8,7 @@ interface MissionVisionCardProps {
   content: RichTextField;
   icon?: ReactNode;
   bgColor?: string;
+  aos?: string;
 }
 
 const MissionVisionCard: FC<MissionVisionCardProps> = ({
@@ -15,9 +16,10 @@ const MissionVisionCard: FC<MissionVisionCardProps> = ({
   content,
   icon,
   bgColor = "bg-[#F38218]", // Orange background from the image
+  aos = "fade-down",
 }) => {
   return (
-    <div className={`${bgColor} p-5 xl:p-8 text-white`}>
+    <div data-aos={aos} className={`${bgColor} p-5 xl:p-8 text-white`}>
       <div className="flex items-center gap-4 mb-4">
         {icon || (
           <div className="shrink-0">

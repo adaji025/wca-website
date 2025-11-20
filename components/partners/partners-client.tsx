@@ -168,7 +168,7 @@ const PartnersClient: React.FC<PartnersClientProps> = ({ countries }) => {
         {filteredAndSortedCountries.map((country) => (
           <div
             key={country.uid}
-            className="flex flex-col bg-white rounded-lg overflow-hidden"
+            className="flex flex-col hover:scale-105 transition-all duration-300 bg-white rounded-lg overflow-hidden"
           >
             {/* Country Flag */}
             <div className="w-full bg-gray-100 flex items-center justify-center overflow-hidden">

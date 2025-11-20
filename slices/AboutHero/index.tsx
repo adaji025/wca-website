@@ -1,4 +1,5 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import Bounded from "@/components/bounded";
@@ -13,6 +14,7 @@ import {
   TargetIcon,
 } from "@/components/svg";
 import Link from "next/link";
+import Aos from "aos";
 // import MissionVisionCard from "@/components/mission-vission-card/mission-vision-card";
 
 /**
@@ -24,6 +26,13 @@ export type AboutHeroProps = SliceComponentProps<Content.AboutHeroSlice>;
  * Component for "AboutHero" Slices.
  */
 const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
+  useEffect(() => {
+    Aos.init({
+      // Optional: Configure global settings here
+      duration: 800, // Example: animation duration
+      once: true, // Example: animate only once
+    });
+  }, []);
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -69,12 +78,13 @@ const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
             </div>
           </div>
           {/* Mission, Vision, Mandate, Philosophy Cards */}
-          <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-6 lg:-translate-y-20">
+          <div className="overflow-hidden mt-5 grid grid-cols-1 md:grid-cols-2 gap-6 lg:-translate-y-20">
             {slice.primary.mission && (
               <MissionVisionCard
                 title="Our Mission"
                 content={slice.primary.mission}
                 icon={<TargetIcon />}
+                aos="fade-down"
               />
             )}
             {slice.primary.vission && (
@@ -82,6 +92,7 @@ const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
                 title="Our Vision"
                 content={slice.primary.vission}
                 icon={<EyeIcon />}
+                aos="fade-left"
               />
             )}
             {slice.primary.mandate && (
@@ -89,6 +100,7 @@ const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
                 title="Our Mandate"
                 content={slice.primary.mandate}
                 icon={<MandateIcon />}
+                aos="fade-right"
               />
             )}
             {slice.primary.philosophy && (
@@ -96,11 +108,12 @@ const AboutHero: FC<AboutHeroProps> = ({ slice }) => {
                 title="Our Philosophy"
                 content={slice.primary.philosophy}
                 icon={<PhilosophyIcon />}
+                aos="fade-up"
               />
             )}
           </div>
         </div>
-        <div className="lg:mt-[unset] my-10">
+        <div className="lg:mt-[unset] my-10" data-aos="fade-up">
           <div className="text38 text-wca-secondary">
             <PrismicRichText field={slice.primary.text_2_title} />
           </div>
