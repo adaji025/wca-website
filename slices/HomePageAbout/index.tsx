@@ -1,9 +1,11 @@
-import { FC } from "react";
+"use client"
+import { FC, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextImage, PrismicNextLink } from "@prismicio/next";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
+import AOS from "aos";
 
 /**
  * Props for `HomePageAbout`.
@@ -15,10 +17,18 @@ export type HomePageAboutProps =
  * Component for "HomePageAbout" Slices.
  */
 const HomePageAbout: FC<HomePageAboutProps> = ({ slice }) => {
+    useEffect(() => {
+      AOS.init({
+        // Optional: Configure global settings here
+        duration: 800, // Example: animation duration
+        once: true, // Example: animate only once
+      });
+    }, []);
   return (
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      data-aos="fade-up"
     >
       <Image
         src="/images/pngs/header-bg.png"

@@ -5,6 +5,7 @@ import { Navbar } from "@/components/navbar";
 import PageHeaderComp from "@/components/page-header";
 import Footer from "@/components/footer";
 import NextTopLoader from "nextjs-toploader";
+import 'aos/dist/aos.css'; 
 
 const josefinSans = Josefin_Sans({
   variable: "--font-josefin-sans",

@@ -1,10 +1,12 @@
-import { FC } from "react";
+"use client";
+import { FC, useEffect } from "react";
 import { Content } from "@prismicio/client";
 import { PrismicRichText, SliceComponentProps } from "@prismicio/react";
 import { PrismicNextLink, PrismicNextImage } from "@prismicio/next";
 import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import { ShareIcon } from "@/components/svg";
+import AOS from "aos";
 
 /**
  * Props for `HomePageHero`.
@@ -15,6 +17,13 @@ export type HomePageHeroProps = SliceComponentProps<Content.HomePageHeroSlice>;
  * Component for "HomePageHero" Slices.
  */
 const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
+  useEffect(() => {
+    AOS.init({
+      // Optional: Configure global settings here
+      duration: 800, // Example: animation duration
+      once: true, // Example: animate only once
+    });
+  }, []);
   return (
     <section
       data-slice-type={slice.slice_type}
@@ -26,13 +35,19 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
         <div className="flex flex-col lg:flex-row overflow-hdden">
           <div className="w-full">
             <div>
-              <div className="w-20 h-2.5 bg-wca-primary" />
+              <div
+                className="w-20 h-2.5 bg-wca-primary"
+                data-aos="fade-right"
+              />
               <span className="text-[26px] font-medium font-sans">
                 {slice.primary.theme}
               </span>
             </div>
 
-            <div className="font-bold text68 text-wca-secondary font-serif">
+            <div
+              className="font-bold text68 text-wca-secondary font-serif"
+              data-aos="zoom-in"
+            >
               <PrismicRichText field={slice.primary.hero_text} />
             </div>
             <div className="hidden sm:flex flex-col sm:flex-row sm:flex-wrap items-center gap-4 mt-5">
@@ -52,6 +67,7 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
           <PrismicNextImage
             field={slice.primary.hero_image}
             className="w-full mt-4 lg:mt-[unset]"
+            data-aos="zoom-in-right"
           />
 
           <div className="sm:hidden flex-col sm:flex-row sm:flex-wrap items-center gap-4 mt-5">
@@ -69,15 +85,19 @@ const HomePageHero: FC<HomePageHeroProps> = ({ slice }) => {
           </div>
         </div>
         <div className="grid xl:-translate-x-20 lg:grid-cols-3 md:grid-cols-2 gap-5 mt-20 mb-20">
-          <PrismicNextImage
-            field={slice.primary.sub_image_1}
-            className="w-full h-full object-cover order-2 sm:order-1"
-          />
-          <PrismicNextImage
-            field={slice.primary.sub_image_2}
-            className="hidden lg:inline w-full h-full object-cover"
-          />
-          <div className="bg-[#F7F7F7] flex order-1 sm:order-2">
+          <div data-aos="fade-down" data-aos-duration="1000" className="w-full">
+            <PrismicNextImage
+              field={slice.primary.sub_image_1}
+              className="w-full h-full object-cover order-2 sm:order-1"
+            />
+          </div>
+          <div data-aos="fade-up" data-aos-duration="1300" className="w-full">
+            <PrismicNextImage
+              field={slice.primary.sub_image_2}
+              className="hidden lg:inline w-full h-full object-cover"
+            />
+          </div>
+          <div data-aos="fade-down" className="bg-[#F7F7F7] flex order-1 sm:order-2">
             <div className="flex flex-col justify-between">
               <div className="text-[26px] pt-3 px-5">Latest</div>
               <Image
