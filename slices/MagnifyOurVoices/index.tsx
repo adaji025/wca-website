@@ -30,28 +30,28 @@ const MagnifyOurVoices: FC<MagnifyOurVoicesProps> = ({ slice }) => {
         alt="divider"
       />
       <Bounded>
-        <div className="text-center w-full">
+        <div className="text-center w-full py-10">
           <div className="text38">
             <PrismicRichText field={slice.primary.title} />
           </div>
           <div className="max-w-[760px] mx-auto text26 text-black">
             <PrismicRichText field={slice.primary.text} />
           </div>
-          <div className="flex items-center justify-center gap-4 mt-8">
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mt-8">
             {slice.primary.button1?.link_type && slice.primary.button1?.text && (
-              <div className="bg-[#177402] text-white px-6 py-3 flex items-center gap-2">
+              <div className="bg-[#177402] w-full sm:w-fit justify-center text-white px-6 py-3 flex  items-center gap-2">
                 <PrismicNextLink field={slice.primary.button1} />
                 <SquareArrowOutUpRight className="w-3 h-3" />
               </div>
             )}
             {slice.primary.button2?.link_type && slice.primary.button2?.text && (
-              <div className="bg-[#FBE5B6] text-wca-secondary px-6 py-3 flex items-center gap-2">
+              <div className="bg-[#FBE5B6] w-full sm:w-fit justify-center text-wca-secondary px-6 py-3 flex items-center gap-2">
                 <PrismicNextLink field={slice.primary.button2} />
                 <SquareArrowOutUpRight className="w-3 h-3" />
               </div>
             )}
             {slice.primary.button3?.link_type && slice.primary.button3?.text && (
-              <div className="bg-wca-primary text-white px-6 py-3 flex items-center gap-2">
+              <div className="bg-wca-primary w-full sm:w-fit justify-center text-white px-6 py-3 flex items-center gap-2">
                 <PrismicNextLink field={slice.primary.button3} />
                 <SquareArrowOutUpRight className="w-3 h-3" />
               </div>

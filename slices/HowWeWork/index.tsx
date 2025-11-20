@@ -49,6 +49,7 @@ const HowWeWork: FC<HowWeWorkProps> = ({ slice }) => {
     <section
       data-slice-type={slice.slice_type}
       data-slice-variation={slice.variation}
+      className="mb-10"
     >
       <Image
         src="/images/pngs/header-bg.png"
